@@ -1,0 +1,13 @@
+//------------------------------------------------------
+// FRONTENDLER
+//------------------------------------------------------
+@import "frontendler";
+
+@include reset();
+
+
+html,body{
+    background: #1d1e26;
+    color:#494d61;
+    min-height: 100vh;
+}
