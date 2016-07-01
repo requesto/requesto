@@ -5,6 +5,7 @@ const nativeImage = electron.nativeImage
     // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
+app.setName("Resto");
 
 if (app.dock) {
     app.dock.setIcon(nativeImage.createFromPath("app/assets/icons/icon.png"));
