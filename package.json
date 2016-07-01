@@ -1,35 +1,38 @@
 {
-  "name": "resto",
-  "version": "0.2.0",
-  "description": "Resto - The futurist open source rest client.",
-  "license": "MIT",
-  "author": {
-    "name": "Daniel Beff",
-    "email": "daniel.beff@gmail.com",
-    "url": "http://www.danielbeff.com.br"
-  },
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dbeff/resto.git"
-  },
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "rest",
-    "api",
-    "client"
-  ],
-  "bugs": {
-    "url": "https://github.com/dbeff/resto/issues"
-  },
-  "homepage": "https://github.com/dbeff/resto#readme",
-  "devDependencies": {
-    "electron-prebuilt": "^1.2.0"
-  }
+    "name": "resto",
+    "version": "0.2.0",
+    "description": "Resto - The futurist open source rest client.",
+    "license": "MIT",
+    "author": {
+        "name": "Daniel Beff",
+        "email": "daniel.beff@gmail.com",
+        "url": "http://www.danielbeff.com.br"
+    },
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dbeff/resto.git"
+    },
+    "keywords": [
+        "Electron",
+        "quick",
+        "start",
+        "tutorial",
+        "rest",
+        "api",
+        "client"
+    ],
+    "bugs": {
+        "url": "https://github.com/dbeff/resto/issues"
+    },
+    "homepage": "https://github.com/dbeff/resto#readme",
+    "devDependencies": {
+        "electron-prebuilt": "^1.2.0"
+    },
+    "dependencies": {
+        "axios": "^0.9.1"
+    }
 }
