@@ -1,5 +1,6 @@
 {
   "name": "resto",
+  "productName": "Resto",
   "version": "0.2.0",
   "description": "Resto - The futurist open source rest client.",
   "license": "MIT",
