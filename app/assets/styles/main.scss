@@ -48,6 +48,9 @@ body{
         padding: 10px;
         width: 100%;
         border-radius: 3px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        font-size:13px;
         &:focus{
             border-color:#01d689;
         }
@@ -71,7 +74,6 @@ body{
 .result{
     margin-top: 20px;
     padding: $grid-gutter/2;
-    // background-color:#32343d;
     word-break: break-all;
 
     #json-renderer{
@@ -101,4 +103,7 @@ body{
     background-color: #16171d;
     width: 100%;
     z-index: 99999;
+    // letter-spacing: 0.05em;
+    font-size:13px;
+    font-weight: 600;
 }
