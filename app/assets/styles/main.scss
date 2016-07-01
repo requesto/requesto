@@ -13,14 +13,17 @@ html,body{
 }
 
 body{
+    padding: 100px 0;
 }
-
 
 .bar{
     @include clearfix();
     width: 100%;
     background-color: #16171d;
     padding: $grid-gutter/2 0;
+    position: fixed;
+    top:0;
+    left: 0;
 
     .columm{
         &.action{
@@ -69,4 +72,14 @@ body{
     padding: $grid-gutter/2;
     background-color:#32343d;
     word-break: break-all;
+}
+
+
+.footer{
+    position: fixed;
+    bottom:0;
+    left: 0;
+    padding: $grid-gutter/2;
+    background-color: #16171d;
+    width: 100%;
 }
