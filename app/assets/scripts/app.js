@@ -3,11 +3,29 @@
 // All of the Node.js APIs are available in this process.
 
 const Axios = require('axios');
+const $ = require("jquery");
+const {
+    ipcMain
+} = require('electron');
 
-Axios.get('http://beta.json-generator.com/api/json/get/4JVFHRAHZ')
-    .then(function(response) {
-        console.log(response);
+console.log(ipcMain);
+
+
+$(".bar .input-button").click(function() {
+
+    const action = $(".bar .input-action").val();
+    const url = $(".bar .input-url").val();
+
+    $(".result").html("Carregando....");
+    console.log("Carregando...");
+
+    Axios({
+        method: action,
+        url: url
+    }).then(function(response) {
+        $(".result").html(JSON.stringify(response));
     })
     .catch(function(error) {
-        console.log(error);
+        $(".result").html(JSON.stringify(error));
     });
+})
