@@ -7,13 +7,13 @@
 
 
 html,body{
-    background: #1d1e26;
+    background: #262730;
     color:#9ca0b4;
     min-height: 100vh;
 }
 
 body{
-    padding: 100px 0;
+    padding: 60px 0;
 }
 
 .bar{
@@ -24,6 +24,7 @@ body{
     position: fixed;
     top:0;
     left: 0;
+    z-index: 99999;
 
     .columm{
         &.action{
@@ -70,8 +71,25 @@ body{
 .result{
     margin-top: 20px;
     padding: $grid-gutter/2;
-    background-color:#32343d;
+    // background-color:#32343d;
     word-break: break-all;
+
+    #json-renderer{
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 17px;
+
+        ul.json-dict, ol.json-array{
+            border-color: #32343d;
+        }
+        .json-string {
+            color: #338962;
+        }
+        .json-literal{
+            color: #666977;
+        }
+    }
+
 }
 
 
@@ -82,4 +100,5 @@ body{
     padding: $grid-gutter/2;
     background-color: #16171d;
     width: 100%;
+    z-index: 99999;
 }

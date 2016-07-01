@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "axios": "^0.9.1",
-    "jquery": "^3.0.0"
+    "jquery": "^3.0.0",
+    "jquery.json-viewer": "^1.1.0"
   }
 }
