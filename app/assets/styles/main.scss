@@ -7,47 +7,88 @@
 
 
 html,body{
-    background: #262730;
+    background: #1d1e26;
     color:#9ca0b4;
     min-height: 100vh;
 }
 
 body{
-    padding: 60px 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    min-width: 600px;
 }
 
+.component-sidebar{
+    flex-shrink: 0;
+    flex-basis:300px;
+    max-width: 300px;
+    background: #16171d;
+    height: 100vh;
+    border-right: 1px solid #111217;
+}
+
+.component-content{
+    position: relative;
+    flex-grow: 1;
+    overflow: scroll;
+    height: 100vh;
+    padding-top: 40px;
+}
+
+
+.component-footer{
+    position: fixed;
+    bottom:0;
+    left: 0;
+    padding: 5px $grid-gutter/2;
+    background-color: #16171d;
+    width: 100%;
+    z-index: 99999;
+    // letter-spacing: 0.05em;
+    font-size:13px;
+    font-weight: 600;
+    border-top: 1px solid #111217;
+}
+
+
 .bar{
-    @include clearfix();
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     width: 100%;
     background-color: #16171d;
     padding: $grid-gutter/2 0;
-    position: fixed;
+    position: absolute;;
     top:0;
     left: 0;
     z-index: 99999;
+    padding: 10px 10px;
+    border-bottom: 1px solid #111217;
 
     .columm{
+        padding: 0 10px;
         &.action{
-            @include grid-column(3,12);
+            width: 150px;
         }
 
         &.url{
-            @include grid-column(6,12);
+            flex-grow: 1;
         }
 
         &.button{
-            @include grid-column(3,12);
+            width: 150px;
         }
     }
 
     input{
         background: none;
-        border: 2px solid #475271;
+        border: 1px solid #475271;
         transition: all $animation-duration;
         outline: none;
-        padding: 10px;
+        padding: 7px;
         width: 100%;
-        border-radius: 3px;
+        border-radius: 2px;
         font-weight: 600;
         letter-spacing: 0.05em;
         font-size:13px;
@@ -91,19 +132,31 @@ body{
             color: #666977;
         }
     }
-
 }
 
+.folder-list{
+    display: block;
+    color:#b1b4c4;
 
-.footer{
-    position: fixed;
-    bottom:0;
-    left: 0;
-    padding: $grid-gutter/2;
-    background-color: #16171d;
-    width: 100%;
-    z-index: 99999;
-    // letter-spacing: 0.05em;
-    font-size:13px;
-    font-weight: 600;
+
+    .item{
+        border-bottom: 1px solid #111217;
+        border-left: 2px solid #338962;
+        padding: 10px 10px;
+
+        &.active{
+            border-left: 2px solid #43d08a;
+        }
+    }
+
+    .name{
+        font-size: 13px;
+        //color:white
+
+    }
+    .description{
+        font-size:11px;
+        opacity: 0.7;
+    }
+
 }
