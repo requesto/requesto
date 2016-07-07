@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <title>Resto - Api client</title>
     <link rel="stylesheet" href="assets/styles/main.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="../node_modules/jquery.json-viewer/json-viewer/jquery.json-viewer.css" media="screen" title="no title" charset="utf-8">
-  </head>
-  <body>
+</head>
+
+<body>
     <div class="component-sidebar">
         <ul class="folder-list">
             <li class="item">
@@ -27,6 +29,13 @@
         </ul>
     </div>
     <div class="component-content">
+        <div class="component-tabs">
+            <ul class="tabs">
+                <li class="tab active">user/token</li>
+                <li class="tab">Aba 2</li>
+                <li class="tab">Aba 3</li>
+            </ul>
+        </div>
         <div class="bar">
             <div class="columm action">
                 <input class="input-action" type="text" name="action" placeholder="GET" value="get">
@@ -43,14 +52,22 @@
             <pre id="json-renderer"></pre>
         </div>
         <div class="component-footer">
-            We are using node <script>document.write(process.versions.node)</script>,
-            Chromium <script>document.write(process.versions.chrome)</script>,
-            and Electron <script>document.write(process.versions.electron)</script>.
+            We are using node
+            <script>
+                document.write(process.versions.node)
+            </script>, Chromium
+            <script>
+                document.write(process.versions.chrome)
+            </script>, and Electron
+            <script>
+                document.write(process.versions.electron)
+            </script>.
         </div>
     </div>
-  </body>
-  <script>
+</body>
+<script>
     // You can also require other files to run in this process
     require('./assets/scripts/app.js')
-  </script>
+</script>
+
 </html>

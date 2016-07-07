@@ -1,53 +1,54 @@
 {
-    "name": "resto",
-    "productName": "Resto",
-    "version": "0.1.0",
-    "description": "Resto - The futurist open source rest client.",
-    "license": "MIT",
-    "author": {
-        "name": "Daniel Beff",
-        "email": "daniel.beff@gmail.com",
-        "url": "http://www.danielbeff.com.br"
-    },
-    "main": "main.js",
-    "scripts": {
-        "start": "electron .",
-        "package": "electron-packager ./ Resto --all --out ~/Projects/resto --version 0.1.0 --overwrite"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/dbeff/resto.git"
-    },
-    "keywords": [
-        "Electron",
-        "quick",
-        "start",
-        "tutorial",
-        "rest",
-        "api",
-        "client"
-    ],
-    "bugs": {
-        "url": "https://github.com/dbeff/resto/issues"
-    },
-    "homepage": "https://github.com/dbeff/resto#readme",
-    "devDependencies": {
-        "del": "^2.2.1",
-        "electron-connect": "^0.4.2",
-        "electron-prebuilt": "^1.2.0",
-        "frontendler-sass": "^0.3.0",
-        "gulp": "^3.9.1",
-        "gulp-autoprefixer": "^3.1.0",
-        "gulp-eslint": "^2.0.0",
-        "gulp-load-plugins": "^1.2.4",
-        "gulp-plumber": "^1.1.0",
-        "gulp-sass": "^2.3.2",
-        "gulp-sourcemaps": "^1.6.0",
-        "run-sequence": "^1.2.2"
-    },
-    "dependencies": {
-        "axios": "^0.9.1",
-        "jquery": "^3.0.0",
-        "jquery.json-viewer": "^1.1.0"
-    }
+  "name": "resto",
+  "productName": "Resto",
+  "version": "0.1.0",
+  "description": "Resto - The futurist open source rest client.",
+  "license": "MIT",
+  "author": {
+    "name": "Daniel Beff",
+    "email": "daniel.beff@gmail.com",
+    "url": "http://www.danielbeff.com.br"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-packager ./ Resto --all --out ~/Projects/resto --version 0.1.0 --overwrite"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dbeff/resto.git"
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "rest",
+    "api",
+    "client"
+  ],
+  "bugs": {
+    "url": "https://github.com/dbeff/resto/issues"
+  },
+  "homepage": "https://github.com/dbeff/resto#readme",
+  "devDependencies": {
+    "del": "^2.2.1",
+    "electron-connect": "^0.4.2",
+    "electron-prebuilt": "^1.2.0",
+    "frontendler-sass": "^0.3.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-eslint": "^2.0.0",
+    "gulp-load-plugins": "^1.2.4",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "run-sequence": "^1.2.2"
+  },
+  "dependencies": {
+    "axios": "^0.9.1",
+    "jquery": "^3.0.0",
+    "jquery.json-viewer": "^1.1.0",
+    "react": "^15.2.0"
+  }
 }

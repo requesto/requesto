@@ -2,86 +2,96 @@
 // FRONTENDLER
 //------------------------------------------------------
 @import "frontendler";
-
 @include reset();
-
-
-html,body{
+body,
+html {
     background: #1d1e26;
-    color:#9ca0b4;
+    color: #9ca0b4;
     min-height: 100vh;
+    font-weight: 600;
 }
-
-body{
+body {
     display: flex;
     justify-content: space-around;
     padding: 0;
     min-width: 600px;
 }
-
-.component-sidebar{
+.component-sidebar {
     flex-shrink: 0;
-    flex-basis:300px;
+    flex-basis: 300px;
     max-width: 300px;
     background: #16171d;
     height: 100vh;
     border-right: 1px solid #111217;
 }
-
-.component-content{
+.component-content {
     position: relative;
     flex-grow: 1;
     overflow: scroll;
     height: 100vh;
-    padding-top: 40px;
 }
-
-
-.component-footer{
+.component-footer {
     position: fixed;
-    bottom:0;
+    bottom: 0;
     left: 0;
     padding: 5px $grid-gutter/2;
     background-color: #16171d;
     width: 100%;
     z-index: 99999;
     // letter-spacing: 0.05em;
-    font-size:13px;
+    font-size: 13px;
     font-weight: 600;
     border-top: 1px solid #111217;
 }
 
+.component-tabs{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
 
-.bar{
+    .tabs{
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        padding-top: 5px;
+        background:#16171d;
+        .tab{
+            padding: 10px;
+            &.active{
+                background: #1d1e26;
+                border-radius: 3px 3px 0 0;
+                border-top: 1px solid #2a2b33;
+            }
+        }
+    }
+}
+
+.bar {
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    background-color: #16171d;
+    // background-color: #16171d;
     padding: $grid-gutter/2 0;
-    position: absolute;;
-    top:0;
-    left: 0;
+    // position: absolute;
+    // top: 0;
+    // left: 0;
     z-index: 99999;
-    padding: 10px 10px;
-    border-bottom: 1px solid #111217;
-
-    .columm{
+    padding: 10px;
+    // border-bottom: 1px solid #111217;
+    .columm {
         padding: 0 10px;
-        &.action{
+        &.action {
             width: 150px;
         }
-
-        &.url{
+        &.url {
             flex-grow: 1;
         }
-
-        &.button{
+        &.button {
             width: 150px;
         }
     }
-
-    input{
+    input {
         background: none;
         border: 1px solid #475271;
         transition: all $animation-duration;
@@ -91,72 +101,60 @@ body{
         border-radius: 2px;
         font-weight: 600;
         letter-spacing: 0.05em;
-        font-size:13px;
-        &:focus{
-            border-color:#01d689;
+        font-size: 13px;
+        &:focus {
+            border-color: #01d689;
         }
-
-
-        &[type="button"]{
+        &[type="button"] {
             border: 2px solid #01d689;
             background: #01d689;
-            color:white;
-            border:none;
+            color: white;
+            border: none;
             font-weight: 600;
-
-            &:active{
+            &:active {
                 opacity: 0.9;
             }
         }
     }
-
 }
-
-.result{
+.result {
     margin-top: 20px;
     padding: $grid-gutter/2;
     word-break: break-all;
-
-    #json-renderer{
+    #json-renderer {
         font-size: 13px;
         font-weight: 600;
         line-height: 17px;
-
-        ul.json-dict, ol.json-array{
+        ol.json-array,
+        ul.json-dict {
             border-color: #32343d;
         }
         .json-string {
             color: #338962;
         }
-        .json-literal{
+        .json-literal {
             color: #666977;
         }
     }
 }
-
-.folder-list{
+.folder-list {
     display: block;
-    color:#b1b4c4;
-
-
-    .item{
-        border-bottom: 1px solid #111217;
+    color: #b1b4c4;
+    .item {
+        border-bottom: 2px solid #111217;
         border-left: 2px solid #338962;
-        padding: 10px 10px;
-
-        &.active{
+        padding: 10px;
+        &.active {
             border-left: 2px solid #43d08a;
         }
     }
-
-    .name{
+    .name {
         font-size: 13px;
+        font-weight: 600;
         //color:white
-
     }
-    .description{
-        font-size:11px;
+    .description {
+        font-size: 11px;
         opacity: 0.7;
     }
-
 }
