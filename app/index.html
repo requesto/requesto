@@ -9,65 +9,8 @@
 </head>
 
 <body>
-    <div class="component-sidebar">
-        <ul class="folder-list">
-            <li class="item">
-                <div class="icon type"></div>
-                <div class="name">Test</div>
-                <div class="description">2 endpoints</div>
-            </li>
-            <li class="item active">
-                <div class="icon type"></div>
-                <div class="name">Test</div>
-                <div class="description">2 endpoints</div>
-            </li>
-            <li class="item">
-                <div class="icon type"></div>
-                <div class="name">Test</div>
-                <div class="description">2 endpoints</div>
-            </li>
-        </ul>
-    </div>
-    <div class="component-content">
-        <div class="component-tabs">
-            <ul class="tabs">
-                <li class="tab active">user/token</li>
-                <li class="tab">Aba 2</li>
-                <li class="tab">Aba 3</li>
-            </ul>
-        </div>
-        <div class="bar">
-            <div class="columm action">
-                <input class="input-action" type="text" name="action" placeholder="GET" value="get">
-            </div>
-            <div class="columm url">
-                <input class="input-url" name="url" placeholder="http://beta.json-generator.com/api/json/get/4JVFHRAHZ" value="http://beta.json-generator.com/api/json/get/4JVFHRAHZ">
-            </div>
-            <div class="columm button">
-                <input class="input-button" type="button" name="send" value="Send">
-            </div>
-        </div>
-        <div class="result">
-            <!-- All of the Node.js APIs are available in this renderer process. -->
-            <pre id="json-renderer"></pre>
-        </div>
-        <div class="component-footer">
-            We are using node
-            <script>
-                document.write(process.versions.node)
-            </script>, Chromium
-            <script>
-                document.write(process.versions.chrome)
-            </script>, and Electron
-            <script>
-                document.write(process.versions.electron)
-            </script>.
-        </div>
-    </div>
+    <div class="app"></div>
+    <script src="assets/scripts/bundle.js"></script>
 </body>
-<script>
-    // You can also require other files to run in this process
-    require('./assets/scripts/app.js')
-</script>
 
 </html>

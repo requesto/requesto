@@ -32,6 +32,12 @@
   },
   "homepage": "https://github.com/dbeff/resto#readme",
   "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-1": "^6.1.18",
     "del": "^2.2.1",
     "electron-connect": "^0.4.2",
     "electron-prebuilt": "^1.2.0",
@@ -43,12 +49,25 @@
     "gulp-plumber": "^1.1.0",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
-    "run-sequence": "^1.2.2"
+    "run-sequence": "^1.2.2",
+    "webpack": "^1.12.9",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0",
+    "webpack-stream": "^3.1.0",
+    "webpack-target-electron-renderer": "^0.4.0"
   },
   "dependencies": {
     "axios": "^0.9.1",
     "jquery": "^3.0.0",
     "jquery.json-viewer": "^1.1.0",
-    "react": "^15.2.0"
+    "fastclick": "^1.0.6",
+    "history": "^2.0.1",
+    "jsdom": "^8.1.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-redux": "^4.0.0",
+    "react-router": "^2.0.1",
+    "redux": "^3.0.4",
+    "redux-promise": "^0.5.3"
   }
 }
