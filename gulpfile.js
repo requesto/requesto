@@ -7,7 +7,7 @@ var gulp = require("gulp"),
     del = require("del"),
     runSequence = require("run-sequence"),
     electron = require('electron-connect').server.create(),
-    webpackStream = require('webpack-stream'),
+    webpack = require('webpack-stream'),
     webpackConfig = require('./webpack.config');
 
 //-------------------------------------------------------------------
@@ -16,6 +16,7 @@ var gulp = require("gulp"),
 
 var PATH = {
   app: "app",
+  dist: "dist",
   test: "test",
   styles: "assets/styles",
   scripts: "assets/scripts",
@@ -37,21 +38,30 @@ gulp.task("styles", function() {
         }).on("error", plugins.sass.logError))
         .pipe(plugins.autoprefixer(AUTOPREFIXER_BROWSERS))
         .pipe(plugins.sourcemaps.write())
-        .pipe(gulp.dest(PATH.app + "/" + PATH.styles))
+        .pipe(gulp.dest(PATH.dist + "/" + PATH.styles))
 });
 
 gulp.task("scripts:dev", function() {
     return gulp.src(PATH.app + "/" + PATH.scripts + "/main.js")
         .pipe(plugins.plumber())
-        .pipe(webpackStream(webpackConfig.DEV))
-        .pipe(gulp.dest(PATH.app + "/" + PATH.scripts))
+        .pipe(webpack(webpackConfig.DEV))
+        .pipe(gulp.dest(PATH.dist + "/" + PATH.scripts))
 });
 
 gulp.task("scripts:build", function() {
     return gulp.src(PATH.app + "/" + PATH.scripts + "/main.js")
         .pipe(plugins.plumber())
-        .pipe(webpackStream(webpackConfig.PROD))
-        .pipe(gulp.dest(dev + PATH.scripts))
+        .pipe(webpack(webpackConfig.PROD))
+        .pipe(gulp.dest(PATH.dist + "/" + PATH.scripts))
+});
+
+gulp.task("clean", del.bind(null, [PATH.dist]));
+
+gulp.task("copy", function() {
+        gulp.src(PATH.app + "/**/*.html")
+            .pipe(gulp.dest(PATH.dist));
+        gulp.src(PATH.app + "/" + PATH.images + "/**/*.*")
+            .pipe(gulp.dest(PATH.dist + "/" + PATH.images));
 });
 
 
@@ -59,10 +69,13 @@ gulp.task("scripts:build", function() {
 // DEFAULT
 //-------------------------------------------------------------------
 
+gulp.task("default",function (cb){
+    runSequence("clean","copy",["styles","scripts:dev"],"watch", cb);
+});
 
-gulp.task('default', function() {
+
+gulp.task("watch", function() {
     electron.start();
     gulp.watch(PATH.app + "/" + PATH.styles + "/**/*.scss",["styles",electron.restart]);
-    gulp.watch(PATH.app + "/" + PATH.scripts + "/**/*.js", ["scripts:dev"]);
-    gulp.watch(['index.js', 'index.html'], electron.restart);
+    gulp.watch(['main.js','app/index.html'], electron.restart);
 });

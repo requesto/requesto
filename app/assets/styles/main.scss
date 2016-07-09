@@ -16,6 +16,14 @@ body {
     padding: 0;
     min-width: 600px;
 }
+.app{
+    display: flex;
+    width: 100%;
+}
+.component-app{
+    display: flex;
+    width: 100%;
+}
 .component-sidebar {
     flex-shrink: 0;
     flex-basis: 300px;

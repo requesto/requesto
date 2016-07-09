@@ -8,7 +8,7 @@ const BrowserWindow = electron.BrowserWindow
 app.setName("Resto");
 
 if (app.dock) {
-    app.dock.setIcon(nativeImage.createFromPath("app/assets/icons/icon.png"));
+    app.dock.setIcon(nativeImage.createFromPath("dist/assets/images/icons/icon.png"));
     app.dock.setBadge("1");
 }
 
@@ -26,7 +26,7 @@ function createWindow() {
     })
 
     // and load the index.html of the app.
-    mainWindow.loadURL(`file://${__dirname}/app/index.html`)
+    mainWindow.loadURL(`file://${__dirname}/dist/index.html`)
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools()
