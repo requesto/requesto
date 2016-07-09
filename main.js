@@ -5,7 +5,7 @@ const nativeImage = electron.nativeImage
     // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
-app.setName("Resto");
+app.setName("Requesto");
 
 if (app.dock) {
     app.dock.setIcon(nativeImage.createFromPath("dist/assets/images/icons/icon.png"));
@@ -21,7 +21,7 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
-        title: "Resto",
+        title: "Requesto",
         center: true
     })
 
