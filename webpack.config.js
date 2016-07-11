@@ -1,27 +1,25 @@
-require("babel-polyfill");
 var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
     DEV: {
-        debug: true,
-        devtool: '#eval-source-map',
+        devtool: 'eval',
         context: path.join(__dirname, 'app', 'assets/scripts'),
         entry: [
-            'webpack/hot/dev-server',
-            'webpack-hot-middleware/client',
+            'webpack-dev-server/client?http://localhost:3000',
+            'webpack/hot/only-dev-server',
             './main'
         ],
         output: {
-            path: path.join(__dirname, 'app', 'assets/scripts'),
-            publicPath: '/assets/scripts',
+            path: path.join(__dirname, 'dist', 'assets/scripts'),
+            publicPath: 'http://localhost:3000/assets/scripts/',
             filename: "bundle.js"
         },
         module: {
             loaders: [{
                 test: /\.js$/,
                 include: path.join(__dirname, 'app', 'assets/scripts'),
-                loaders: ['babel-loader']
+                loaders: ['react-hot', 'babel'],
             }]
         },
         resolve: {
@@ -31,7 +29,7 @@ module.exports = {
             new webpack.optimize.OccurenceOrderPlugin(),
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NoErrorsPlugin()
-        ],
+        ]
     },
     PROD: {
         cache: false,
@@ -42,7 +40,7 @@ module.exports = {
         module: {
             loaders: [{
                 test: /\.js$/,
-                include: path.join(__dirname, 'app', 'assets/scripts'),
+                exclude: /(node_modules|bower_components)/,
                 loaders: ['babel-loader']
             }]
         },
