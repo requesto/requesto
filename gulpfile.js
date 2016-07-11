@@ -7,20 +7,22 @@ var gulp = require("gulp"),
     del = require("del"),
     runSequence = require("run-sequence"),
     electron = require('electron-connect').server.create(),
-    webpack = require('webpack-stream'),
-    webpackConfig = require('./webpack.config');
+    webpack = require('webpack'),
+    webpackStream = require('webpack-stream'),
+    webpackConfig = require('./webpack.config'),
+    WebpackDevServer = require('webpack-dev-server');
 
 //-------------------------------------------------------------------
 // SETUP
 //-------------------------------------------------------------------
 
 var PATH = {
-  app: "app",
-  dist: "dist",
-  test: "test",
-  styles: "assets/styles",
-  scripts: "assets/scripts",
-  images: "assets/images"
+    app: "app",
+    dist: "dist",
+    test: "test",
+    styles: "assets/styles",
+    scripts: "assets/scripts",
+    images: "assets/images"
 }
 
 var AUTOPREFIXER_BROWSERS = ["chrome >= 34"];
@@ -42,9 +44,24 @@ gulp.task("styles", function() {
 });
 
 gulp.task("scripts:dev", function() {
+
+    new WebpackDevServer(webpack(webpackConfig.DEV), {
+        publicPath: webpackConfig.DEV.output.publicPath,
+        hot: true,
+        historyApiFallback: true,
+        stats: {
+            colors: true
+        }
+    }).listen(3000, 'localhost', function(err, result) {
+        if (err) {
+            return console.log(err);
+        }
+        console.log('Listening at http://localhost:3000/');
+    });
+
     return gulp.src(PATH.app + "/" + PATH.scripts + "/main.js")
         .pipe(plugins.plumber())
-        .pipe(webpack(webpackConfig.DEV))
+        .pipe(webpackStream(webpackConfig.DEV))
         .pipe(gulp.dest(PATH.dist + "/" + PATH.scripts))
 });
 
@@ -58,10 +75,10 @@ gulp.task("scripts:build", function() {
 gulp.task("clean", del.bind(null, [PATH.dist]));
 
 gulp.task("copy", function() {
-        gulp.src(PATH.app + "/**/*.html")
-            .pipe(gulp.dest(PATH.dist));
-        gulp.src(PATH.app + "/" + PATH.images + "/**/*.*")
-            .pipe(gulp.dest(PATH.dist + "/" + PATH.images));
+    gulp.src(PATH.app + "/**/*.html")
+        .pipe(gulp.dest(PATH.dist));
+    gulp.src(PATH.app + "/" + PATH.images + "/**/*.*")
+        .pipe(gulp.dest(PATH.dist + "/" + PATH.images));
 });
 
 
@@ -69,13 +86,13 @@ gulp.task("copy", function() {
 // DEFAULT
 //-------------------------------------------------------------------
 
-gulp.task("default",function (cb){
-    runSequence("clean","copy",["styles","scripts:dev"],"watch", cb);
+gulp.task("default", function(cb) {
+    runSequence("clean","copy","styles","scripts:dev","watch", cb);
 });
 
 
 gulp.task("watch", function() {
     electron.start();
-    gulp.watch(PATH.app + "/" + PATH.styles + "/**/*.scss",["styles",electron.restart]);
-    gulp.watch(['main.js','app/index.html'], electron.restart);
+    gulp.watch(PATH.app + "/" + PATH.styles + "/**/*.scss", ["styles", electron.restart]);
+    gulp.watch(['main.js', 'app/index.html'], electron.restart);
 });
