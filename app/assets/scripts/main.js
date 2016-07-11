@@ -17,14 +17,10 @@ const devTools = window.devToolsExtension ? window.devToolsExtension() : f => f;
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers,devTools)}>
         <Router history={routerHistory} onUpdate={() => window.scrollTo(0, 0)}>
-            <Route path="/" component={App}>
-                <IndexRoute component={App} />
-            </Route> 
-            <Route path="*" component={App}/>
+            <Route path="/" component={App} />
         </Router>
     </Provider>
 ,document.querySelector('.app'));
-
 
 
 // This file is required by the index.html file and will
