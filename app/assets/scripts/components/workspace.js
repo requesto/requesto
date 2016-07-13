@@ -35,16 +35,20 @@ class Workspace extends Component {
         });
     }
 
+    onClickAdd(){
+        $( "<li class='tab'>Nova aba</li>" ).insertBefore( ".component-tabs .tabs .tab.-plus" );
+    }
+
     render() {
         return (
             <div className="component-workspace">
                 <div className="component-workspace-top">
                     <div className="component-tabs">
                         <ul className="tabs">
-                            <li className="tab active">user/token</li>
+                            <li className="tab active" >user/token</li>
                             <li className="tab">Aba 4</li>
                             <li className="tab">Aba 3</li>
-                            <li className="tab"> + </li>
+                            <li className="tab -plus" onClick={this.onClickAdd}> + </li>
                         </ul>
                     </div>
                     <div className="bar">
