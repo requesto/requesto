@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import Viewers from './viewers';
 
-const rootReducer = combineReducers({
+const Reducers = combineReducers({
     viewers: Viewers
 });
 

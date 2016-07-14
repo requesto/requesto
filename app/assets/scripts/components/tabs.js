@@ -8,22 +8,28 @@ class Tabs extends Component {
     constructor(props){
         super(props);
         this.state = {};
+        this.onClickAdd = this.onClickAdd.bind(this);
+    }
 
-
-        console.log(props);
+    componentWillReceiveProps(nextProps){
+        console.log("Tabs: ",nextProps );
     }
 
     onClickAdd(){
-        $( "<li class='tab'>Nova aba</li>" ).insertBefore( ".component-tabs .tabs .tab.-plus" );
+        this.props.viewerAdd();
+    }
+
+    renderTabs(data,index){
+        return(
+            <li className="tab" key={"tab-" + data.name}>{data.name}</li>
+        );
     }
 
     render() {
         return (
             <div className="component-tabs">
                 <ul className="tabs">
-                    <li className="tab active" >user/token</li>
-                    <li className="tab">Aba 4</li>
-                    <li className="tab">Aba 3</li>
+                    {this.props.viewers.map(this.renderTabs)}
                     <li className="tab -plus" onClick={this.onClickAdd}> + </li>
                 </ul>
             </div>

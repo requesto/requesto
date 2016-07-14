@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, useRouterHistory} from 'react-router'
 import { createHashHistory } from 'history'
 import ReduxPromise from 'redux-promise';
-import reducers from './reducers';
+import Reducers from './reducers';
 
 // Components
 import App from './components/app';
@@ -15,7 +15,7 @@ const routerHistory = useRouterHistory(createHashHistory)({queryKey:false})
 const devTools = window.devToolsExtension ? window.devToolsExtension() : f => f;
 
 ReactDOM.render(
-    <Provider store={createStoreWithMiddleware(reducers,devTools)}>
+    <Provider store={createStoreWithMiddleware(Reducers,devTools)}>
         <Router history={routerHistory} onUpdate={() => window.scrollTo(0, 0)}>
             <Route path="/" component={App} />
         </Router>

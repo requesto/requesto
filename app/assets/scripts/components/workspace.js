@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {viewerAdd} from "./../actions/index";
 
 import Axios from 'axios';
 import $ from "jquery";
@@ -17,6 +18,10 @@ class Workspace extends Component {
         super(props);
         this.state = {};
         this.onClickSend = this.onClickSend.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps){
+        console.log("Workspace: ",nextProps );
     }
 
     onClickSend(){
@@ -60,12 +65,12 @@ class Workspace extends Component {
     }
 }
 
-function mapStateToProps({}){
-    return {};
+function mapStateToProps({viewers}){
+    return {viewers};
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({},dispatch);
+    return bindActionCreators({viewerAdd},dispatch);
 }
 
 export default connect (mapStateToProps,mapDispatchToProps)(Workspace);
