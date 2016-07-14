@@ -3,4 +3,13 @@
     flex-grow: 1;
     overflow: scroll;
     height: 100vh;
+
+    .top{
+        position: absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        // box-shadow: 0 0 10px black;
+        border-bottom: 1px solid rgba(17, 18, 23, 1.0);
+    }
 }
