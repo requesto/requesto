@@ -1,8 +1,6 @@
 const electron = require('electron')
-    // Module to control application life.
 const app = electron.app
 const nativeImage = electron.nativeImage
-    // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
 
 app.setName("Requesto");
@@ -19,10 +17,11 @@ let mainWindow
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
+        background: "#1d1e26",
         width: 800,
         height: 600,
         title: "Requesto",
-        center: true
+        center: true,
     })
 
     // and load the index.html of the app.
