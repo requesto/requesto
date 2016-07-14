@@ -1,7 +1,8 @@
 .component-sidebar {
+    display: none;
     flex-shrink: 0;
-    flex-basis: 300px;
-    max-width: 300px;
+    flex-basis: 250px;
+    max-width: 250px;
     background: #16171d;
     height: 100vh;
     border-right: 1px solid #111217;
