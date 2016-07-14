@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import Viewers from './viewers';
 
-const Reducers = combineReducers({
-    state: (state = {}) => state
+const rootReducer = combineReducers({
+    viewers: Viewers
 });
 
 export default Reducers;
