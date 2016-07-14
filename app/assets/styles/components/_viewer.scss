@@ -1,0 +1,26 @@
+.component-viewer {
+    display: flex;
+    flex: 1;
+    height: 100vh;
+    overflow: scroll;
+    padding: 95px $grid-gutter/2 30px $grid-gutter/2;
+    word-break: break-all;
+
+    display: none;
+
+    #json-renderer {
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 17px;
+        ol.json-array,
+        ul.json-dict {
+            border-color: #32343d;
+        }
+        .json-string {
+            color: #338962;
+        }
+        .json-literal {
+            color: #666977;
+        }
+    }
+}
