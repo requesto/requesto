@@ -27,7 +27,7 @@ body {
 @import "components/sidebar";
 @import "components/tabs";
 @import "components/workspace";
-@import "components/workspace-top";
+@import "components/viewer";
 
 .bar {
     display: flex;
@@ -77,30 +77,6 @@ body {
             &:active {
                 opacity: 0.9;
             }
-        }
-    }
-}
-.result {
-    display: flex;
-    flex: 1;
-    height: 100vh;
-    overflow: scroll;
-    padding: 95px $grid-gutter/2 30px $grid-gutter/2;
-    word-break: break-all;
-
-    #json-renderer {
-        font-size: 13px;
-        font-weight: 600;
-        line-height: 17px;
-        ol.json-array,
-        ul.json-dict {
-            border-color: #32343d;
-        }
-        .json-string {
-            color: #338962;
-        }
-        .json-literal {
-            color: #666977;
         }
     }
 }
