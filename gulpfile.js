@@ -93,6 +93,7 @@ gulp.task("default", function(cb) {
 
 gulp.task("watch", function() {
     electron.start();
-    gulp.watch(PATH.app + "/" + PATH.styles + "/**/*.scss", ["styles", electron.restart]);
-    gulp.watch(['main.js', 'app/index.html'], electron.restart);
+    gulp.watch(PATH.app + "/" + PATH.styles + "/**/*.scss", ["styles", electron.reload]);
+    gulp.watch(["app/index.html",PATH.app + "/" + PATH.images + "/**/*"], ["copy", electron.reload]);
+    gulp.watch(['main.js'], electron.reload);
 });
