@@ -8,12 +8,14 @@ import jQuery from "jquery";
 window.$ = $;
 window.jQuery = jQuery;
 
+import Tabs from "./tabs";
+import Viewer from "./viewer";
+
 class Workspace extends Component {
 
     constructor(props){
         super(props);
         this.state = {};
-
         this.onClickSend = this.onClickSend.bind(this);
     }
 
@@ -35,22 +37,11 @@ class Workspace extends Component {
         });
     }
 
-    onClickAdd(){
-        $( "<li class='tab'>Nova aba</li>" ).insertBefore( ".component-tabs .tabs .tab.-plus" );
-    }
-
     render() {
         return (
             <div className="component-workspace">
-                <div className="component-workspace-top">
-                    <div className="component-tabs">
-                        <ul className="tabs">
-                            <li className="tab active" >user/token</li>
-                            <li className="tab">Aba 4</li>
-                            <li className="tab">Aba 3</li>
-                            <li className="tab -plus" onClick={this.onClickAdd}> + </li>
-                        </ul>
-                    </div>
+                <div className="top">
+                    <Tabs />
                     <div className="bar">
                         <div className="columm action">
                             <input className="input-action" type="text" name="action" placeholder="GET" defaultValue="get" />
@@ -63,9 +54,7 @@ class Workspace extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="result">
-                    <pre id="json-renderer"></pre>
-                </div>
+                <Viewer />
             </div>
         );
     }
