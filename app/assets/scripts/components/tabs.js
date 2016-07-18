@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {viewerAdd} from '../actions/index.js';
+import {tabAdd} from '../actions/index.js';
 
 class Tabs extends Component {
 
@@ -18,14 +18,13 @@ class Tabs extends Component {
     }
 
     onClickAdd(){
-        this.props.viewerAdd();
+        this.props.tabAdd();
     }
 
     onClickTab(index,e){
         console.log("TAB click: ",index, e.target);
         $(e.target).addClass('-active');
         $(e.target).siblings().removeClass('-active');
-        console.log("HAHAHAH");
     }
 
     renderTabs(data,index){
@@ -38,7 +37,7 @@ class Tabs extends Component {
         return (
             <div className="component-tabs">
                 <ul className="tabs">
-                    {this.props.viewers.map(this.renderTabs)}
+                    {this.props.tabs.map(this.renderTabs)}
                     <li className="tab -plus" onClick={this.onClickAdd}> + </li>
                 </ul>
             </div>
@@ -46,12 +45,12 @@ class Tabs extends Component {
     }
 }
 
-function mapStateToProps({viewers}){
-    return {viewers};
+function mapStateToProps({tabs}){
+    return {tabs};
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({viewerAdd},dispatch);
+    return bindActionCreators({tabAdd},dispatch);
 }
 
 export default connect (mapStateToProps,mapDispatchToProps)(Tabs);

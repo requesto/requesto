@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {viewerAdd} from "./../actions/index";
+import {tabAdd} from "./../actions/index";
 
 import Axios from 'axios';
 import $ from "jquery";
@@ -65,12 +65,12 @@ class Workspace extends Component {
     }
 }
 
-function mapStateToProps({viewers}){
-    return {viewers};
+function mapStateToProps({tabs}){
+    return {tabs};
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({viewerAdd},dispatch);
+    return bindActionCreators({tabAdd},dispatch);
 }
 
 export default connect (mapStateToProps,mapDispatchToProps)(Workspace);
