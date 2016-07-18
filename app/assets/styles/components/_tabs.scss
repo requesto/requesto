@@ -8,10 +8,12 @@
         justify-content: flex-start;
         width: 100%;
         padding-top: 5px;
-        background:#16171d;
+        background:color("background-dark");
         .tab{
             padding: 7px 10px;
             font-size: 12px;
+            border-right: 1px solid color("border");
+            user-select:none;
             &.-active{
                 background: #1d1e26;
                 border-radius: 2px 2px 0 0;
