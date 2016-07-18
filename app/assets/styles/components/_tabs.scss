@@ -1,30 +1,28 @@
-.component-tabs{
+.component-tabs {
     display: flex;
     justify-content: flex-start;
     width: 100%;
-
-    .tabs{
+    .tabs {
         display: flex;
         justify-content: flex-start;
         width: 100%;
         padding-top: 5px;
-        background:color("background-dark");
+        background: color("background-dark");
         border-bottom: 1px solid color("border");
         padding-left: 1px;
-        .tab{
+        .tab {
             position: relative;
             padding: 10px 15px;
             font-size: 12px;
             line-height: 12px;
             border-right: 1px solid color("border");
-            user-select:none;
+            user-select: none;
             margin: -1px;
             border-bottom: 1px solid transparent;
-
-            &:before{
+            &:before {
                 transition: opacity $animation-duration;
                 position: absolute;
-                top:0;
+                top: 0;
                 left: 0;
                 height: 100%;
                 width: 2px;
@@ -34,26 +32,23 @@
                 border-radius: 2px 0 0 0;
                 opacity: 0;
             }
-
-
-            &.-active{
+            &.-active {
                 background: color("background-light");
                 border-radius: 2px 2px 0 0;
                 color: color("text-light");
                 box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06);
                 border-bottom: 1px solid color("background-light");
-
-                &:before{
+                &:before {
                     opacity: 1;
                 }
             }
-
-            &.-plus{
+            &.-plus {
                 font-size: 17px;
                 border-right: 0;
-                color:color("text-light");
-                &:hover{
-                    color:color("green-light");
+                color: color("text-light");
+                transition: color $animation-duration;
+                &:hover {
+                    color: color("green-light");
                 }
             }
         }
