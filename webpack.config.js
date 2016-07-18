@@ -12,7 +12,7 @@ module.exports = {
         ],
         output: {
             path: path.join(__dirname, 'dist', 'assets/scripts'),
-            publicPath: 'http://localhost:3000/assets/scripts/',
+            publicPath: 'http://localhost:3000',
             filename: "bundle.js"
         },
         module: {
