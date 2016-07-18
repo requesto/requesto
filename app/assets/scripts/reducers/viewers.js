@@ -8,8 +8,7 @@ export default function(state = [initialState],action) {
     switch (action.type){
         case VIEWER_ADD:
             console.log("VIEWER_ADD reducer",action.payload);
-            state = [...action.payload,initialState]
-            return state;
+            return [ action.payload, ...state ];
     }
     return state;
 }
