@@ -9,6 +9,8 @@ class Tabs extends Component {
         super(props);
         this.state = {};
         this.onClickAdd = this.onClickAdd.bind(this);
+        this.onClickTab = this.onClickTab.bind(this);
+        this.renderTabs = this.renderTabs.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
@@ -19,9 +21,16 @@ class Tabs extends Component {
         this.props.viewerAdd();
     }
 
+    onClickTab(index,e){
+        console.log("TAB click: ",index, e.target);
+        $(e.target).addClass('-active');
+        $(e.target).siblings().removeClass('-active');
+        console.log("HAHAHAH");
+    }
+
     renderTabs(data,index){
         return(
-            <li className="tab" key={"tab-" + data.name}>{data.name}</li>
+            <li className="tab" onClick={this.onClickTab.bind(this,index)} key={"tab-" + data.name}>{data.name}</li>
         );
     }
 
