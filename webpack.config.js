@@ -6,13 +6,10 @@ module.exports = {
         devtool: 'eval',
         context: path.join(__dirname, 'app', 'assets/scripts'),
         entry: [
-            'webpack-dev-server/client?http://localhost:3000',
-            'webpack/hot/only-dev-server',
             './main'
         ],
         output: {
             path: path.join(__dirname, 'dist', 'assets/scripts'),
-            publicPath: 'http://localhost:3000',
             filename: "bundle.js"
         },
         module: {
