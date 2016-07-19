@@ -20,4 +20,4 @@ ReactDOM.render(
             <Route path="/" component={App} />
         </Router>
     </Provider>
-,document.querySelector('.app'));
+,document.querySelector('.component-root'));
