@@ -1,7 +1,9 @@
 .component-tabs {
+    position: relative;
     display: flex;
     justify-content: flex-start;
     width: 100%;
+    z-index: 99999;
     .tabs {
         display: flex;
         justify-content: flex-start;
@@ -17,10 +19,14 @@
             font-size: 12px;
             line-height: 12px;
             margin: -1px;
-            border-right: 1px solid color("border");
+            user-select: none;
+            border-width: 1px;
+            border-style: solid;
+            border-image: linear-gradient(to top, color("border"), rgba(0, 0, 0, 0)) 1 100%;
+            border-left: none;
             border-bottom: 1px solid transparent;
             border-top: 1px solid transparent;
-            user-select: none;
+
             &:before {
                 transition: opacity $animation-duration;
                 position: absolute;
@@ -38,9 +44,11 @@
                 background: color("background-light");
                 border-radius: 3px 3px 0 0;
                 color: color("text-light");
-                box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06);
+                box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+                border-image: none;
                 border-bottom: 1px solid color("background-light");
                 border-top: 1px solid color("border");
+                border-right: 1px solid color("border");
                 &:before {
                     opacity: 1;
                 }
