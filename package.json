@@ -1,5 +1,5 @@
 {
-  "name": "resto",
+  "name": "requesto",
   "productName": "Requesto",
   "version": "0.1.0",
   "description": "Requesto - The futurist open source API client.",
@@ -12,7 +12,8 @@
   "main": "electron.js",
   "scripts": {
     "start": "electron .",
-    "package": "electron-packager ./ Requesto --all --out ~/Projects/requesto --version 0.1.0 --overwrite"
+    "package": "electron-packager ./dist Requesto --all --out ./build --version 0.1.0 --overwrite",
+    "build": "node_modules/.bin/build -m"
   },
   "repository": {
     "type": "git",
@@ -40,6 +41,7 @@
     "babel-preset-stage-1": "^6.1.18",
     "del": "^2.2.1",
     "electron-connect": "^0.4.2",
+    "electron-packager": "^7.3.0",
     "electron-prebuilt": "^1.2.0",
     "frontendler-sass": "^0.3.0",
     "gulp": "^3.9.1",
@@ -72,5 +74,13 @@
     "react-router": "^2.0.1",
     "redux": "^3.0.4",
     "redux-promise": "^0.5.3"
+  },
+  "directories": {
+    "app": "."
+  },
+  "build": {
+    "appId": "com.github.requesto.requesto",
+    "app-category-type": "public.app-category.developer-tools",
+    "files": "**/*"
   }
 }
