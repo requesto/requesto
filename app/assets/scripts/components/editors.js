@@ -9,19 +9,15 @@ import jQuery from "jquery";
 window.$ = $;
 window.jQuery = jQuery;
 
-import Tabs from "./tabs";
 import Viewer from "./viewer";
 
-class Workspace extends Component {
+class Editors extends Component {
 
     constructor(props){
         super(props);
         this.state = {};
         this.onClickSend = this.onClickSend.bind(this);
-    }
-
-    componentWillReceiveProps(nextProps){
-        console.log("Workspace: ",nextProps );
+        this.renderEditors = this.renderEditors.bind(this);
     }
 
     onClickSend(){
@@ -42,11 +38,10 @@ class Workspace extends Component {
         });
     }
 
-    render() {
+    renderEditors(data,index){
         return (
-            <div className="component-workspace">
+            <li className="editor" key={"editor-" + data.name}>
                 <div className="top">
-                    <Tabs />
                     <div className="bar">
                         <div className="columm action">
                             <input className="input-action" type="text" name="action" placeholder="GET" defaultValue="get" />
@@ -59,7 +54,18 @@ class Workspace extends Component {
                         </div>
                     </div>
                 </div>
+                <h1>{data.name}</h1>
                 <Viewer />
+            </li>
+        )
+    }
+
+    render() {
+        return (
+            <div className="component-editors">
+                <ul className="list">
+                    {this.props.tabs.map(this.renderEditors)}
+                </ul>
             </div>
         );
     }
@@ -73,4 +79,4 @@ function mapDispatchToProps(dispatch){
     return bindActionCreators({tabAdd},dispatch);
 }
 
-export default connect (mapStateToProps,mapDispatchToProps)(Workspace);
+export default connect (mapStateToProps,mapDispatchToProps)(Editors);
