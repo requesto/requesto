@@ -23,14 +23,12 @@ body {
     padding: 0;
     min-width: 600px;
 }
-.app {
-    display: flex;
-    width: 100%;
-}
+
+@import "components/root";
 @import "components/app";
-@import "components/footer";
 @import "components/sidebar";
-@import "components/sidebar";
-@import "components/tabs";
 @import "components/workspace";
+@import "components/tabs";
+@import "components/editors";
 @import "components/viewer";
+@import "components/footer";
