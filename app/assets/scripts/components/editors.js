@@ -54,7 +54,6 @@ class Editors extends Component {
                         </div>
                     </div>
                 </div>
-                <h1>{data.name}</h1>
                 <Viewer />
             </li>
         )
