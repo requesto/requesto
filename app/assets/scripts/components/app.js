@@ -2,10 +2,6 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import Sidebar from "./sidebar";
-import Workspace from "./workspace";
-import Footer from "./footer";
-
 class App extends Component {
 
     constructor(props){
@@ -15,12 +11,8 @@ class App extends Component {
 
     render() {
         return (
-            <div>
-                <div className="component-app">
-                    <Sidebar />
-                    <Workspace />
-                </div>
-                <Footer />
+            <div className="component-app">
+                {this.props.children}
             </div>
         );
     }
