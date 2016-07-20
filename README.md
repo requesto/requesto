@@ -2,8 +2,9 @@
 
 The futurist open source rest client.
 
-![Alt text](/printscreen.png?raw=true "printscreen")
+## Screenshot
 
+![screenshot](/screenshot.png?raw=true "screenshot")
 
 ## Development
 
@@ -15,5 +16,5 @@ npm install
 #### Run
 
 ```
-gulp start
+gulp
 ```
