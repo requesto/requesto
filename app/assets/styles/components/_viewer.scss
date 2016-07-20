@@ -1,9 +1,8 @@
 .component-viewer {
     display: flex;
     flex: 1;
-    height: 100vh;
     overflow: scroll;
-    padding: 95px $grid-gutter/2 30px $grid-gutter/2;
+    padding: 0 $grid-gutter/2;
     word-break: break-all;
 
     // display: none;
@@ -20,7 +19,7 @@
             color: #338962;
         }
         .json-literal {
-            color: #666977;
+            color: color("text-light");
         }
     }
 }
