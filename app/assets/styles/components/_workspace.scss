@@ -1,6 +1,9 @@
 .component-workspace {
     position: relative;
-    flex-grow: 1;
-    height: 100vh;
+    display: flex;
+    flex: 1;
+    height: 100%;
     overflow: hidden;
+    align-items: stretch;
+    flex-direction: column;
 }
