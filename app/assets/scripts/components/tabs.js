@@ -14,7 +14,7 @@ class Tabs extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        console.log("Tabs: ",nextProps );
+        // console.log("Tabs: ",nextProps );
     }
 
     onClickAdd(){
@@ -22,9 +22,11 @@ class Tabs extends Component {
     }
 
     onClickTab(index,e){
-        console.log("TAB click: ",index, e.target);
-        $(e.target).addClass('-active');
-        $(e.target).siblings().removeClass('-active');
+        var indexSelected = $(e.target).index();
+        console.log(indexSelected);
+        $(e.target).addClass("-active").siblings().removeClass("-active");
+        $(".component-editors .editor").hide()
+        $(".component-editors .editor").eq(indexSelected).show();
     }
 
     renderTabs(data,index){
