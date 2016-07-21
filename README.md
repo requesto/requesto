@@ -1,4 +1,4 @@
-# RESTO
+# REQUESTO
 
 The futurist open source rest client.
 
