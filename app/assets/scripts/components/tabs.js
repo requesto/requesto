@@ -25,8 +25,7 @@ class Tabs extends Component {
         var indexSelected = $(e.target).index();
         console.log(indexSelected);
         $(e.target).addClass("-active").siblings().removeClass("-active");
-        $(".component-editors .editor").hide()
-        $(".component-editors .editor").eq(indexSelected).show();
+        $(".component-editors .editor").removeClass("-show").eq(indexSelected).addClass("-show");
     }
 
     renderTabs(data,index){

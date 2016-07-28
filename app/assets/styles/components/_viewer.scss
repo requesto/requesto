@@ -7,16 +7,20 @@
 
     // display: none;
 
-    #json-renderer {
+    .json-renderer {
         font-size: 13px;
         font-weight: 600;
         line-height: 17px;
+        padding: $grid-gutter/2 0;
+        color: color("text-light");
+        white-space: normal;
         ol.json-array,
         ul.json-dict {
             border-color: #32343d;
         }
         .json-string {
-            color: color("green-dark");
+            color: color("text-light",65%);
+            font-weight: normal;
         }
         .json-literal {
             color: color("text-light");

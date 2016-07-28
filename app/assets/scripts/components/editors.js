@@ -20,21 +20,24 @@ class Editors extends Component {
         this.renderEditors = this.renderEditors.bind(this);
     }
 
-    onClickSend(){
+    onClickSend(e){
 
-        const action = $(".bar .input-action").val();
-        const url = $(".bar .input-url").val();
+        const editor = $(e.currentTarget).closest(".editor");
 
-        $('#json-renderer').html("Carregando....");
+        const action =  editor.find(".bar .input-action").val();
+        const url =  editor.find(".bar .input-url").val();
+        const jsonViewer = editor.find(".json-renderer");
+
+        jsonViewer.html("Carregando....");
 
         Axios({
             method: action,
             url: url
         }).then(function(response) {
-            $('#json-renderer').jsonViewer(response);
+            jsonViewer.jsonViewer(response);
         })
         .catch(function(error) {
-            $('#json-renderer').jsonViewer(error);
+            jsonViewer.jsonViewer(error);
         });
     }
 

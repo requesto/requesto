@@ -1,11 +1,10 @@
 .component-footer {
     display: flex;
     padding: 5px $grid-gutter/2;
-    background-color: #16171d;
+    background-color: color("background-dark");
     width: 100%;
     z-index: 99999;
-    // letter-spacing: 0.05em;
     font-size: 13px;
     font-weight: 600;
-    border-top: 1px solid #111217;
+    border-top: 1px solid color("border");
 }

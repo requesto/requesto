@@ -10,12 +10,16 @@
             position: absolute;
             top:0;
             left: 0;
-            display: flex;
+            display: none;
             align-items: stretch;
             flex-direction: column;
             width: 100%;
             height: 100%;
             background: color("background-light");
+            backface-visibility: hidden;
+            &.-show{
+                display: flex;
+            }
             .top {
                 display: flex;
                 width: 100%;
@@ -28,6 +32,7 @@
                 width: 100%;
                 padding: $grid-gutter/2 0;
                 padding: 10px;
+                //background: color("background-dark");
                 .columm {
                     padding: 0 10px;
                     &.action {
@@ -42,7 +47,7 @@
                 }
                 input {
                     background: none;
-                    border: 1px solid #475271;
+                    border: 1px solid #181a1f;
                     transition: all $animation-duration;
                     outline: none;
                     padding: 7px;
@@ -52,6 +57,7 @@
                     letter-spacing: 0.05em;
                     font-size: 13px;
                     color: color("text-light");
+                    background: color("background-input");
                     &:focus {
                         border-color: color("green-light");
                     }

@@ -12,12 +12,12 @@
         color: #b1b4c4;
         width: 100%;
         .item {
-            border-bottom: 1px solid #111217;
-            border-left: 2px solid #338962;
+            border-bottom: 1px solid color("border");
+            border-left: 2px solid color("green-dark");
             padding: 10px;
             width: 100%;
             &.active {
-                border-left: 2px solid #43d08a;
+                border-left: 2px solid color("green-light");
             }
         }
         .name {

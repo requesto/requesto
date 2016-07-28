@@ -12,7 +12,7 @@ class Viewer extends Component {
     render() {
         return (
             <div className="component-viewer">
-                <pre id="json-renderer">
+                <pre className="json-renderer">
                     json!
                 </pre>
             </div>
