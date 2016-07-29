@@ -5,8 +5,6 @@
     padding: 0 $grid-gutter/2;
     word-break: break-all;
 
-    // display: none;
-
     .json-renderer {
         font-size: 13px;
         font-weight: 600;
@@ -20,7 +18,7 @@
         }
         .json-string {
             color: color("text-light",65%);
-            font-weight: normal;
+            font-weight: 600;
         }
         .json-literal {
             color: color("text-light");
