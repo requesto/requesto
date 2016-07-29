@@ -6,27 +6,79 @@
     background: color("background-dark");
     height: 100%;
     border-right: 1px solid color("border");
-
+    margin-right: 4px;
+    flex-direction: column;
+    .brand {
+        position: relative;
+        display: block;
+        height: 43px;
+        line-height: 43px;
+        padding-left: 10px;
+        border-bottom: 1px solid color("border");
+        box-sizing: border-box;
+        color: color("text-light");
+        font-size:16px;
+        .icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            color: white;
+            font-size: 20px;
+            transform: translateY(-50%);
+        }
+    }
     .folder-list {
         display: block;
         color: #b1b4c4;
         width: 100%;
-        .item {
+        .folder {
             border-bottom: 1px solid color("border");
             border-left: 2px solid color("green-dark");
             padding: 10px;
             width: 100%;
-            &.active {
+            background: color("background-light");
+            user-select:none;
+            transition: all $animation-duration;
+            &:hover{
+                background:#2d323d;
+            }
+            &.-active {
                 border-left: 2px solid color("green-light");
             }
+            .name {
+                font-size: 14px;
+                font-weight: 600;
+            }
+            .description {
+                font-size: 11px;
+                opacity: 0.7;
+            }
         }
-        .name {
-            font-size: 13px;
-            font-weight: 600;
-        }
-        .description {
-            font-size: 11px;
-            opacity: 0.7;
+        .folder-itens {
+            display: none;
+            &.-open{
+                display: block;
+            }
+            .item {
+                padding: 10px $grid-gutter/2;
+                border-bottom: 1px solid color("border");
+                background: color("background-dark");
+                transition: all $animation-duration;
+                &:hover {
+                    background: color("background-light",52%);
+                }
+                &.active {
+                    border-left: 2px solid color("green-light");
+                }
+                .name {
+                    font-size: 12px;
+                    font-weight: 600;
+                }
+                .description {
+                    font-size: 11px;
+                    opacity: 0.7;
+                }
+            }
         }
     }
 }
