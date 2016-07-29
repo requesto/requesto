@@ -30,7 +30,7 @@ class Tabs extends Component {
 
     renderTabs(data,index){
         return(
-            <li className="tab" onClick={this.onClickTab.bind(this,index)} key={"tab-" + data.name}>{data.name}</li>
+            <li className="tab" onClick={this.onClickTab.bind(this,index)} key={"tab-" + data.name + "-" + index }>{data.name}</li>
         );
     }
 
