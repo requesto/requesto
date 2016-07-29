@@ -26,7 +26,10 @@
             border-left: none;
             border-bottom: 1px solid transparent;
             border-top: 1px solid transparent;
-
+            transition: color $animation-duration;
+            &:hover{
+                color:color("text-light");
+            }
             &:before {
                 transition: opacity $animation-duration;
                 position: absolute;
@@ -55,9 +58,10 @@
             }
             &.-plus {
                 font-size: 17px;
-                border-right: 0;
                 color: color("text-light");
                 transition: color $animation-duration;
+                padding-left: 30px;
+                padding-right: 30px;
                 &:hover {
                     color: color("green-light");
                 }
