@@ -31,7 +31,7 @@ class Sidebar extends Component {
                 <ul className="folder-list">
                     <li className="folder" onClick={this.folderClickHandler}>
                         <div className="icon type"></div>
-                        <div className="name">Gapp</div>
+                        <div className="name">Folder</div>
                         <div className="description">2 endpoints</div>
                     </li>
                     <ul className="folder-itens">
