@@ -26,6 +26,8 @@
                 display: flex;
                 width: 100%;
                 border-bottom: 1px solid color("border");
+                flex-direction: column;
+                @include box-shadow(1);
             }
             .bar {
                 display: flex;
@@ -34,6 +36,7 @@
                 width: 100%;
                 padding: $grid-gutter/2 0;
                 padding: 10px;
+
                 //background: color("background-dark");
                 .columm {
                     padding: 0 10px;
@@ -99,6 +102,28 @@
                         font-weight: 600;
                         &:active {
                             opacity: 0.9;
+                        }
+                    }
+                }
+            }
+            .metadata{
+                display: flex;
+                align-items: stretch;
+                padding: 10px $grid-gutter/2;
+                border-top: 1px solid color("border");
+
+                .field{
+                    padding-right: $grid-gutter/2;
+                    font-size: 12px;
+                    .label{
+                        color:color("text-light");
+                        margin-right: 5px;
+                    }
+                    .value{
+                        color:color("green-light");
+
+                        &.-error{
+                            color:#d96c73;
                         }
                     }
                 }
