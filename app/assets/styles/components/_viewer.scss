@@ -2,16 +2,16 @@
     display: flex;
     flex: 1;
     overflow: scroll;
-    padding: 0 $grid-gutter/2;
     word-break: break-all;
 
     .json-renderer {
         font-size: 13px;
         font-weight: 600;
         line-height: 17px;
-        padding: $grid-gutter/2 0;
+        padding: $grid-gutter/2;
         color: color("text-light");
         white-space: normal;
+        width: 100%;
         ol.json-array,
         ul.json-dict {
             border-color: #32343d;
