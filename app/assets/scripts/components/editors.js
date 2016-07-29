@@ -4,11 +4,6 @@ import {bindActionCreators} from 'redux';
 import {tabAdd} from "./../actions/index";
 
 import Axios from 'axios';
-import $ from "jquery";
-import jQuery from "jquery";
-window.$ = $;
-window.jQuery = jQuery;
-
 import Viewer from "./viewer";
 
 class Editors extends Component {
@@ -23,8 +18,7 @@ class Editors extends Component {
     onClickSend(e){
 
         const editor = $(e.currentTarget).closest(".editor");
-
-        const action =  editor.find(".bar .input-action").val();
+        const action =  editor.find(".bar .select-action").val();
         const url =  editor.find(".bar .input-url").val();
         const jsonViewer = editor.find(".json-renderer");
 
@@ -47,7 +41,15 @@ class Editors extends Component {
                 <div className="top">
                     <div className="bar">
                         <div className="columm action">
-                            <input className="input-action" type="text" name="action" placeholder="GET" defaultValue="get" />
+                            <div className="select">
+                                <select className="select-action">
+                                    <option value="GET">GET</option>
+                                    <option value="POST">POST</option>
+                                    <option value="PUT">PUT</option>
+                                    <option value="PATCH">PATCH</option>
+                                    <option value="DELETE">DELETE</option>
+                                </select>
+                            </div>
                         </div>
                         <div className="columm url">
                             <input className="input-url" name="url" placeholder="http://beta.json-generator.com/api/json/get/4JVFHRAHZ" defaultValue="http://beta.json-generator.com/api/json/get/4JVFHRAHZ" />
