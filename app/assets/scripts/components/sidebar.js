@@ -53,29 +53,7 @@ class Sidebar extends Component {
                     </ul>
                     <li className="folder" onClick={this.folderClickHandler}>
                         <div className="icon type"></div>
-                        <div className="name">Test</div>
-                        <div className="description">2 endpoints</div>
-                    </li>
-                    <ul className="folder-itens">
-                        <li className="item">
-                            <div className="icon type"></div>
-                            <div className="name">User/token</div>
-                            <div className="description">2 endpoints</div>
-                        </li>
-                        <li className="item">
-                            <div className="icon type"></div>
-                            <div className="name">Test 1</div>
-                            <div className="description">2 endpoints</div>
-                        </li>
-                        <li className="item">
-                            <div className="icon type"></div>
-                            <div className="name">Test 1</div>
-                            <div className="description">2 endpoints</div>
-                        </li>
-                    </ul>
-                    <li className="folder" onClick={this.folderClickHandler}>
-                        <div className="icon type"></div>
-                        <div className="name">Test</div>
+                        <div className="name">Folder 2</div>
                         <div className="description">2 endpoints</div>
                     </li>
                     <ul className="folder-itens">
