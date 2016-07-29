@@ -2,6 +2,8 @@
     position: relative;
     overflow: scroll;
     flex: 1;
+    background-color: color("background-light");
+    border-left: 1px solid color("border");
     .list {
         position: relative;
         width: 100%;
@@ -44,6 +46,34 @@
                     &.button {
                         width: 150px;
                     }
+                }
+
+                .select{
+                    position: relative;
+                    &:after{
+                        content: "▼";
+                        position: absolute;
+                        top: 50%;
+                        right: 10px;
+                        color: color("text-light");
+                        transform: translateY(-50%);
+                        font-family: Symbol;
+                        font-size:10px;
+                    }
+                }
+
+                .select-action{
+                    background: color("background-input");
+                    width: 100%;
+                    outline: none;
+                    padding: 7px;
+                    transition: all $animation-duration;
+                    font-size: 13px;
+                    color: color("text-light");
+                    border: 1px solid #181a1f;
+                    -webkit-appearance: none;
+                    border-radius: 2px;
+                    position: relative;
                 }
                 input {
                     background: none;
