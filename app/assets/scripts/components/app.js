@@ -1,6 +1,11 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import $ from "jquery";
+import jQuery from "jquery";
+window.$ = $;
+window.jQuery = jQuery;
+
 
 class App extends Component {
 
