@@ -22,7 +22,8 @@ var PATH = {
     test: "test",
     styles: "assets/styles",
     scripts: "assets/scripts",
-    images: "assets/images"
+    images: "assets/images",
+    fonts: "assets/fonts"
 }
 
 var AUTOPREFIXER_BROWSERS = ["chrome >= 34"];
@@ -64,6 +65,8 @@ gulp.task("copy", function() {
         .pipe(gulp.dest(PATH.dist));
     gulp.src(PATH.app + "/" + PATH.images + "/**/*.*")
         .pipe(gulp.dest(PATH.dist + "/" + PATH.images));
+        gulp.src(PATH.app + "/" + PATH.fonts + "/**/*.*")
+            .pipe(gulp.dest(PATH.dist + "/" + PATH.fonts));
 });
 
 gulp.task("watch", function() {
