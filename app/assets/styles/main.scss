@@ -1,5 +1,5 @@
 //------------------------------------------------------
-// FRONTENDLER
+// LIBS
 //------------------------------------------------------
 @import "frontendler";
 //------------------------------------------------------
@@ -12,10 +12,11 @@
 @include reset();
 body,
 html {
-    background: color("background-light");
+    background: color("background-dark");
     color: color("text-dark");
     min-height: 100vh;
     font-weight: 600;
+    letter-spacing: 0.02em;
 }
 body {
     display: flex;
@@ -23,6 +24,7 @@ body {
     padding: 0;
     min-width: 600px;
 }
+
 
 @import "components/root";
 @import "components/app";
