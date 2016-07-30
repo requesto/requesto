@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {tabAdd} from '../actions/index.js';
+import {tabAdd} from '../actions/index';
 
 class Tabs extends Component {
 

@@ -10,7 +10,7 @@
         height: 100%;
         .editor {
             position: absolute;
-            top:0;
+            top: 0;
             left: 0;
             display: none;
             align-items: stretch;
@@ -19,7 +19,7 @@
             height: 100%;
             background: color("background-light");
             backface-visibility: hidden;
-            &.-show{
+            &.-show {
                 display: flex;
             }
             .top {
@@ -27,16 +27,14 @@
                 width: 100%;
                 border-bottom: 1px solid color("border");
                 flex-direction: column;
-                @include box-shadow(1);
+                // @include box-shadow(1);
             }
             .bar {
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
                 width: 100%;
-                padding: $grid-gutter/2 0;
                 padding: 10px;
-
                 //background: color("background-dark");
                 .columm {
                     padding: 0 10px;
@@ -50,10 +48,9 @@
                         width: 150px;
                     }
                 }
-
-                .select{
+                .select {
                     position: relative;
-                    &:after{
+                    &:after {
                         content: "▼";
                         position: absolute;
                         top: 50%;
@@ -61,11 +58,10 @@
                         color: color("text-light");
                         transform: translateY(-50%);
                         font-family: Symbol;
-                        font-size:10px;
+                        font-size: 10px;
                     }
                 }
-
-                .select-action{
+                .select-action {
                     background: color("background-input");
                     width: 100%;
                     outline: none;
@@ -106,24 +102,22 @@
                     }
                 }
             }
-            .metadata{
+            .metadata {
                 display: flex;
                 align-items: stretch;
                 padding: 10px $grid-gutter/2;
                 border-top: 1px solid color("border");
-
-                .field{
+                .field {
                     padding-right: $grid-gutter/2;
                     font-size: 12px;
-                    .label{
-                        color:color("text-light");
+                    .label {
+                        color: color("text-light");
                         margin-right: 5px;
                     }
-                    .value{
-                        color:color("green-light");
-
-                        &.-error{
-                            color:#d96c73;
+                    .value {
+                        color: color("green-light");
+                        &.-error {
+                            color: #d96c73;
                         }
                     }
                 }

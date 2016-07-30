@@ -78,6 +78,9 @@ class Editors extends Component {
                     </div>
                 </div>
                 <Viewer />
+                <div className="bottom">
+                    
+                </div>
             </li>
         )
     }
