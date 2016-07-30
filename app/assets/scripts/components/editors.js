@@ -72,14 +72,14 @@ class Editors extends Component {
                             <span className="value">-</span>
                         </div>
                         <div className="field time">
-                            <span className="label">status:</span>
+                            <span className="label">Time:</span>
                             <span className="value">-</span>
                         </div>
                     </div>
                 </div>
                 <Viewer />
                 <div className="bottom">
-                    
+
                 </div>
             </li>
         )
