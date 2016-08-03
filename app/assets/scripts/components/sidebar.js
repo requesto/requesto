@@ -8,27 +8,49 @@ class Sidebar extends Component {
     constructor(props){
         super(props);
         this.state = {};
+        this.folderAddClickHandler = this.folderAddClickHandler.bind(this);
         this.folderClickHandler = this.folderClickHandler.bind(this);
         this.renderFolders = this.renderFolders.bind(this);
+        this.renderItems = this.renderItems.bind(this);
+    }
+
+    folderAddClickHandler(e){
+        this.props.folderAdd("Folder " + Math.floor((Math.random() * 100) + 1));
     }
 
     folderClickHandler(e){
         const folder = $(e.currentTarget);
-        const folderList = folder.next(".folder-itens");
+        const folderList = folder.next(".items");
         folder.toggleClass("-active");
         if (folderList.is("ul")){
             folderList.toggleClass("-open");
         }
+    }
 
-        this.props.folderAdd("Folder" + Math.floor((Math.random() * 100) + 1));
+    renderItems(data,index){
+        return(
+            <li className="item" key={"item-" + data.name + "-" + index }>
+                <div className="icon type"></div>
+                <div className="name">{data.name}</div>
+                <div className="description">{data.description}</div>
+            </li>
+        )
     }
 
     renderFolders(data,index){
+
+        var items = ('items' in data)? data.items : [];
+
         return(
-            <li className="folder" onClick={this.folderClickHandler.bind(this,index)} key={"tab-" + data.name + "-" + index }>
-                <div className="icon type"></div>
-                <div className="name">{data.name}</div>
-                <div className="description">0 endpoints</div>
+            <li className="folder" key={"folder-" + data.name + "-" + index }>
+                <div className="cover" onClick={this.folderClickHandler}>
+                    <div className="icon type"></div>
+                    <div className="name">{data.name}</div>
+                    <div className="description">{items.length + "itens"}</div>
+                </div>
+                <ul className="items">
+                    {items.map(this.renderItems)}
+                </ul>
             </li>
         );
     }
@@ -36,14 +58,22 @@ class Sidebar extends Component {
     render() {
         return (
             <div className="component-sidebar">
-                <div className="brand">
-                    Requesto
-                    <div className="name"></div>
-                    <div className="icon"></div>
+                <div className="top">
+                    <div className="brand">
+                        Requesto
+                        <div className="name"></div>
+                        <div className="icon"></div>
+                    </div>
                 </div>
-                <ul className="folder-list">
-                    {this.props.folders.map(this.renderFolders)}
-                </ul>
+                <div className="main">
+                    <ul className="folder-list">
+                        {this.props.folders.map(this.renderFolders)}
+                    </ul>
+                </div>
+                <div className="bottom">
+                    <div className="folder-add ion-plus-round" onClick={this.folderAddClickHandler}>
+                    </div>
+                </div>
             </div>
         );
     }
