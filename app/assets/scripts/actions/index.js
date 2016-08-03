@@ -16,7 +16,11 @@ export function folderAdd(name) {
     return {
         type: FOLDER_ADD,
         payload: {
-            name: name
+            name: name,
+            items: [{
+                name: "url",
+                description: "endpoint description",
+            }]
         }
     }
 }
