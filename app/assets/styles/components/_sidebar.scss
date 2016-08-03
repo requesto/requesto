@@ -12,10 +12,23 @@
     @include grid-breakpoint("xsmall","small") {
         display: none;
     };
+
+
+    .top{
+        height: 43px;
+    }
+    .main{
+        flex: 1;
+    }
+    .bottom{
+        padding:10px;
+        border-top: 1px solid color("border");
+    }
+
     .brand {
         position: relative;
         display: block;
-        height: 43px;
+        height: 100%;
         line-height: 43px;
         padding-left: 10px;
         border-bottom: 1px solid color("border");
@@ -38,19 +51,24 @@
         overflow-y: scroll;
         overflow-x: hidden;
         .folder {
-            border-bottom: 1px solid color("border");
-            border-left: 2px solid color("green-dark");
-            padding: 10px;
-            width: 100%;
-            background: color("background-light");
-            user-select:none;
-            transition: all $animation-duration;
-            &:hover{
-                background:#2d323d;
+            display: flex;
+            flex-direction: column;
+            .cover{
+                border-bottom: 1px solid color("border");
+                border-left: 2px solid color("green-dark");
+                padding: 10px;
+                width: 100%;
+                background: color("background-light");
+                user-select:none;
+                transition: all $animation-duration;
+                &:hover{
+                    background:#2d323d;
+                }
+                &.-active {
+                    border-left: 2px solid color("green-light");
+                }
             }
-            &.-active {
-                border-left: 2px solid color("green-light");
-            }
+
             .name {
                 font-size: 14px;
                 font-weight: 600;
@@ -60,7 +78,7 @@
                 opacity: 0.7;
             }
         }
-        .folder-itens {
+        .items {
             display: none;
             &.-open{
                 display: block;
