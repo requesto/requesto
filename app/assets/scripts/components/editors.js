@@ -66,6 +66,9 @@ class Editors extends Component {
                             <input className="input-button" onClick={this.onClickSend} type="button" name="send" defaultValue="Send" />
                         </div>
                     </div>
+                </div>
+                <Viewer />
+                <div className="bottom">
                     <div className="metadata">
                         <div className="field status">
                             <span className="label">status:</span>
@@ -76,10 +79,6 @@ class Editors extends Component {
                             <span className="value">-</span>
                         </div>
                     </div>
-                </div>
-                <Viewer />
-                <div className="bottom">
-
                 </div>
             </li>
         )
