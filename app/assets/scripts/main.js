@@ -7,6 +7,7 @@ import { createHashHistory } from 'history'
 import ReduxPromise from 'redux-promise';
 import Reducers from './reducers';
 
+
 // Components
 import App from './components/app';
 import Index from './components/index';
@@ -14,6 +15,7 @@ import Index from './components/index';
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 const routerHistory = useRouterHistory(createHashHistory)({queryKey:false})
 const devTools = window.devToolsExtension ? window.devToolsExtension() : f => f;
+
 
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(Reducers,devTools)}>
