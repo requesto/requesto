@@ -1,7 +1,23 @@
 import {FOLDER_ADD} from '../actions/index';
 
 let initialState = {
-    name:"Folder"
+    name:"Folder",
+    items:[
+    {
+        name:"/user",
+        description:"Create new user",
+        type:"POST"
+    },
+    {
+        name:"/user/:id",
+        description:"Get user by ID",
+        type:"GET"
+    },
+    {
+        name:"/user/:id",
+        description:"Change a new User",
+        type:"PUT"
+    }]
 }
 
 export default function(state = [initialState],action) {
