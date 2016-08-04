@@ -6,7 +6,7 @@ const BrowserWindow = electron.BrowserWindow
 app.setName("Requesto");
 
 if (app.dock) {
-    app.dock.setIcon(nativeImage.createFromPath("dist/assets/images/icons/icon.png"));
+    app.dock.setIcon(nativeImage.createFromPath("dist/assets/images/brand/icon.png"));
     app.dock.setBadge("1");
 }
 
