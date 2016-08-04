@@ -3,15 +3,19 @@
     flex: 1;
     overflow: scroll;
     word-break: break-all;
+    position: relative;
 
     .json-renderer {
         font-size: 13px;
         font-weight: 600;
         line-height: 17px;
-        padding: $grid-gutter/2;
+        padding: 10px $grid-gutter/2;
         color: color("text-light");
         white-space: normal;
         width: 100%;
+        opacity: 1;
+        visibility: visible;
+        transition: all $animation-duration;
         ol.json-array,
         ul.json-dict {
             border-color: #32343d;
@@ -22,6 +26,31 @@
         }
         .json-literal {
             color: color("text-light");
+        }
+    }
+
+    .preload{
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%);
+        width: 40px;
+        height: 40px;
+        transition: all $animation-duration;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+
+    &.-loading{
+        .preload{
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .json-renderer{
+            opacity: 0;
+            visibility: hidden;
         }
     }
 }

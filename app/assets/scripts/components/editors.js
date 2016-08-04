@@ -16,15 +16,16 @@ class Editors extends Component {
     }
 
     onClickSend(e){
-
         const editor = $(e.currentTarget).closest(".editor");
         const action =  editor.find(".bar .select-action").val();
         const url =  editor.find(".bar .input-url").val();
+        const viewer = editor.find(".component-viewer");
         const jsonViewer = editor.find(".json-renderer");
         const statusLabel = editor.find(".field.status .value");
         const timeLabel = editor.find(".field.time .value");
         const startTime = new Date().getTime();
-        jsonViewer.html("Carregando....");
+        // jsonViewer.html("");
+        viewer.addClass("-loading");
 
         Axios({
             method: action,
@@ -34,12 +35,14 @@ class Editors extends Component {
             jsonViewer.jsonViewer(response);
             statusLabel.html(response.status).removeClass("-error");
             timeLabel.html(duration + "ms");
+            viewer.removeClass("-loading");
         })
         .catch(function(error) {
             const duration = new Date().getTime() - startTime;
             jsonViewer.jsonViewer(error);
             statusLabel.html(error.status).addClass("-error");
             timeLabel.html(duration + "ms");
+            viewer.removeClass("-loading");
         });
     }
 

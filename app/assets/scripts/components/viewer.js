@@ -12,9 +12,8 @@ class Viewer extends Component {
     render() {
         return (
             <div className="component-viewer">
-                <pre className="json-renderer">
-                    json!
-                </pre>
+                <pre className="json-renderer"></pre>
+                <img className="preload" src="assets/images/preload.svg"/>
             </div>
         );
     }
