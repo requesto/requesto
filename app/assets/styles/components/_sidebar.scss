@@ -18,6 +18,9 @@
         flex: 1;
     }
     .bottom {
+        display:flex;
+        align-items: center;
+        justify-content: flex-end;
         height: 35px;
         border-top: 1px solid color("border");
         line-height: 35px;
@@ -106,22 +109,37 @@
                     top: 50%;
                     right: 10px;
                     border-radius: 2px;
-                    color:color("green-light");
+                    color: color("green-light");
                     transform: translateY(-50%);
                     padding: 3px 5px;
                     font-size: 11px;
-
-                    &.-get{
-                        color:color("green-light");
+                    &.-get {
+                        color: color("green-light");
                     }
-                    &.-post{
-                        color:#478cff;
+                    &.-post {
+                        color: #478cff;
                     }
-                    &.-put{
-                        color:#e1c282;
+                    &.-put {
+                        color: #e1c282;
                     }
                 }
             }
+        }
+    }
+    .folder-add {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        svg {
+            display: block;
+            width: 15px;
+            fill: color("text-dark");
+            margin: 0 10px;
+            transition: all $animation-duration;
+        }
+
+        &:hover svg{
+            fill: color("green-light");
         }
     }
 }
