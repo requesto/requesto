@@ -2,17 +2,23 @@
     position: relative;
     display: flex;
     justify-content: flex-start;
-    width: 100%;
+    width: auto;
     z-index: 99999;
+    overflow-y: hidden;
+    overflow-x: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
     .tabs {
         display: flex;
+        flex: 1;
         justify-content: flex-start;
-        width: 100%;
         padding-top: 5px;
         background: color("background-dark");
         border-bottom: 1px solid color("border");
         padding-left: 1px;
         padding-top: 10px;
+
         .tab {
             position: relative;
             padding: 10px 15px;
