@@ -73,7 +73,7 @@ gulp.task("watch", function() {
     electron.start();
     gulp.watch(PATH.app + "/" + PATH.styles + "/**/*.scss", ["styles", electron.reload]);
     gulp.watch(PATH.app + "/" + PATH.scripts + "/**/*.js", ["scripts:dev",electron.reload]);
-    gulp.watch(PATH.app + "/" + PATH.images + "/**/*", ["scripts:dev",electron.reload]);
+    gulp.watch(PATH.app + "/" + PATH.images + "/**/*", ["copy",electron.reload]);
     gulp.watch("app/index.html",["copy", electron.reload]);
 });
 
