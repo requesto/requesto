@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {folderAdd} from "../actions/index";
+import {folderAdd,tabAdd} from "../actions/index";
 
 class Sidebar extends Component {
 
@@ -12,6 +12,7 @@ class Sidebar extends Component {
         this.folderClickHandler = this.folderClickHandler.bind(this);
         this.renderFolders = this.renderFolders.bind(this);
         this.renderItems = this.renderItems.bind(this);
+        this.itemClickHandler = this.itemClickHandler.bind(this);
     }
 
     folderAddClickHandler(e){
@@ -27,12 +28,20 @@ class Sidebar extends Component {
         }
     }
 
+    itemClickHandler(e){
+        const item = $(e.currentTarget);
+        const name = item.find(".name").text();
+        console.log(name);
+        this.props.tabAdd(name);
+    }
+
     renderItems(data,index){
         return(
-            <li className="item" key={"item-" + data.name + "-" + index }>
+            <li className="item" key={"item-" + data.name + "-" + index } onClick={this.itemClickHandler}>
                 <div className="icon type"></div>
                 <div className="name">{data.name}</div>
                 <div className="description">{data.description}</div>
+                <div className={"type " + " -" + data.type.toLowerCase() }>{data.type}</div>
             </li>
         )
     }
@@ -79,25 +88,12 @@ class Sidebar extends Component {
     }
 }
 
-
-/*
-
-<ul className="folder-itens">
-    <li className="item">
-        <div className="icon type"></div>
-        <div className="name">User/token</div>
-        <div className="description">2 endpoints</div>
-    </li>
-</ul>
-
-*/
-
 function mapStateToProps({folders}){
     return {folders};
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({folderAdd},dispatch);
+    return bindActionCreators({folderAdd,tabAdd},dispatch);
 }
 
 export default connect (mapStateToProps,mapDispatchToProps)(Sidebar);
