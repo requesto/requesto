@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import Sidebar from "./sidebar";
 import Workspace from "./workspace";
 import Footer from "./footer";
+import Modal from "./modal";
 
 class Index extends Component {
 
@@ -21,6 +22,7 @@ class Index extends Component {
                     <Workspace />
                 </div>
                 <Footer />
+                <Modal />
             </div>
         );
     }
