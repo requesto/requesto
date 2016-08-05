@@ -12,7 +12,11 @@ class Viewer extends Component {
     render() {
         return (
             <div className="component-viewer">
-                <pre className="json-renderer"></pre>
+                <pre className="viewer pretty -active"></pre>
+                <pre className="viewer raw"></pre>
+                <div className="viewer preview">
+                    <iframe className="iframe" src=""/>
+                </div>
                 <img className="preload" src="assets/images/preload.svg"/>
             </div>
         );
