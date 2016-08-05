@@ -12,6 +12,7 @@ class Editors extends Component {
         super(props);
         this.state = {};
         this.onClickSend = this.onClickSend.bind(this);
+        this.onClickViewerTab = this.onClickViewerTab.bind(this);
         this.renderEditors = this.renderEditors.bind(this);
     }
 
@@ -20,7 +21,10 @@ class Editors extends Component {
         const action =  editor.find(".bar .select .action").val();
         const url =  editor.find(".bar .input-url").val();
         const viewer = editor.find(".component-viewer");
-        const jsonViewer = editor.find(".json-renderer");
+        const viewerTabs = editor.find(".viewer-tabs").show();
+        const prettyViewer = viewer.find(".viewer.pretty");
+        const rawViewer = viewer.find(".viewer.raw");
+        const previewViewer = viewer.find(".viewer.preview");
         const headersLabel = editor.find(".field.headers .value");
         const statusLabel = editor.find(".field.status .value");
         const timeLabel = editor.find(".field.time .value");
@@ -33,20 +37,38 @@ class Editors extends Component {
             url: url
         }).then(function(response) {
             const duration = new Date().getTime() - startTime;
-            jsonViewer.jsonViewer(response);
+            prettyViewer.jsonViewer(response);
+            rawViewer.text(JSON.stringify(response.data));
             headersLabel.html(Object.keys(response.headers).length);
             statusLabel.html(response.status).removeClass("-error");
             timeLabel.html(duration + "ms");
             viewer.removeClass("-loading");
-        })
-        .catch(function(error) {
+            previewViewer.find(".iframe").attr("src",url);
+        }).catch(function(error) {
             const duration = new Date().getTime() - startTime;
-            jsonViewer.jsonViewer(error);
+            prettyViewer.jsonViewer(error);
+            rawViewer.text(JSON.stringify(error.data));
             headersLabel.html(Object.keys(error.headers).length);
             statusLabel.html(error.status).addClass("-error");
             timeLabel.html(duration + "ms");
             viewer.removeClass("-loading");
+            previewViewer.find(".iframe").attr("src",url);
         });
+    }
+
+    onClickViewerTab(e){
+        const currentTarget = $(e.currentTarget);
+        const viewer = $(".component-viewer");
+
+        currentTarget.addClass("-active").siblings().removeClass("-active");
+
+        if (currentTarget.hasClass("-pretty")){
+            viewer.find(".pretty").addClass("-active").siblings().removeClass("-active");
+        } else if (currentTarget.hasClass("-raw")){
+            viewer.find(".raw").addClass("-active").siblings().removeClass("-active");
+        } else if (currentTarget.hasClass("-preview")){
+            viewer.find(".preview").addClass("-active").siblings().removeClass("-active");
+        }
     }
 
     renderEditors(data,index){
@@ -74,9 +96,9 @@ class Editors extends Component {
                     </div>
                     <div className="viewer-tabs">
                         <ul className="list">
-                            <li className="item -active">Pretty</li>
-                            <li className="item">Raw</li>
-                            <li className="item">Preview</li>
+                            <li className="item -pretty -active" onClick={this.onClickViewerTab}>Pretty</li>
+                            <li className="item -raw" onClick={this.onClickViewerTab}>Raw</li>
+                            <li className="item -preview" onClick={this.onClickViewerTab}>Preview</li>
                         </ul>
                     </div>
 
