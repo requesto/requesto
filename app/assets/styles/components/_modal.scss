@@ -1,0 +1,24 @@
+.component-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(11, 12, 14, 0.5);
+    z-index: 99999999;
+    opacity: 0;
+    visibility: hidden;
+    &.-open {
+        opacity: 1;
+        visibility: visible;
+    }
+    .panel {
+        @include box-shadow(3);
+        background: color("background-light");
+        width: 500px;
+        min-height: 200px;
+        margin: 0 auto;
+        padding: $grid-gutter/2;
+        border-radius: 0 0 4px 4px;
+    }
+}
