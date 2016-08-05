@@ -17,7 +17,7 @@ class Editors extends Component {
 
     onClickSend(e){
         const editor = $(e.currentTarget).closest(".editor");
-        const action =  editor.find(".bar .select-action").val();
+        const action =  editor.find(".bar .select .action").val();
         const url =  editor.find(".bar .input-url").val();
         const viewer = editor.find(".component-viewer");
         const jsonViewer = editor.find(".json-renderer");
@@ -32,19 +32,17 @@ class Editors extends Component {
             method: action,
             url: url
         }).then(function(response) {
-            const headersLength = Object.keys(response.headers).length
             const duration = new Date().getTime() - startTime;
             jsonViewer.jsonViewer(response);
-            headersLabel.html(headersLength)
+            headersLabel.html(Object.keys(response.headers).length);
             statusLabel.html(response.status).removeClass("-error");
             timeLabel.html(duration + "ms");
             viewer.removeClass("-loading");
         })
         .catch(function(error) {
-            const headersLength = Object.keys(error.headers).length
             const duration = new Date().getTime() - startTime;
             jsonViewer.jsonViewer(error);
-            headersLabel.html(headersLength);
+            headersLabel.html(Object.keys(error.headers).length);
             statusLabel.html(error.status).addClass("-error");
             timeLabel.html(duration + "ms");
             viewer.removeClass("-loading");
@@ -58,7 +56,7 @@ class Editors extends Component {
                     <div className="bar">
                         <div className="columm action">
                             <div className="select">
-                                <select>
+                                <select className="action">
                                     <option value="GET">GET</option>
                                     <option value="POST">POST</option>
                                     <option value="PUT">PUT</option>
@@ -81,6 +79,7 @@ class Editors extends Component {
                             <li className="item">Preview</li>
                         </ul>
                     </div>
+
                 </div>
                 <Viewer />
                 <div className="bottom">
