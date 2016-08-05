@@ -21,6 +21,7 @@ class Editors extends Component {
         const url =  editor.find(".bar .input-url").val();
         const viewer = editor.find(".component-viewer");
         const jsonViewer = editor.find(".json-renderer");
+        const headersLabel = editor.find(".field.headers .value");
         const statusLabel = editor.find(".field.status .value");
         const timeLabel = editor.find(".field.time .value");
         const startTime = new Date().getTime();
@@ -31,15 +32,19 @@ class Editors extends Component {
             method: action,
             url: url
         }).then(function(response) {
+            const headersLength = Object.keys(response.headers).length
             const duration = new Date().getTime() - startTime;
             jsonViewer.jsonViewer(response);
+            headersLabel.html(headersLength)
             statusLabel.html(response.status).removeClass("-error");
             timeLabel.html(duration + "ms");
             viewer.removeClass("-loading");
         })
         .catch(function(error) {
+            const headersLength = Object.keys(error.headers).length
             const duration = new Date().getTime() - startTime;
             jsonViewer.jsonViewer(error);
+            headersLabel.html(headersLength);
             statusLabel.html(error.status).addClass("-error");
             timeLabel.html(duration + "ms");
             viewer.removeClass("-loading");
@@ -53,7 +58,7 @@ class Editors extends Component {
                     <div className="bar">
                         <div className="columm action">
                             <div className="select">
-                                <select className="select-action">
+                                <select>
                                     <option value="GET">GET</option>
                                     <option value="POST">POST</option>
                                     <option value="PUT">PUT</option>
@@ -69,10 +74,21 @@ class Editors extends Component {
                             <input className="input-button" onClick={this.onClickSend} type="button" name="send" defaultValue="Send" />
                         </div>
                     </div>
+                    <div className="viewer-tabs">
+                        <ul className="list">
+                            <li className="item -active">Pretty</li>
+                            <li className="item">Raw</li>
+                            <li className="item">Preview</li>
+                        </ul>
+                    </div>
                 </div>
                 <Viewer />
                 <div className="bottom">
                     <div className="metadata">
+                        <div className="field headers">
+                            <span className="label">headers:</span>
+                            <span className="value">-</span>
+                        </div>
                         <div className="field status">
                             <span className="label">status:</span>
                             <span className="value">-</span>
