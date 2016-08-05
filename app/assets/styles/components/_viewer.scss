@@ -4,6 +4,7 @@
     overflow: scroll;
     word-break: break-all;
     position: relative;
+    background: color("background-dark");
 
     .json-renderer {
         font-size: 13px;
@@ -26,6 +27,14 @@
         }
         .json-literal {
             color: color("text-light");
+        }
+
+        li{
+            transition: all $animation-duration;
+            border-radius: 2px;
+            &:hover{
+                background: rgba(255,255,255,0.05);
+            }
         }
     }
 
