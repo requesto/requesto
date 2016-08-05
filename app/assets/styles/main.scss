@@ -10,48 +10,8 @@
 // RESET
 //------------------------------------------------------
 @include reset();
-body,
-html {
-    background: color("background-dark");
-    color: color("text-dark");
-    width: 100vw;
-    height: 100vh;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    overflow: hidden;
-}
-body {
-    display: flex;
-    justify-content: space-around;
-    padding: 0;
-}
 
-[data-title]{
-	position:relative;
-}
-[data-title]:after{
-	content:attr(data-title);
-    font-size:12px;
-	color:#fff;
-	background:color("border");
-	padding: 0 15px;
-	position:absolute;
-    left: 50%;
-    top: -45px;
-	opacity:0;
-    visibility: hidden;
-	white-space:nowrap;
-    transform: translateX(-50%);
-	transition: all 0.25s linear;
-    border-radius: 3px;
-    z-index: 999999;
-    line-height: 30px;
-}
-[data-title]:hover:after{
-	opacity:1;
-    visibility: visible;
-}
-
+@import "base";
 @import "components/root";
 @import "components/app";
 @import "components/sidebar";
@@ -60,5 +20,5 @@ body {
 @import "components/editors";
 @import "components/viewer";
 @import "components/footer";
-
+@import "components/modal";
 @import "components/index";
