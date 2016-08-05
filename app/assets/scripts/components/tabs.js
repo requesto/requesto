@@ -11,10 +11,11 @@ class Tabs extends Component {
         this.onClickAdd = this.onClickAdd.bind(this);
         this.onClickTab = this.onClickTab.bind(this);
         this.renderTabs = this.renderTabs.bind(this);
+        this.selectTab = this.selectTab.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
-        // console.log("Tabs: ",nextProps );
+        console.log("Tabs: ",nextProps );
     }
 
     onClickAdd(){
@@ -22,10 +23,13 @@ class Tabs extends Component {
     }
 
     onClickTab(index,e){
-        var indexSelected = $(e.target).index();
-        console.log(indexSelected);
-        $(e.target).addClass("-active").siblings().removeClass("-active");
-        $(".component-editors .editor").removeClass("-show").eq(indexSelected).addClass("-show");
+        const indexSelected = $(e.target).index();
+        this.selectTab(indexSelected);
+    }
+
+    selectTab(index){
+        $(".component-tabs .tabs .tab").eq(index).addClass("-active").siblings().removeClass("-active");
+        $(".component-editors .editor").removeClass("-show").eq(index).addClass("-show");
     }
 
     renderTabs(data,index){
