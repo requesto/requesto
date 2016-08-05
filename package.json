@@ -65,6 +65,9 @@
     "redux": "^3.0.4",
     "redux-promise": "^0.5.3"
   },
+  "babel": {
+      "presets": ["react", "es2015", "stage-1"]
+  },
   "productName": "Requesto",
   "directories": {
     "app": "."
