@@ -22,12 +22,12 @@ body {
 
 input{
     background: none;
-    border: 1px solid #181a1f;
+    border: 2px solid #181a1f;
     transition: all $animation-duration;
     outline: none;
     padding: 7px;
     width: 100%;
-    border-radius: 2px;
+    border-radius: 3px;
     font-weight: 600;
     letter-spacing: 0.05em;
     font-size: 13px;
@@ -69,9 +69,9 @@ input{
         transition: all $animation-duration;
         font-size: 13px;
         color: color("text-light");
-        border: 1px solid #181a1f;
+        border: 2px solid #181a1f;
         -webkit-appearance: none;
-        border-radius: 2px;
+        border-radius: 3px;
         position: relative;
         user-select: none;
     }
