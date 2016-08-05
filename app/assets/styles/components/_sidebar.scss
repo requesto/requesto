@@ -72,10 +72,11 @@
             .name {
                 font-size: 14px;
                 font-weight: 600;
+                color:color("text-light");
             }
             .description {
                 font-size: 11px;
-                opacity: 0.7;
+                color:color("text-dark");
             }
         }
         .items {
@@ -89,7 +90,6 @@
                 border-bottom: 1px solid color("border");
                 background: color("background-dark");
                 transition: all $animation-duration;
-                opacity: 0.7;
                 &:hover {
                     background: color("background-light",52%);
                 }
@@ -97,12 +97,14 @@
                     border-left: 2px solid color("green-light");
                 }
                 .name {
+                    color:color("text-light");
                     font-size: 13px;
                     font-weight: 600;
+                    opacity: 0.8;
                 }
                 .description {
+                    color:color("text-dark");
                     font-size: 11px;
-                    opacity: 0.7;
                 }
                 .type {
                     position: absolute;
@@ -117,10 +119,10 @@
                         color: color("green-light");
                     }
                     &.-post {
-                        color: #478cff;
+                        color: color("blue");
                     }
                     &.-put {
-                        color: #e1c282;
+                        color: color("yellow");
                     }
                 }
             }
