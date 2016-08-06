@@ -29,7 +29,6 @@ class Editors extends Component {
         const statusLabel = editor.find(".field.status .value");
         const timeLabel = editor.find(".field.time .value");
         const startTime = new Date().getTime();
-        // jsonViewer.html("");
         viewer.addClass("-loading");
 
         Axios({
