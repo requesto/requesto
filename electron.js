@@ -1,13 +1,14 @@
 const electron = require('electron')
 const app = electron.app
+const ipcMain = electron.ipcMain
 const nativeImage = electron.nativeImage
 const BrowserWindow = electron.BrowserWindow
 
 app.setName("Requesto");
 
 if (app.dock) {
-    app.dock.setIcon(nativeImage.createFromPath("dist/assets/images/brand/icon.png"));
-    app.dock.setBadge("1");
+    app.dock.setIcon(nativeImage.createFromPath("resources/icon.png"));
+    // app.dock.setBadge("1");
 }
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -15,22 +16,14 @@ if (app.dock) {
 let mainWindow
 
 function createWindow() {
-    // Create the browser window.
     mainWindow = new BrowserWindow({
         background: "#1d1e26",
-        width: 800,
-        height: 600,
         title: "Requesto",
         center: true,
     })
-
-    // and load the index.html of the app.
-    mainWindow.loadURL(`file://${__dirname}/dist/index.html`)
-
-    // Open the DevTools.
     // mainWindow.webContents.openDevTools()
-
-    // Emitted when the window is closed.
+    mainWindow.maximize()
+    mainWindow.loadURL(`file://${__dirname}/dist/index.html`)
     mainWindow.on('closed', function() {
         // Dereference the window object, usually you would store windows
         // in an array if your app supports multi windows, this is the time
