@@ -19,7 +19,6 @@
   "main": "electron.js",
   "scripts": {
     "start": "electron .",
-    "package": "electron-packager ./dist Requesto --all --out ./build --version 0.1.0 --overwrite",
     "build": "node_modules/.bin/build -m"
   },
   "devDependencies": {
@@ -70,11 +69,15 @@
   },
   "productName": "Requesto",
   "directories": {
-    "app": "."
+    "app": ".",
+    "output":"./build"
   },
   "build": {
     "appId": "com.github.requesto.requesto",
     "app-category-type": "public.app-category.developer-tools",
-    "files": "**/*"
+    "files": "**/*",
+    "mac": {
+        "icon": "./resources/icon.icns"
+    }
   }
 }
