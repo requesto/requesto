@@ -14,7 +14,7 @@
     }
     .panel {
         @include box-shadow(3);
-        background: color("background-light");
+        background: color("background-dark");
         width: 500px;
         min-height: 200px;
         margin: 0 auto;
