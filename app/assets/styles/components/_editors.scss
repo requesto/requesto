@@ -45,7 +45,12 @@
                         flex-grow: 1;
                     }
                     &.button {
-                        width: 150px;
+                        width: 130px;
+
+                        .input-button.save{
+                            background: color("blue");
+                            border-color: color("blue");
+                        }
                     }
                 }
             }
