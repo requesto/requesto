@@ -13,6 +13,7 @@ class Modal extends Component {
         return (
             <div className="component-modal">
                 <div className="panel">
+                    <div className="label">Enter the name of folder</div>
                     <input defaultValue="Busca" />
                 </div>
             </div>

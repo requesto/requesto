@@ -20,5 +20,11 @@
         margin: 0 auto;
         padding: $grid-gutter/2;
         border-radius: 0 0 4px 4px;
+
+
+        .label{
+            margin: 5px 0;
+            color:color("text-light");
+        }
     }
 }
