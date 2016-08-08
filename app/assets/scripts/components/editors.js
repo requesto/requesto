@@ -92,6 +92,9 @@ class Editors extends Component {
                         <div className="columm button">
                             <input className="input-button" onClick={this.onClickSend} type="button" name="send" defaultValue="Send" />
                         </div>
+                        <div className="columm button">
+                            <input className="input-button save" onClick={this.onClickSend} type="button" name="save" defaultValue="Save" />
+                        </div>
                     </div>
                     <div className="viewer-tabs">
                         <ul className="list">
