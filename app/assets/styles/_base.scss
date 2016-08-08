@@ -13,6 +13,7 @@ html {
     font-weight: 600;
     letter-spacing: 0.02em;
     overflow: hidden;
+    font-size: 13px;
 }
 body {
     display: flex;
@@ -40,7 +41,6 @@ input{
         border: 2px solid color("green-light");
         background: color("green-light");
         color: white;
-        border: none;
         font-weight: 600;
         &:active {
             opacity: 0.9;
