@@ -18,7 +18,7 @@
         flex: 1;
     }
     .bottom {
-        display:flex;
+        display: flex;
         align-items: center;
         justify-content: flex-end;
         height: 35px;
@@ -67,16 +67,21 @@
                 }
                 &.-active {
                     border-left: 2px solid color("green-light");
+                    .name {
+                        color: white;
+                    }
                 }
             }
             .name {
                 font-size: 13px;
                 font-weight: 600;
-                color:color("text-light");
+                color: color("text-light");
+                margin-bottom: 5px;
+                transition: color $animation-duration;
             }
             .description {
                 font-size: 11px;
-                color:color("text-dark");
+                color: color("text-dark");
             }
         }
         .items {
@@ -90,20 +95,19 @@
                 border-bottom: 1px solid color("border");
                 background: color("background-dark");
                 transition: all $animation-duration;
+                &.active,
                 &:hover {
                     background: color("background-light",52%);
                 }
-                &.active {
-                    border-left: 2px solid color("green-light");
-                }
                 .name {
-                    color:color("text-light");
+                    color: color("text-light");
                     font-size: 13px;
                     font-weight: 600;
                     opacity: 0.8;
+                    transition: all $animation-duration;
                 }
                 .description {
-                    color:color("text-dark");
+                    color: color("text-dark");
                     font-size: 11px;
                 }
                 .type {
@@ -139,8 +143,7 @@
             margin: 0 10px;
             transition: all $animation-duration;
         }
-
-        &:hover svg{
+        &:hover svg {
             fill: color("green-light");
         }
     }
