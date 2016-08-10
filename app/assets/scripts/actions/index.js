@@ -1,6 +1,6 @@
 export const TAB_ADD = 'TAB_ADD';
 export const FOLDER_ADD = 'FOLDER_ADD';
-export const MODAL_OPEN = 'MODAL_OPEN';
+export const MODAL = 'MODAL';
 
 export function tabAdd(name = "untitled") {
     return {
@@ -25,12 +25,11 @@ export function folderAdd(name) {
     }
 }
 
-
-export function modalOpen(name){
+export function modal(type){
     return {
-        type: MODAL_OPEN,
+        type: MODAL,
         payload: {
-            name: name
+            type:type
         }
     }
 }
