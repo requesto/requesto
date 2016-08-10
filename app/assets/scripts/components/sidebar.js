@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {folderAdd,tabAdd} from "../actions/index";
+import {folderAdd,tabAdd,modal} from "../actions/index";
 
 class Sidebar extends Component {
 
@@ -16,7 +16,8 @@ class Sidebar extends Component {
     }
 
     folderAddClickHandler(e){
-        this.props.folderAdd("Folder " + Math.floor((Math.random() * 100) + 1));
+        this.props.modal("newFolder");
+        //this.props.folderAdd("Folder " + Math.floor((Math.random() * 100) + 1));
     }
 
     folderClickHandler(e){
@@ -97,7 +98,7 @@ function mapStateToProps({folders}){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({folderAdd,tabAdd},dispatch);
+    return bindActionCreators({folderAdd,tabAdd,modal},dispatch);
 }
 
 export default connect (mapStateToProps,mapDispatchToProps)(Sidebar);
