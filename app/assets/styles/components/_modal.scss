@@ -6,25 +6,22 @@
     height: 100vh;
     background: rgba(11, 12, 14, 0.5);
     z-index: 99999999;
-    opacity: 0;
-    visibility: hidden;
+    display: none;
     &.-open {
-        opacity: 1;
-        visibility: visible;
+        display: block;
     }
     .panel {
         @include box-shadow(3);
         background: color("background-dark");
         width: 500px;
-        min-height: 200px;
         margin: 0 auto;
         padding: $grid-gutter/2;
         border-radius: 0 0 4px 4px;
 
-
-        .label{
-            margin: 5px 0;
+        label{
+            padding: 5px 0;
             color:color("text-light");
+            display: block;
         }
     }
 }
