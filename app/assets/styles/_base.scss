@@ -43,11 +43,21 @@ input {
         border: 2px solid color("green-light");
         background: color("green-light");
         color: white;
-        font-weight: 600;
         &:active {
             opacity: 0.9;
         }
     }
+}
+button{
+    border: 2px solid color("green-light");
+    background: color("green-light");
+    color: white;
+    font-weight: 600;
+    outline: none;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    padding: 7px;
+    border-radius: 3px;
 }
 .select {
     position: relative;
