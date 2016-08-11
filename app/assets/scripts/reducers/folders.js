@@ -1,4 +1,4 @@
-import {FOLDER_ADD} from '../actions/index';
+import {FOLDER_ADD,FOLDER_ADD_ITEM} from '../actions/index';
 
 let initialState = {
     name:"Folder",
@@ -25,6 +25,17 @@ export default function(state = [initialState],action) {
     switch (action.type){
         case FOLDER_ADD:
             return [...state,action.payload];
+        case FOLDER_ADD_ITEM:
+            return state.map(function(item){
+                if (item.id == action.payload.folder){
+                    item.items.push({
+                        name: action.payload.item.name,
+                        description: action.payload.item.description,
+                        type: action.payload.item.type
+                    })
+                }
+                return item;
+            });
     }
     return state;
 }
