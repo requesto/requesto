@@ -1,6 +1,6 @@
 export const TAB_ADD = 'TAB_ADD';
 export const FOLDER_ADD = 'FOLDER_ADD';
-export const FOLDER_ADD_ENDPOINT = 'FOLDER_ADD_ENDPOINT';
+export const FOLDER_ADD_ITEM = 'FOLDER_ADD_ITEM';
 export const MODAL = 'MODAL';
 
 export function tabAdd(name = "untitled") {
@@ -27,14 +27,13 @@ export function folderAdd(name) {
     }
 }
 
-export function folderAddEndpoint(folder,name){
-    console.log(folder,name);
+export function folderAddItem(folder,item){
+    console.log("folderAddItem",folder,item);
     return{
-        type: FOLDER_ADD_ENDPOINT,
+        type: FOLDER_ADD_ITEM,
         payload: {
-            name: name,
-            folderId: folder
-
+            folder: folder,
+            item: item
         }
     }
 }
