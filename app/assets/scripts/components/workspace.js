@@ -13,7 +13,6 @@ class Workspace extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        console.log("Workspace: ",nextProps );
     }
 
     render() {
