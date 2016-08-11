@@ -72,7 +72,7 @@ class Editors extends Component {
     }
 
     onClickSave(e){
-        this.props.modal("newEndpoint");
+        this.props.modal("newFolderItem");
     }
 
     renderEditors(data,index){
