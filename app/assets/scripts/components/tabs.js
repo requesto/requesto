@@ -15,7 +15,6 @@ class Tabs extends Component {
     }
 
     componentWillReceiveProps(nextProps){
-        console.log("Tabs: ",nextProps );
     }
 
     onClickAdd(){
