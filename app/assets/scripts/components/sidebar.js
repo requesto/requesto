@@ -17,7 +17,6 @@ class Sidebar extends Component {
 
     folderAddClickHandler(e){
         this.props.modal("newFolder");
-        //this.props.folderAdd("Folder " + Math.floor((Math.random() * 100) + 1));
     }
 
     folderClickHandler(e){
@@ -32,7 +31,6 @@ class Sidebar extends Component {
     itemClickHandler(e){
         const item = $(e.currentTarget);
         const name = item.find(".name").text();
-        console.log(name);
         this.props.tabAdd(name);
     }
 
@@ -82,9 +80,8 @@ class Sidebar extends Component {
                 </div>
                 <div className="bottom">
                     <a className="folder-add" onClick={this.folderAddClickHandler} data-title="New folder">
-                        <svg x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20">
-                            <path d="M19,20H1c-0.6,0-1-0.4-1-1V8c0-0.6,0.4-1,1-1h18c0.6,0,1,0.4,1,1v11C20,19.6,19.6,20,19,20z M2,18h16V9H2V18z"/>
-                            <path d="M19,2h-8.1l-1-1.6C9.6,0.2,9.3,0,9,0H1C0.4,0,0,0.4,0,1v3c0,0.6,0.4,1,1,1h18c0.6,0,1-0.4,1-1V3C20,2.4,19.6,2,19,2z"/>
+                        <svg className="icon  icon--plus" viewBox="0 0 5 5" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 1 h1 v1 h1 v1 h-1 v1 h-1 v-1 h-1 v-1 h1 z" />
                         </svg>
                     </a>
                 </div>
