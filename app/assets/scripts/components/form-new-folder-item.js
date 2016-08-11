@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {folderAddEndpoint} from "../actions/index";
+import {folderAddItem} from "../actions/index";
 
-class FormNewEndpoint extends Component {
+class FormNewFolderItem extends Component {
 
     constructor(props){
         super(props);
@@ -12,12 +12,17 @@ class FormNewEndpoint extends Component {
     }
 
     formSubmit(e){
-        console.log("FORM SUBMIT","FormNewEndpoint");
         const modal = document.querySelector(".component-modal");
-        const form = document.forms["newEndpointForm"];
-        const name = form["name"].value;
+        const form = document.forms["newFolderItemForm"];
         const folder = form["folder"].value;
-        this.props.folderAddEndpoint(folder,name);
+        const name = form["name"].value;
+        const description = form["description"].value;
+        console.log(folder,name,description);
+        this.props.folderAddItem(folder,{
+            name:name,
+            description: description,
+            type:"GET"
+        });
         modal.classList.remove("-open");
         e.preventDefault();
     }
@@ -32,7 +37,7 @@ class FormNewEndpoint extends Component {
 
     render() {
         return (
-            <form name="newEndpointForm" onSubmit={this.formSubmit}>
+            <form name="newFolderItemForm" onSubmit={this.formSubmit}>
                 <fieldset>
                     <label>Select folder</label>
                     <div className="select">
@@ -42,14 +47,14 @@ class FormNewEndpoint extends Component {
                     </div>
                 </fieldset>
                 <fieldset>
-                    <label>Enter the endpoint name</label>
+                    <label>Enter the item name</label>
                     <input type="text" name="name" />
                 </fieldset>
                 <fieldset>
-                    <label>Enter the endpoint description</label>
+                    <label>Enter the item description</label>
                     <input type="text" name="description" />
                 </fieldset>
-                <button hidden>Salvar</button>
+                <button hidden type="submit">SALVAR</button>
             </form>
         );
     }
@@ -60,7 +65,7 @@ function mapStateToProps({folders}){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({folderAddEndpoint},dispatch);
+    return bindActionCreators({folderAddItem},dispatch);
 }
 
-export default connect (mapStateToProps,mapDispatchToProps)(FormNewEndpoint);
+export default connect (mapStateToProps,mapDispatchToProps)(FormNewFolderItem);
