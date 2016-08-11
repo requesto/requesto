@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {tabAdd} from "./../actions/index";
+import {tabAdd,modal} from "./../actions/index";
 
 import Axios from 'axios';
 import Viewer from "./viewer";
@@ -14,6 +14,7 @@ class Editors extends Component {
         this.onClickSend = this.onClickSend.bind(this);
         this.onClickViewerTab = this.onClickViewerTab.bind(this);
         this.renderEditors = this.renderEditors.bind(this);
+        this.onClickSave = this.onClickSave.bind(this);
     }
 
     onClickSend(e){
@@ -70,6 +71,10 @@ class Editors extends Component {
         }
     }
 
+    onClickSave(e){
+        this.props.modal("newEndpoint");
+    }
+
     renderEditors(data,index){
         return (
             <li className="editor" key={"editor-" + data.name + "-" + index}>
@@ -93,7 +98,7 @@ class Editors extends Component {
                             <input className="input-button" onClick={this.onClickSend} type="button" name="send" defaultValue="Send" />
                         </div>
                         <div className="columm button">
-                            <input className="input-button save" onClick={this.onClickSend} type="button" name="save" defaultValue="Save" />
+                            <input className="input-button save" onClick={this.onClickSave} type="button" name="save" defaultValue="Save" />
                         </div>
                     </div>
                     <div className="viewer-tabs">
@@ -103,7 +108,6 @@ class Editors extends Component {
                             <li className="item -preview" onClick={this.onClickViewerTab}>Preview</li>
                         </ul>
                     </div>
-
                 </div>
                 <Viewer />
                 <div className="bottom">
@@ -142,7 +146,7 @@ function mapStateToProps({tabs}){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({tabAdd},dispatch);
+    return bindActionCreators({tabAdd,modal},dispatch);
 }
 
 export default connect (mapStateToProps,mapDispatchToProps)(Editors);
