@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import {folderAdd} from "../actions/index";
 
 import FormNewFolder from "./form-new-folder";
-import FormNewEndpoint from "./form-new-endpoint";
+import FormNewFolderItem from "./form-new-folder-item";
 
 class Modal extends Component {
 
@@ -48,7 +48,7 @@ class Modal extends Component {
             <div className="component-modal">
                 <div className="panel">
                     {(type == "newFolder") ? <FormNewFolder /> : null}
-                    {(type == "newEndpoint") ? <FormNewEndpoint /> : null}
+                    {(type == "newFolderItem") ? <FormNewFolderItem /> : null}
                 </div>
             </div>
         );
