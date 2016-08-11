@@ -3,6 +3,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {folderAdd} from "../actions/index";
 
+import FormNewFolder from "./form-new-folder";
+import FormNewEndpoint from "./form-new-endpoint";
+
 class Modal extends Component {
 
     constructor(props){
@@ -15,10 +18,9 @@ class Modal extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps);
         var modal = document.querySelector(".component-modal");
         modal.classList.add("-open");
-        modal.querySelector("input").focus();
+        // modal.querySelector("input").focus();
     }
 
     addKeyboardEvents(){
@@ -40,13 +42,13 @@ class Modal extends Component {
     }
 
     render() {
+        var type = ("type" in this.props.modal) ? this.props.modal.type : "";
+
         return (
             <div className="component-modal">
                 <div className="panel">
-                    <form name="newFolderForm" onSubmit={this.formSubmit}>
-                        <label>Enter the folder name</label>
-                        <input type="text" name="name"/>
-                    </form>
+                    {(type == "newFolder") ? <FormNewFolder /> : null}
+                    {(type == "newEndpoint") ? <FormNewEndpoint /> : null}
                 </div>
             </div>
         );
