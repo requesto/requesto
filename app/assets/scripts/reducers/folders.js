@@ -1,3 +1,4 @@
+import File from "../libs/file";
 import {FOLDER_ADD,FOLDER_ADD_ITEM,FOLDERS_FETCH} from '../actions/index';
 
 let initialState = {
@@ -13,14 +14,20 @@ let initialState = {
 }
 
 export default function(state = [initialState],action) {
+    const file = new File();
+    var folders = [];
     switch (action.type){
         case FOLDERS_FETCH:
-            console.log("FOLDERS_FETCH",action.payload);
             return action.payload;
         case FOLDER_ADD:
-            return [...state,action.payload];
+            folders = [...state,action.payload]
+            file.loadSetupFile(function (data){
+                data.folders = folders
+                file.updateSetupFile(data);
+            });
+            return folders;
         case FOLDER_ADD_ITEM:
-            return state.map(function(item){
+            folders = state.map(function(item){
                 if (item.id == action.payload.folder){
                     item.items.push({
                         name: action.payload.item.name,
@@ -30,6 +37,13 @@ export default function(state = [initialState],action) {
                 }
                 return item;
             });
+
+            file.loadSetupFile(function (data){
+                data.folders = folders
+                file.updateSetupFile(data);
+            });
+
+            return folders;
     }
     return state;
 }
