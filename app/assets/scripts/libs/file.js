@@ -13,8 +13,6 @@ export default class File {
         this.createSetupFolder = this.createSetupFolder.bind(this);
         this.createSetupFile = this.createSetupFile.bind(this);
         this.loadSetupFile = this.loadSetupFile.bind(this);
-
-        console.log("initalSetup",initialSetup);
     }
 
     createSetupFolder(callback){
@@ -54,6 +52,20 @@ export default class File {
             // alert("The file has been read succesfully");
 
             callback(JSON.parse(data));
+        })
+    }
+
+    updateSetupFile(content) {
+        const setupFileURL = this.setupFileURL;
+
+        this.createSetupFolder(function(){
+            fs.writeFile(setupFileURL,JSON.stringify(content), function(err) {
+                if (err) {
+                    console.log("updateSetupFile: ","An error ocurred creating the file " + err);
+                    return;
+                }
+                console.log("updateSetupFile: ","The file has been succesfully updated");
+            });
         })
     }
 }
