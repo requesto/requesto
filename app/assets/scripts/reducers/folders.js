@@ -1,4 +1,4 @@
-import {FOLDER_ADD,FOLDER_ADD_ITEM} from '../actions/index';
+import {FOLDER_ADD,FOLDER_ADD_ITEM,FOLDERS_FETCH} from '../actions/index';
 
 let initialState = {
     name:"Folder",
@@ -7,22 +7,16 @@ let initialState = {
     {
         name:"/user",
         description:"Create new user",
-        type:"POST"
-    },
-    {
-        name:"/user/:id",
-        description:"Get user by ID",
-        type:"GET"
-    },
-    {
-        name:"/user/:id",
-        description:"Change a new User",
-        type:"PUT"
+        type:"POST",
+        url:"http://beta.json-generator.com/api/json/get/4JVFHRAHZ"
     }]
 }
 
 export default function(state = [initialState],action) {
     switch (action.type){
+        case FOLDERS_FETCH:
+            console.log("FOLDERS_FETCH",action.payload);
+            return action.payload;
         case FOLDER_ADD:
             return [...state,action.payload];
         case FOLDER_ADD_ITEM:
