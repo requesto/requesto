@@ -1,6 +1,8 @@
-import React,{Component} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import React,{Component} from "react";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {foldersFetch} from "../actions/index";
+import File from "../libs/file";
 import $ from "jquery";
 import jQuery from "jquery";
 window.$ = $;
@@ -12,6 +14,10 @@ class App extends Component {
     constructor(props){
         super(props);
         this.state = {};
+        this.file = new File();
+        this.file.loadSetupFile(function (data){
+            props.foldersFetch(data.folders);
+        });
     }
 
     render() {
@@ -28,7 +34,7 @@ function mapStateToProps({}){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({},dispatch);
+    return bindActionCreators({foldersFetch},dispatch);
 }
 
 export default connect (mapStateToProps,mapDispatchToProps)(App);
