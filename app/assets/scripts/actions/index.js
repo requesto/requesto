@@ -1,7 +1,8 @@
-export const TAB_ADD = 'TAB_ADD';
-export const FOLDER_ADD = 'FOLDER_ADD';
-export const FOLDER_ADD_ITEM = 'FOLDER_ADD_ITEM';
-export const MODAL = 'MODAL';
+export const TAB_ADD = "TAB_ADD";
+export const FOLDER_ADD = "FOLDER_ADD";
+export const FOLDER_ADD_ITEM = "FOLDER_ADD_ITEM";
+export const FOLDERS_FETCH = "FOLDERS_FETCH";
+export const MODAL = "MODAL";
 
 export function tabAdd(name = "untitled") {
     return {
@@ -9,6 +10,13 @@ export function tabAdd(name = "untitled") {
         payload: {
             name: name
         }
+    }
+}
+
+export function foldersFetch(folders) {
+    return {
+        type: FOLDERS_FETCH,
+        payload: folders
     }
 }
 
