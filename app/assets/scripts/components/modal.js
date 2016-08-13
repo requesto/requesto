@@ -24,10 +24,9 @@ class Modal extends Component {
     }
 
     addKeyboardEvents(){
-        const _this = this;
-        document.addEventListener("keyup",function(e){
+        document.addEventListener("keyup",(e) => {
             if (e.keyCode == 27) {
-                _this.onComplete();
+                this.onComplete();
             }
         })
     }
