@@ -14,10 +14,10 @@ class FormNewFolder extends Component {
     formSubmit(e){
         console.log("FORM SUBMIT","FormNewFolder");
         const modal = document.querySelector(".component-modal");
-        const form = document.forms["newFolderForm"];
+        const form = modal.querySelector("form");
         const name = form["name"].value;
         this.props.folderAdd(name);
-        modal.classList.remove("-open");
+        this.props.onComplete();
         e.preventDefault();
     }
 
@@ -26,7 +26,7 @@ class FormNewFolder extends Component {
             <form name="newFolderForm" onSubmit={this.formSubmit}>
                 <fieldset>
                     <label>Enter the folder name</label>
-                    <input type="text" name="name"/>
+                    <input type="text" name="name" defaultValue=""/>
                 </fieldset>
             </form>
         );

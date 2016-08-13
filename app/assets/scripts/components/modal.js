@@ -11,34 +11,32 @@ class Modal extends Component {
     constructor(props){
         super(props);
         this.state = {};
-        this.formSubmit = this.formSubmit.bind(this);
         this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
         this.addKeyboardEvents = this.addKeyboardEvents.bind(this);
+        this.onComplete = this.onComplete.bind(this);
         this.addKeyboardEvents();
     }
 
     componentWillReceiveProps(nextProps) {
-        var modal = document.querySelector(".component-modal");
+        const modal = document.querySelector(".component-modal");
         modal.classList.add("-open");
         // modal.querySelector("input").focus();
     }
 
     addKeyboardEvents(){
+        const _this = this;
         document.addEventListener("keyup",function(e){
             if (e.keyCode == 27) {
-                var modal = document.querySelector(".component-modal");
-                modal.classList.remove("-open");
+                _this.onComplete();
             }
         })
     }
 
-    formSubmit(e){
-        var modal = document.querySelector(".component-modal");
-        var form = document.forms["newFolderForm"];
-        var name = form["name"].value;
-        this.props.folderAdd(name);
+    onComplete(){
+        const modal = document.querySelector(".component-modal");
+        const form = modal.querySelector("form");
         modal.classList.remove("-open");
-        e.preventDefault();
+        form.reset();
     }
 
     render() {
@@ -47,8 +45,8 @@ class Modal extends Component {
         return (
             <div className="component-modal">
                 <div className="panel">
-                    {(type == "newFolder") ? <FormNewFolder /> : null}
-                    {(type == "newFolderItem") ? <FormNewFolderItem /> : null}
+                    {(type == "newFolder") ? <FormNewFolder onComplete={this.onComplete} /> : null}
+                    {(type == "newFolderItem") ? <FormNewFolderItem onComplete={this.onComplete} /> : null}
                 </div>
             </div>
         );

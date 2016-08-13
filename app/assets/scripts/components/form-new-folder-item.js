@@ -13,17 +13,16 @@ class FormNewFolderItem extends Component {
 
     formSubmit(e){
         const modal = document.querySelector(".component-modal");
-        const form = document.forms["newFolderItemForm"];
+        const form = modal.querySelector("form");
         const folder = form["folder"].value;
         const name = form["name"].value;
         const description = form["description"].value;
-        console.log(folder,name,description);
         this.props.folderAddItem(folder,{
             name:name,
             description: description,
             type:"GET"
         });
-        modal.classList.remove("-open");
+        this.props.onComplete();
         e.preventDefault();
     }
 
