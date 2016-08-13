@@ -23,28 +23,24 @@ export default class File {
     }
 
     createSetupFile(callback) {
-        const initialSetup = this.initialSetup;
-        const setupFileURL = this.setupFileURL;
-
-        this.createSetupFolder(function(){
-            fs.writeFile(setupFileURL,JSON.stringify(initialSetup), function(err) {
+        this.createSetupFolder(() => {
+            fs.writeFile(this.ssetupFileURL,JSON.stringify(this.initialSetup), (err) => {
                 if (err) {
                     console.log("createSetupFile: ","An error ocurred creating the file " + err);
                     return;
                 }
-                callback(initialSetup);
+                this.callback(this.initialSetup);
                 console.log("createSetupFile: ","The file has been succesfully saved");
             });
         })
     }
 
     loadSetupFile(callback) {
-        const createSetupFile = this.createSetupFile;
-        fs.readFile(this.setupFileURL, 'utf-8', function(err, data) {
+        fs.readFile(this.setupFileURL, 'utf-8', (err, data) => {
             if (err) {
                 console.log("loadSetupFile: ",err.message);
                 // alert("An error ocurred reading the file :" + err.message);
-                createSetupFile(callback);
+                this.createSetupFile(callback);
                 return;
             }
             // Change how to handle the file content
@@ -56,10 +52,8 @@ export default class File {
     }
 
     updateSetupFile(content) {
-        const setupFileURL = this.setupFileURL;
-
         this.createSetupFolder(function(){
-            fs.writeFile(setupFileURL,JSON.stringify(content), function(err) {
+            fs.writeFile(this.setupFileURL,JSON.stringify(content), (err) => {
                 if (err) {
                     console.log("updateSetupFile: ","An error ocurred creating the file " + err);
                     return;
