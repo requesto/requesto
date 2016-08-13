@@ -11,7 +11,9 @@
 //------------------------------------------------------
 @include reset();
 
-@import "base";
+
+@import "utils/text-overflow";
+@import "utils/base";
 @import "components/root";
 @import "components/app";
 @import "components/sidebar";
