@@ -1,5 +1,6 @@
 const electron = require('electron')
 const app = electron.app
+const globalShortcut = electron.globalShortcut
 const ipcMain = electron.ipcMain
 const nativeImage = electron.nativeImage
 const BrowserWindow = electron.BrowserWindow
@@ -30,6 +31,13 @@ function createWindow() {
         // when you should delete the corresponding element.
         mainWindow = null
     })
+
+    //TODO: remove console.log
+    globalShortcut.register('Command+W', () => {
+        console.log('Command+W is pressed');
+    })
+
+    console.log('Command+W : ',globalShortcut.isRegistered('Command+W'));
 }
 
 // This method will be called when Electron has finished
