@@ -32,12 +32,8 @@ function createWindow() {
         mainWindow = null
     })
 
-    //TODO: remove console.log
-    globalShortcut.register('Command+W', () => {
-        console.log('Command+W is pressed');
-    })
-
-    console.log('Command+W : ',globalShortcut.isRegistered('Command+W'));
+    // Shortcuts
+    globalShortcut.register('Command+W', () => {});
 }
 
 // This method will be called when Electron has finished
