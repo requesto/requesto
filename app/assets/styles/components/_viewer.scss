@@ -19,6 +19,9 @@
         opacity: 1;
         visibility: visible;
         transition: all $animation-duration;
+        background: none;
+        border: none;
+        outline: none;
         &.-active {
             display: block;
         }
@@ -29,12 +32,17 @@
         ul.json-dict {
             border-color: #32343d;
         }
+        .json-dict{
+            color:color("text-light");
+        }
         .json-string {
             color: color("text-light",65%);
             font-weight: 600;
+            color: #98c379;
         }
         .json-literal {
-            color: color("text-light");
+            color: #e06c75;
+            color:color("yellow");
         }
         li {
             transition: all $animation-duration;
