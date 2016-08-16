@@ -33,7 +33,7 @@ function createWindow() {
     })
 
     // Shortcuts
-    globalShortcut.register('Command+W', () => {});
+    //globalShortcut.register('Command+W', () => {});
 }
 
 // This method will be called when Electron has finished
