@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {folderAddItem} from "../actions/index";
+import {folderItemAdd} from "../actions/index";
 
 class FormNewFolderItem extends Component {
 
@@ -17,7 +17,7 @@ class FormNewFolderItem extends Component {
         const folder = form["folder"].value;
         const name = form["name"].value;
         const description = form["description"].value;
-        this.props.folderAddItem(folder,{
+        this.props.folderItemAdd(folder,{
             name:name,
             description: description,
             type:"GET"
@@ -64,7 +64,7 @@ function mapStateToProps({folders}){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({folderAddItem},dispatch);
+    return bindActionCreators({folderItemAdd},dispatch);
 }
 
 export default connect (mapStateToProps,mapDispatchToProps)(FormNewFolderItem);
