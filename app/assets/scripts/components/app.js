@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {foldersFetch,folderAdd,modal} from "../actions/index";
+import {folderFetch,folderAdd,modal} from "../actions/index";
 import File from "../libs/file";
 import $ from "jquery";
 import jQuery from "jquery";
@@ -16,7 +16,7 @@ class App extends Component {
         this.state = {};
         this.file = new File();
         this.file.loadSetupFile(function (data){
-            props.foldersFetch(data.folders);
+            props.folderFetch(data.folders);
         });
 
         document.addEventListener('keyup', (e) => {
@@ -40,7 +40,7 @@ function mapStateToProps({}){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({foldersFetch,folderAdd,modal},dispatch);
+    return bindActionCreators({folderFetch,folderAdd,modal},dispatch);
 }
 
 export default connect (mapStateToProps,mapDispatchToProps)(App);
