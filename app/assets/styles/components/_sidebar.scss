@@ -78,10 +78,14 @@
                 color: color("text-light");
                 margin-bottom: 5px;
                 transition: color $animation-duration;
+                max-width: 80%;
+                @include text-overflow();
             }
             .description {
                 font-size: 11px;
                 color: color("text-dark");
+                max-width: 80%;
+                @include text-overflow();
             }
         }
         .items {
