@@ -161,19 +161,21 @@
                     border-left: 1px solid color("border");
                     z-index: 99;
                     .edit {
+                        display: flex;
+                        display: none;
                         flex: 1;
                         width: 35px;
                         text-align: center;
+                        border-bottom: 1px solid color("border");
                     }
                     .delete {
+                        display: flex;
                         flex: 1;
                         width: 35px;
                         text-align: center;
-                        border-top: 1px solid color("border");
                     }
                     .delete,
                     .edit {
-                        display: flex;
                         align-items: center;
                         justify-content: center;
                         svg {
