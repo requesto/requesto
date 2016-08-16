@@ -1,21 +1,16 @@
-export const TAB_ADD = "TAB_ADD";
+export const FOLDER_FETCH = "FOLDER_FETCH";
 export const FOLDER_ADD = "FOLDER_ADD";
-export const FOLDER_ADD_ITEM = "FOLDER_ADD_ITEM";
-export const FOLDERS_FETCH = "FOLDERS_FETCH";
+export const FOLDER_EDIT = "FOLDER_EDIT";
+export const FOLDER_DELETE = "FOLDER_DELETE";
+export const FOLDER_ITEM_ADD = "FOLDER_ITEM_ADD";
+export const FOLDER_ITEM_EDIT = "FOLDER_ITEM_EDIT";
+export const FOLDER_ITEM_DELETE = "FOLDER_ITEM_DELETE";
+export const TAB_ADD = "TAB_ADD";
 export const MODAL = "MODAL";
 
-export function tabAdd(name = "untitled") {
+export function folderFetch(folders) {
     return {
-        type: TAB_ADD,
-        payload: {
-            name: name
-        }
-    }
-}
-
-export function foldersFetch(folders) {
-    return {
-        type: FOLDERS_FETCH,
+        type: FOLDER_FETCH,
         payload: folders
     }
 }
@@ -29,16 +24,16 @@ export function folderAdd(name) {
             items: [{
                 name: "url",
                 description: "endpoint description",
-                type:"GET"
+                type: "GET"
             }]
         }
     }
 }
 
-export function folderAddItem(folder,item){
-    console.log("folderAddItem",folder,item);
-    return{
-        type: FOLDER_ADD_ITEM,
+export function folderItemAdd(folder, item) {
+    console.log("folderItemAdd", folder, item);
+    return {
+        type: FOLDER_ITEM_ADD,
         payload: {
             folder: folder,
             item: item
@@ -46,11 +41,42 @@ export function folderAddItem(folder,item){
     }
 }
 
-export function modal(type){
+export function folderItemEdit(folder, item) {
+    console.log("folderItemEdit", folder, item);
+    return {
+        type: FOLDER_ITEM_EDIT,
+        payload: {
+            folder: folder,
+            item: item
+        }
+    }
+}
+
+export function folderItemDelete(folder, item) {
+    console.log("folderItemDelete", folder, item);
+    return {
+        type: FOLDER_ITEM_DELETE,
+        payload: {
+            folder: folder,
+            item: item
+        }
+    }
+}
+
+export function tabAdd(name = "untitled") {
+    return {
+        type: TAB_ADD,
+        payload: {
+            name: name
+        }
+    }
+}
+
+export function modal(type) {
     return {
         type: MODAL,
         payload: {
-            type:type
+            type: type
         }
     }
 }
