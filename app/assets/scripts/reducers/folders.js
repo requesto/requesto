@@ -1,5 +1,8 @@
 import File from "../libs/file";
-import {FOLDER_ADD,FOLDER_ADD_ITEM,FOLDERS_FETCH} from '../actions/index';
+import {FOLDER_ADD,
+        FOLDER_ITEM_ADD,
+        FOLDER_ITEM_DELETE,
+        FOLDER_FETCH} from '../actions/index';
 
 let initialState = {
     name:"Folder",
@@ -17,8 +20,9 @@ export default function(state = [initialState],action) {
     const file = new File();
     var folders = [];
     switch (action.type){
-        case FOLDERS_FETCH:
+        case FOLDER_FETCH:
             return action.payload;
+
         case FOLDER_ADD:
             folders = [...state,action.payload]
             file.loadSetupFile(function (data){
@@ -26,20 +30,40 @@ export default function(state = [initialState],action) {
                 file.updateSetupFile(data);
             });
             return folders;
-        case FOLDER_ADD_ITEM:
-            folders = state.map(function(item){
-                if (item.id == action.payload.folder){
-                    item.items.push({
+
+        case FOLDER_ITEM_ADD:
+            folders = state.map(function(folder){
+                if (folder.id == action.payload.folder){
+                    folder.items.push({
                         name: action.payload.item.name,
                         description: action.payload.item.description,
                         type: action.payload.item.type
                     })
                 }
-                return item;
+                return folder;
             });
 
             file.loadSetupFile(function (data){
                 data.folders = folders
+                file.updateSetupFile(data);
+            });
+
+            return folders;
+
+        case FOLDER_ITEM_DELETE:
+            console.log("state: ",state);
+
+            folders = state.map(function(folder,index){
+                if (index == action.payload.folder){
+                    folder.items.splice(action.payload.item,1);
+                }
+                return folder;
+            });
+
+            console.log("state: ",folders);
+
+            file.loadSetupFile(function (data){
+                data.folders = state
                 file.updateSetupFile(data);
             });
 
