@@ -26,7 +26,7 @@ class FormNewFolder extends Component {
             <form name="newFolderForm" onSubmit={this.formSubmit}>
                 <fieldset>
                     <label>Enter the folder name</label>
-                    <input type="text" name="name" defaultValue=""/>
+                    <input type="text" name="name" autoFocus={true} />
                 </fieldset>
             </form>
         );
