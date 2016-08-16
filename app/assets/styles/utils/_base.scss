@@ -1,8 +1,8 @@
-::selection {
-    color: white;
-    background: color("green-light");
-    border-radius: 2px;
-}
+// ::selection {
+//     color: white;
+//     background: color("green-dark");
+//     border-radius: 2px;
+// }
 body,
 html {
     background: color("background-dark");
@@ -22,6 +22,11 @@ body {
 fieldset {
     margin-bottom: 10px;
     border: none;
+}
+label{
+    padding: 10px 0;
+    color:color("text-light");
+    display: block;
 }
 input {
     background: none;
