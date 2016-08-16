@@ -13,7 +13,7 @@ class Viewer extends Component {
         return (
             <div className="component-viewer">
                 <pre className="viewer pretty -active"></pre>
-                <pre className="viewer raw"></pre>
+                <textarea className="viewer raw" readOnly></textarea>
                 <div className="viewer preview">
                     <iframe className="iframe" src=""/>
                 </div>
