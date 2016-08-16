@@ -18,6 +18,7 @@ class Modal extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        this.forceUpdate();
         const modal = document.querySelector(".component-modal");
         modal.classList.add("-open");
         // modal.querySelector("input").focus();
@@ -35,7 +36,8 @@ class Modal extends Component {
         const modal = document.querySelector(".component-modal");
         const form = modal.querySelector("form");
         modal.classList.remove("-open");
-        form.reset();
+        // form.reset();
+        this.forceUpdate();
     }
 
     render() {
