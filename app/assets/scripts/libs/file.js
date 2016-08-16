@@ -15,22 +15,22 @@ export default class File {
         this.loadSetupFile = this.loadSetupFile.bind(this);
     }
 
-    createSetupFolder(callback){
-        mkdirp(this.setupFilePath, function (err) {
-            console.log("createSetupFolder: ","An error ocurred creating the file " + err);
+    createSetupFolder(callback) {
+        mkdirp(this.setupFilePath, (err) => {
+            console.log("createSetupFolder: ", "An error ocurred creating the file " + err);
             return callback();
         });
     }
 
     createSetupFile(callback) {
         this.createSetupFolder(() => {
-            fs.writeFile(this.ssetupFileURL,JSON.stringify(this.initialSetup), (err) => {
+            fs.writeFile(this.setupFileURL, JSON.stringify(this.initialSetup), (err) => {
                 if (err) {
-                    console.log("createSetupFile: ","An error ocurred creating the file " + err);
+                    console.log("createSetupFile: ", "An error ocurred creating the file " + err);
                     return;
                 }
                 this.callback(this.initialSetup);
-                console.log("createSetupFile: ","The file has been succesfully saved");
+                console.log("createSetupFile: ", "The file has been succesfully saved");
             });
         })
     }
@@ -38,27 +38,26 @@ export default class File {
     loadSetupFile(callback) {
         fs.readFile(this.setupFileURL, 'utf-8', (err, data) => {
             if (err) {
-                console.log("loadSetupFile: ",err.message);
+                console.log("loadSetupFile: ", err.message);
                 // alert("An error ocurred reading the file :" + err.message);
                 this.createSetupFile(callback);
                 return;
             }
             // Change how to handle the file content
-            console.log("loadSetupFile: ","The file content is : " + data);
-            // alert("The file has been read succesfully");
-
+            //data
+            console.log("loadSetupFile: ", "The file has been succesfully loaded");
             callback(JSON.parse(data));
         })
     }
 
     updateSetupFile(content) {
-        this.createSetupFolder(function(){
-            fs.writeFile(this.setupFileURL,JSON.stringify(content), (err) => {
+        this.createSetupFolder(() => {
+            fs.writeFile(this.setupFileURL, JSON.stringify(content), (err) => {
                 if (err) {
-                    console.log("updateSetupFile: ","An error ocurred creating the file " + err);
+                    console.log("updateSetupFile: ", "An error ocurred creating the file " + err);
                     return;
                 }
-                console.log("updateSetupFile: ","The file has been succesfully updated");
+                console.log("updateSetupFile: ", "The file has been succesfully updated");
             });
         })
     }
