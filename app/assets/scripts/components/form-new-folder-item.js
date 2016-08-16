@@ -30,7 +30,7 @@ class FormNewFolderItem extends Component {
         console.log(data.name,data.id);
         console.log(index == 0);
         return (
-            <option value={data.id} key={data.name}>{data.name}</option>
+            <option value={data.id} key={data.name + "-" + data.id}>{data.name}</option>
         );
     }
 
