@@ -1,5 +1,6 @@
 import File from "../libs/file";
 import {FOLDER_ADD,
+        FOLDER_DELETE,
         FOLDER_ITEM_ADD,
         FOLDER_ITEM_DELETE,
         FOLDER_FETCH} from '../actions/index';
@@ -31,6 +32,15 @@ export default function(state = [initialState],action) {
             });
             return folders;
 
+        case FOLDER_DELETE:
+            folders = state.slice();
+            folders.splice(action.payload.folder,1);
+            file.loadSetupFile(function (data){
+                data.folders = folders
+                file.updateSetupFile(data);
+            });
+            return folders;
+
         case FOLDER_ITEM_ADD:
             folders = state.map(function(folder){
                 if (folder.id == action.payload.folder){
@@ -51,8 +61,6 @@ export default function(state = [initialState],action) {
             return folders;
 
         case FOLDER_ITEM_DELETE:
-            console.log("state: ",state);
-
             folders = state.map(function(folder,index){
                 if (index == action.payload.folder){
                     folder.items.splice(action.payload.item,1);
@@ -60,14 +68,13 @@ export default function(state = [initialState],action) {
                 return folder;
             });
 
-            console.log("state: ",folders);
-
             file.loadSetupFile(function (data){
                 data.folders = state
                 file.updateSetupFile(data);
             });
 
             return folders;
+
     }
     return state;
 }
