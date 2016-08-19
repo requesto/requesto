@@ -30,6 +30,15 @@ export function folderAdd(name) {
     }
 }
 
+export function folderDelete(index) {
+    return {
+        type: FOLDER_DELETE,
+        payload: {
+            folder: index,
+        }
+    }
+}
+
 export function folderItemAdd(folder, item) {
     console.log("folderItemAdd", folder, item);
     return {
