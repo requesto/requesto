@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {folderAdd,folderItemDelete,tabAdd,modal} from "../actions/index";
+import {folderAdd,folderDelete,folderItemDelete,tabAdd,modal} from "../actions/index";
 
 class Sidebar extends Component {
 
@@ -10,10 +10,11 @@ class Sidebar extends Component {
         this.state = {};
         this.folderAddClickHandler = this.folderAddClickHandler.bind(this);
         this.folderClickHandler = this.folderClickHandler.bind(this);
-        this.renderFolders = this.renderFolders.bind(this);
-        this.renderItems = this.renderItems.bind(this);
+        this.folderOnContextHandler = this.folderOnContextHandler.bind(this);
         this.itemClickHandler = this.itemClickHandler.bind(this);
         this.itemClickDeleteHandler = this.itemClickDeleteHandler.bind(this);
+        this.renderItems = this.renderItems.bind(this);
+        this.renderFolders = this.renderFolders.bind(this);
     }
 
     folderAddClickHandler(e){
@@ -27,6 +28,14 @@ class Sidebar extends Component {
         if (folderList.is("ul")){
             folderList.toggleClass("-open");
         }
+    }
+
+    folderOnContextHandler(e){
+        const folder = e.target.getAttribute("data-id");
+        if (confirm("Are you sure?")) this.props.folderDelete(folder);
+        e.stopPropagation();
+        e.preventDefault();
+        return false;
     }
 
     itemClickHandler(e){
@@ -85,7 +94,7 @@ class Sidebar extends Component {
 
         return(
             <li className="folder" data-id={index} key={"folder-" + data.name + "-" + index }>
-                <div className="cover" onClick={this.folderClickHandler}>
+                <div className="cover" onClick={this.folderClickHandler} onContextMenu={this.folderOnContextHandler}>
                     <div className="icon type"></div>
                     <div className="name">{data.name}</div>
                     <div className="description">{items.length + " Itens"}</div>
@@ -129,7 +138,7 @@ function mapStateToProps({folders}){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({folderAdd,folderItemDelete,tabAdd,modal},dispatch);
+    return bindActionCreators({folderAdd,folderDelete,folderItemDelete,tabAdd,modal},dispatch);
 }
 
 export default connect (mapStateToProps,mapDispatchToProps)(Sidebar);
