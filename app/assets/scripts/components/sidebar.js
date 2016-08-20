@@ -37,20 +37,8 @@ class Sidebar extends Component {
         e.preventDefault();
     }
 
-    itemClickHandler(e){
-        // const item = $(e.currentTarget);
-        // const name = item.find(".name").text();
-        const name = "name";
-        const url = "url";
-        const type = "type";
-        const description = "description";
-
-        this.props.tabAdd({
-            name: name,
-            url: url,
-            type: type,
-            description: description
-        });
+    itemClickHandler(index,data,e){
+        this.props.tabAdd(data);
     }
 
     itemClickDeleteHandler(e){
@@ -72,7 +60,7 @@ class Sidebar extends Component {
 
     renderItems(data,index){
         return(
-            <li className="item" data-id={index} key={"item-" + data.name + "-" + index } onClick={this.itemClickHandler}>
+            <li className="item" data-id={index} key={"item-" + data.name + "-" + index } onClick={this.itemClickHandler.bind(this,index,data)}>
                 <div className="name">{data.name}</div>
                 <div className="description">{data.description}</div>
                 <div className={"type " + " -" + data.type.toLowerCase()}>{data.type}</div>
@@ -106,7 +94,7 @@ class Sidebar extends Component {
                 <div className="cover" onClick={this.folderClickHandler} >
                     <div className="icon type"></div>
                     <div className="name">{data.name}</div>
-                    <div className="description">{items.length + " Itens"}</div>
+                    <div className="description">{items.length + " requests"}</div>
                     <div className="actions">
                         <div className="edit">
                             <svg x="0px" y="0px" viewBox="0 0 469.331 469.331" width="100%" height="100%">
