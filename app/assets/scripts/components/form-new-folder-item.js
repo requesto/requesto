@@ -12,15 +12,19 @@ class FormNewFolderItem extends Component {
     }
 
     formSubmit(e){
+        const editor = $(".component-editors .editor:visible");
         const modal = document.querySelector(".component-modal");
         const form = modal.querySelector("form");
         const folder = form["folder"].value;
         const name = form["name"].value;
         const description = form["description"].value;
+        const type = editor.find("select.action").val();
+        const url = editor.find(".input-url").val();
         this.props.folderItemAdd(folder,{
             name:name,
             description: description,
-            type:"GET"
+            type:type,
+            url:url
         });
         this.props.onComplete();
         e.preventDefault();
@@ -47,7 +51,7 @@ class FormNewFolderItem extends Component {
                 </fieldset>
                 <fieldset>
                     <label>Enter the item name</label>
-                    <input type="text" name="name" />
+                    <input type="text" name="name"/>
                 </fieldset>
                 <fieldset>
                     <label>Enter the item description</label>
