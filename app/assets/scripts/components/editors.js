@@ -76,13 +76,16 @@ class Editors extends Component {
     }
 
     renderEditors(data,index){
+
+        console.log(data);
+
         return (
             <li className="editor" key={"editor-" + data.name + "-" + index}>
                 <div className="top">
                     <div className="bar">
                         <div className="columm action">
                             <div className="select">
-                                <select className="action">
+                                <select className="action" defaultValue={data.type}>
                                     <option value="GET">GET</option>
                                     <option value="POST">POST</option>
                                     <option value="PUT">PUT</option>
@@ -92,7 +95,7 @@ class Editors extends Component {
                             </div>
                         </div>
                         <div className="columm url">
-                            <input className="input-url" name="url" placeholder="http://beta.json-generator.com/api/json/get/4JVFHRAHZ" defaultValue="http://beta.json-generator.com/api/json/get/4JVFHRAHZ" />
+                            <input className="input-url" name="url" defaultValue={data.url} />
                         </div>
                         <div className="columm button">
                             <input className="input-button" onClick={this.onClickSend} type="button" name="send" defaultValue="Send" />
