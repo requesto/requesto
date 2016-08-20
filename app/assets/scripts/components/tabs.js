@@ -16,7 +16,9 @@ class Tabs extends Component {
     }
 
     componentDidUpdate(prevProps){
-        if (prevProps.tabs.length != this.props.tabs.length){
+        const hasNewTabs = prevProps.tabs.length != this.props.tabs.length;
+        const hasTabs = this.props.tabs.length > 0;
+        if (hasNewTabs && hasTabs){
             const index = this.props.tabs.length - 1;
             this.selectTab(index);
         }
