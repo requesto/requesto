@@ -32,6 +32,8 @@
             border-bottom: 1px solid transparent;
             border-top: 1px solid transparent;
             transition: color $animation-duration;
+            max-width: 150px;
+            @include text-overflow();
             &:hover {
                 color: color("text-light");
             }
