@@ -36,6 +36,14 @@
         box-sizing: border-box;
         color: color("text-light");
         font-size: 16px;
+
+        .name{
+            small{
+                color:color("green-light");
+                font-size:12px;
+                font-weight: normal;
+            }
+        }
         .icon {
             position: absolute;
             top: 50%;
@@ -55,6 +63,7 @@
             display: flex;
             flex-direction: column;
             .cover {
+                position: relative;
                 border-bottom: 1px solid color("border");
                 border-left: 2px solid color("green-dark");
                 padding: 10px;
@@ -64,6 +73,10 @@
                 transition: all $animation-duration;
                 &:hover {
                     background: #2d323d;
+
+                    .actions{
+                        transform: translateX(0);
+                    }
                 }
                 &.-active {
                     border-left: 2px solid color("green-light");
@@ -71,6 +84,8 @@
                         color: white;
                     }
                 }
+
+
             }
             .name {
                 font-size: 13px;
@@ -86,6 +101,50 @@
                 color: color("text-dark");
                 max-width: 80%;
                 @include text-overflow();
+            }
+
+            .actions {
+                position: absolute;
+                right: 0;
+                top: 0;
+                height: 100%;
+                // background: rgba(0,0,0,0.1);
+                display: flex;
+                flex-direction: column;
+                transform: translateX(100%);
+                transition: transform $animation-duration/2 animation-time-function("in-out-cubic");
+                border-left: 1px solid color("border");
+                z-index: 99;
+                .edit {
+                    display: flex;
+                    display: none;
+                    flex: 1;
+                    width: 35px;
+                    text-align: center;
+                    border-bottom: 1px solid color("border");
+                }
+                .delete {
+                    display: flex;
+                    flex: 1;
+                    width: 35px;
+                    text-align: center;
+                }
+                .delete,
+                .edit {
+                    align-items: center;
+                    justify-content: center;
+                    svg {
+                        display: block;
+                        width: 13px;
+                        fill: color("text-dark");
+                        transition: fill $animation-duration/2;
+                    }
+                    &:hover{
+                        svg{
+                            fill:color("green-light");
+                        }
+                    }
+                }
             }
         }
         .items {
@@ -126,6 +185,7 @@
                 .description {
                     color: color("text-dark");
                     font-size: 11px;
+                    display: none;
                 }
                 .type {
                     position: absolute;
@@ -146,6 +206,9 @@
                     }
                     &.-put {
                         color: color("yellow");
+                    }
+                    &.-delete {
+                        color: color("red");
                     }
                 }
                 .actions {
