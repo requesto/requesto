@@ -41,7 +41,6 @@
             small{
                 color:color("green-light");
                 font-size:12px;
-                font-weight: normal;
             }
         }
         .icon {
@@ -81,26 +80,25 @@
                 &.-active {
                     border-left: 2px solid color("green-light");
                     .name {
-                        color: white;
+                        //color: white;
                     }
                 }
 
-
-            }
-            .name {
-                font-size: 13px;
-                font-weight: 600;
-                color: color("text-light");
-                margin-bottom: 5px;
-                transition: color $animation-duration;
-                max-width: 80%;
-                @include text-overflow();
-            }
-            .description {
-                font-size: 11px;
-                color: color("text-dark");
-                max-width: 80%;
-                @include text-overflow();
+                >.name {
+                    font-size: 13px;
+                    font-weight: 600;
+                    color: color("text-light");
+                    margin-bottom: 5px;
+                    transition: color $animation-duration;
+                    max-width: 80%;
+                    @include text-overflow();
+                }
+                >.description {
+                    font-size: 11px;
+                    color: color("text-dark");
+                    max-width: 80%;
+                    @include text-overflow();
+                }
             }
 
             .actions {
@@ -177,10 +175,12 @@
                 }
                 .name {
                     color: color("text-light");
-                    font-size: 13px;
+                    font-size: 12px;
                     font-weight: 600;
                     opacity: 0.8;
                     transition: all $animation-duration;
+                    max-width: 70%;
+                    @include text-overflow();
                 }
                 .description {
                     color: color("text-dark");
@@ -189,14 +189,18 @@
                 }
                 .type {
                     position: absolute;
-                    top: 50%;
+                    top: 0;
                     right: 10px;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     border-radius: 2px;
-                    color: color("green-light");
-                    transform: translateY(-50%);
+                    color: color("blue");
                     backface-visibility: hidden;
                     padding: 3px 5px;
-                    font-size: 11px;
+                    font-size: 10px;
+                    font-weight: 600;
                     transition: opacity $animation-duration;
                     &.-get {
                         color: color("green-light");
