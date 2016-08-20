@@ -47,7 +47,8 @@ export default function(state = [initialState],action) {
                     folder.items.push({
                         name: action.payload.item.name,
                         description: action.payload.item.description,
-                        type: action.payload.item.type
+                        type: action.payload.item.type,
+                        url: action.payload.item.url
                     })
                 }
                 return folder;
