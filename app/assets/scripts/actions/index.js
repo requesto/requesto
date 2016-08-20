@@ -6,6 +6,7 @@ export const FOLDER_ITEM_ADD = "FOLDER_ITEM_ADD";
 export const FOLDER_ITEM_EDIT = "FOLDER_ITEM_EDIT";
 export const FOLDER_ITEM_DELETE = "FOLDER_ITEM_DELETE";
 export const TAB_ADD = "TAB_ADD";
+export const TAB_DELETE = "TAB_DELETE";
 export const MODAL = "MODAL";
 
 export function folderFetch(folders) {
@@ -72,11 +73,23 @@ export function folderItemDelete(folder, item) {
     }
 }
 
-export function tabAdd(name = "untitled") {
+export function tabAdd(item = {}) {
     return {
         type: TAB_ADD,
         payload: {
-            name: name
+            name: ("name" in item)? item.name: "",
+            url: ("url" in item)? item.url: "",
+            type: ("type" in item)? item.type: "",
+            description: ("description" in item)? item.description: "",
+        }
+    }
+}
+
+export function tabDelete(index) {
+    return {
+        type: TAB_DELETE,
+        payload: {
+            tab:index
         }
     }
 }
