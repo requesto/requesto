@@ -3,6 +3,12 @@
 //     background: color("green-dark");
 //     border-radius: 2px;
 // }
+
+::-webkit-input-placeholder {
+   color: #555a64;
+}
+
+
 body,
 html {
     background: color("background-dark");
