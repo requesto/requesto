@@ -31,7 +31,8 @@ class Sidebar extends Component {
     }
 
     folderClickDeleteHandler(e){
-        const folder = e.target.getAttribute("data-id");
+        const folder = $(e.currentTarget).closest(".folder").attr("data-id");
+        console.log("DELETE INDEX: " + folder);
         if (confirm("Are you sure?")) this.props.folderDelete(folder);
         e.stopPropagation();
         e.preventDefault();
