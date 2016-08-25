@@ -36,8 +36,7 @@ class Modal extends Component {
         const modal = document.querySelector(".component-modal");
         const form = modal.querySelector("form");
         modal.classList.remove("-open");
-        // form.reset();
-        this.forceUpdate();
+        if (form.length > 0) form.reset();
     }
 
     render() {
