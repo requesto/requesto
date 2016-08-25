@@ -18,11 +18,11 @@ class Editors extends Component {
     }
 
     onClickSend(e){
+
         const editor = $(e.currentTarget).closest(".editor");
         const action =  editor.find(".bar .select .action").val();
         const url =  editor.find(".bar .input-url").val();
         const viewer = editor.find(".component-viewer");
-        const viewerTabs = editor.find(".viewer-tabs").show();
         const prettyViewer = viewer.find(".viewer.pretty");
         const rawViewer = viewer.find(".viewer.raw");
         const previewViewer = viewer.find(".viewer.preview");
@@ -30,7 +30,14 @@ class Editors extends Component {
         const statusLabel = editor.find(".field.status .value");
         const timeLabel = editor.find(".field.time .value");
         const startTime = new Date().getTime();
+
+        if (url == "") {
+            alert("Enter a request URL!");
+            return false;
+        }
+
         viewer.addClass("-loading");
+        editor.find(".viewer-tabs").show();
 
         Axios({
             method: action,
@@ -95,7 +102,7 @@ class Editors extends Component {
                             </div>
                         </div>
                         <div className="columm url">
-                            <input className="input-url" name="url" defaultValue={data.url} />
+                            <input className="input-url" name="url" defaultValue={data.url} placeholder={"Enter request URL"} />
                         </div>
                         <div className="columm button">
                             <input className="input-button" onClick={this.onClickSend} type="button" name="send" defaultValue="Send" />
