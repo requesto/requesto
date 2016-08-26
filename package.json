@@ -29,6 +29,7 @@
     "babel-preset-react": "^6.1.18",
     "babel-preset-stage-1": "^6.1.18",
     "del": "^2.2.1",
+    "electron-builder": "^5.34.1",
     "electron-connect": "^0.4.2",
     "electron-packager": "^7.3.0",
     "electron-prebuilt": "^1.2.0",
@@ -65,19 +66,23 @@
     "redux-promise": "^0.5.3"
   },
   "babel": {
-      "presets": ["react", "es2015", "stage-1"]
+    "presets": [
+      "react",
+      "es2015",
+      "stage-1"
+    ]
   },
   "productName": "Requesto",
   "directories": {
     "app": ".",
-    "output":"./build"
+    "output": "./build"
   },
   "build": {
     "appId": "com.github.requesto.requesto",
     "app-category-type": "public.app-category.developer-tools",
     "files": "**/*",
     "mac": {
-        "icon": "./resources/icon.icns"
+      "icon": "./resources/icon.icns"
     }
   }
 }
