@@ -36,9 +36,8 @@
             color:color("text-light");
         }
         .json-string {
-            color: color("text-light",65%);
+            color: color("green-light",65%);
             font-weight: 600;
-            color: #98c379;
         }
         .json-literal {
             color: #e06c75;
@@ -48,7 +47,7 @@
             transition: all $animation-duration;
             border-radius: 2px;
             &:hover {
-                // background: rgba(255,255,255,0.05);
+                background: rgba(255,255,255,0.01);
             }
         }
     }
