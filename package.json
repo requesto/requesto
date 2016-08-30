@@ -1,7 +1,7 @@
 {
   "name": "requesto",
   "version": "0.1.0",
-  "description": "Requesto - The futurist open source API client.",
+  "description": "Requesto - The futurist open source request client.",
   "license": "MIT",
   "author": {
     "name": "Daniel Beff",

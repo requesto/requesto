@@ -1,6 +1,6 @@
 # REQUESTO
 
-The futurist open source rest client.
+The futurist open source request client.
 
 ## Screenshot
 
