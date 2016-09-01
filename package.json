@@ -79,7 +79,7 @@
   },
   "build": {
     "appId": "com.github.requesto.requesto",
-    "app-category-type": "public.app-category.developer-tools",
+    "category": "public.app-category.developer-tools",
     "files": "**/*",
     "mac": {
       "icon": "./resources/icon.icns"
