@@ -117,15 +117,15 @@ button {
     content: attr(data-title);
     font-size: 12px;
     color: #fff;
-    background: color("border");
+    background: color("green-light");
     padding: 0 15px;
     position: absolute;
     left: 50%;
-    top: -45px;
+    top: -35px;
     opacity: 0;
     visibility: hidden;
     white-space: nowrap;
-    transform: translateX(-50%);
+    transform: translateX(-20%);
     transition: all 0.25s linear;
     border-radius: 3px;
     z-index: 999999;

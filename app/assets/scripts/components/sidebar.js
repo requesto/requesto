@@ -38,6 +38,17 @@ class Sidebar extends Component {
         e.preventDefault();
     }
 
+    toggleDescriptionsClickHandler(e){
+        $(".folder-list .item .description").slideToggle({
+            duration:0
+        });
+    }
+
+    toggleFoldersClickHandler(e){
+        $(".folder-list .folder .cover").toggleClass("-active");
+        $(".folder-list .folder .items").toggleClass("-open");
+    }
+
     itemClickHandler(index,data,e){
         this.props.tabAdd(data);
     }
@@ -92,7 +103,7 @@ class Sidebar extends Component {
 
         return(
             <li className="folder" data-id={index} key={"folder-" + data.name + "-" + index }>
-                <div className="cover" onClick={this.folderClickHandler} >
+                <div className="cover -active" onClick={this.folderClickHandler} >
                     <div className="icon type"></div>
                     <div className="name">{data.name}</div>
                     <div className="description">{items.length + " requests"}</div>
@@ -114,7 +125,7 @@ class Sidebar extends Component {
                         </div>
                     </div>
                 </div>
-                <ul className="items">
+                <ul className="items -open">
                     {items.map(this.renderItems)}
                 </ul>
             </li>
@@ -136,11 +147,45 @@ class Sidebar extends Component {
                     </ul>
                 </div>
                 <div className="bottom">
-                    <a className="folder-add" onClick={this.folderAddClickHandler} data-title="New folder">
+                    <div className="search">
+                        <div className="input">
+                            <input type="text" name="name" placeholder="Search" />
+                        </div>
+                    </div>
+                    <div className="options">
+                        <ul className="list left">
+                            <li className="item" data-title="Search">
+                                <span className="icon ion-search"></span>
+                            </li>
+                        </ul>
+                        <ul className="list middle">
+                            <li className="item" data-title="Settings">
+                                <span className="icon ion-wrench"></span>
+                            </li>
+                            <li className="item" data-title="Toggle descriptions" onClick={this.toggleDescriptionsClickHandler}>
+                                <span className="icon ion-information-circled"></span>
+                            </li>
+                            <li className="item" data-title="Toggle folders" onClick={this.toggleFoldersClickHandler}>
+                                <span className="icon ion-ios-albums"></span>
+                            </li>
+                            <li className="item" data-title="Share">
+                                <span className="icon ion-android-share-alt"></span>
+                            </li>
+                            <li className="item" data-title="History">
+                                <span className="icon ion-android-time"></span>
+                            </li>
+                        </ul>
+                        <ul className="list right">
+                            <li className="item" data-title="New folder" onClick={this.folderAddClickHandler}>
+                                <span className="icon ion-plus"></span>
+                            </li>
+                        </ul>
+                    </div>
+                    {/* <a className="folder-add" onClick={this.folderAddClickHandler} data-title="New folder">
                         <svg className="icon  icon--plus" viewBox="0 0 5 5" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2 1 h1 v1 h1 v1 h-1 v1 h-1 v-1 h-1 v-1 h1 z" />
                         </svg>
-                    </a>
+                    </a> */}
                 </div>
             </div>
         );

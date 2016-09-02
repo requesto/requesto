@@ -3,6 +3,7 @@
     flex: 1;
     position: relative;
     background: color("background-dark");
+
     .viewer {
         display: none;
         position: absolute;
@@ -22,38 +23,47 @@
         background: none;
         border: none;
         outline: none;
+
         &.-active {
             display: block;
         }
     }
+
     .pretty {
         padding: 20px 20px 20px 32px;
+
         ol.json-array,
         ul.json-dict {
             border-color: #32343d;
         }
-        .json-dict{
-            color:color("text-light");
+
+        .json-dict {
+            color: #abb2bf;
         }
+
         .json-string {
-            color: color("green-light",65%);
+            pointer-events: none;
+            color: #98c379;
             font-weight: 600;
         }
+
         .json-literal {
-            color: #e06c75;
-            color:color("yellow");
+            color: #d19a66;
         }
+
         li {
-            transition: all $animation-duration;
-            border-radius: 2px;
-            &:hover {
-                background: rgba(255,255,255,0.01);
-            }
+            // transition: all $animation-duration;
+            // border-radius: 2px;
+            // &:hover {
+            //     background: rgba(255,255,255,0.01);
+            // }
         }
     }
-    .preview{
+
+    .preview {
         padding: 0;
-        .iframe{
+
+        .iframe {
             display: block;
             border: none;
             background: white;
@@ -61,6 +71,7 @@
             height: 100%;
         }
     }
+
     .preload {
         position: absolute;
         top: 50%;
@@ -72,11 +83,13 @@
         opacity: 0;
         visibility: hidden;
     }
+
     &.-loading {
         .preload {
             opacity: 1;
             visibility: visible;
         }
+
         .json-renderer {
             opacity: 0;
             visibility: hidden;

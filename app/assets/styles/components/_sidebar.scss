@@ -1,8 +1,8 @@
 .component-sidebar {
     display: flex;
     flex-shrink: 0;
-    flex-basis: 250px;
-    max-width: 250px;
+    flex-basis: 270px;
+    max-width: 270px;
     background: color("background-dark");
     height: 100%;
     border-right: 1px solid color("border");
@@ -12,7 +12,7 @@
         display: none;
     };
     .top {
-        height: 43px;
+        height: auto;
     }
     .main {
         flex: 1;
@@ -21,16 +21,70 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        height: 35px;
+        flex-direction: column;
+        height: auto;
+        // border-top: 1px solid color("border");
+        // line-height: 35px;
+        // padding-left: 10px;
+
+        .options{
+            border-top: 1px solid color("border");
+        }
+    }
+    .search{
+        display: flex;
+        width: 100%;
+        padding: 10px;
         border-top: 1px solid color("border");
-        line-height: 35px;
-        padding-left: 10px;
+
+        .input{
+            width: 100%;
+        }
+
+    }
+
+    .options{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        border-bottom: 1px solid color("border");
+        height: 40px;
+
+        .list{
+            display: flex;
+            list-style: none;
+            align-items: center;
+            height: 100%;
+
+            &.left{
+                width: 50%;
+                justify-content: flex-start;
+            }
+            &.right{
+                width: 50%;
+                justify-content: flex-end;
+            }
+            .item{
+                text-align: center;
+                width: 35px;
+                height: 40px;
+                line-height: 40px;
+                color: color("text-dark");
+                transition: color $animation-duration;
+                font-size: 15px;
+
+                &:hover{
+                    color:color("green-light");
+
+                }
+            }
+        }
     }
     .brand {
         position: relative;
         display: block;
         height: 100%;
-        line-height: 43px;
+        line-height: 40px;
         padding-left: 10px;
         border-bottom: 1px solid color("border");
         box-sizing: border-box;
@@ -58,6 +112,7 @@
         width: 100%;
         overflow-y: scroll;
         overflow-x: hidden;
+        padding-bottom: 10px;
         .folder {
             display: flex;
             flex-direction: column;
@@ -88,7 +143,6 @@
                     font-size: 13px;
                     font-weight: 600;
                     color: color("text-light");
-                    margin-bottom: 5px;
                     transition: color $animation-duration;
                     max-width: 80%;
                     @include text-overflow();
@@ -97,6 +151,7 @@
                     font-size: 11px;
                     color: color("text-dark");
                     max-width: 80%;
+                    margin-top: 5px;
                     @include text-overflow();
                 }
             }
@@ -174,19 +229,23 @@
                     }
                 }
                 .name {
-                    color: color("text-dark");
+                    color: color("text-light");
                     // color: #69707a;
                     font-size: 12px;
                     font-weight: 600;
                     opacity: 0.8;
                     transition: all $animation-duration;
                     max-width: 70%;
+                    backface-visibility: hidden;
                     @include text-overflow();
                 }
                 .description {
                     color: color("text-dark");
                     font-size: 11px;
                     display: none;
+                    max-width: 70%;
+                    margin-top: 5px;
+                    // @include text-overflow();
                 }
                 .type {
                     position: absolute;
