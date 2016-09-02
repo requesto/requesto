@@ -29,6 +29,10 @@
                 flex-direction: column;
                 // @include box-shadow(1);
             }
+            .form{
+                display: flex;
+                width: 100%;
+            }
             .bar {
                 display: flex;
                 justify-content: space-around;

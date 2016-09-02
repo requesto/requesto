@@ -82,6 +82,11 @@ class Editors extends Component {
         this.props.modal("newFolderItem");
     }
 
+    formSubmit(e){
+        $( ".editor .input-button.send" ).trigger("click");
+        e.preventDefault();
+    }
+
     renderEditors(data,index){
 
         console.log(data);
@@ -90,26 +95,29 @@ class Editors extends Component {
             <li className="editor" key={"editor-" + data.name + "-" + index}>
                 <div className="top">
                     <div className="bar">
-                        <div className="columm action">
-                            <div className="select">
-                                <select className="action" defaultValue={data.type}>
-                                    <option value="GET">GET</option>
-                                    <option value="POST">POST</option>
-                                    <option value="PUT">PUT</option>
-                                    <option value="PATCH">PATCH</option>
-                                    <option value="DELETE">DELETE</option>
-                                </select>
+                        <form className="form" onSubmit={this.formSubmit}>
+                            <div className="columm action">
+                                <div className="select">
+                                    <select className="action" defaultValue={data.type}>
+                                        <option value="GET">GET</option>
+                                        <option value="POST">POST</option>
+                                        <option value="PUT">PUT</option>
+                                        <option value="PATCH">PATCH</option>
+                                        <option value="DELETE">DELETE</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div className="columm url">
-                            <input className="input-url" name="url" defaultValue={data.url} placeholder={"Enter request URL"} />
-                        </div>
-                        <div className="columm button">
-                            <input className="input-button" onClick={this.onClickSend} type="button" name="send" defaultValue="Send" />
-                        </div>
-                        <div className="columm button">
-                            <input className="input-button save" onClick={this.onClickSave} type="button" name="save" defaultValue="Save" />
-                        </div>
+
+                            <div className="columm url">
+                                <input className="input-url" name="url" defaultValue={data.url} placeholder={"Enter request URL"} />
+                            </div>
+                            <div className="columm button">
+                                <input className="input-button send" onClick={this.onClickSend} type="button" name="send" defaultValue="Send" />
+                            </div>
+                            <div className="columm button">
+                                <input className="input-button save" onClick={this.onClickSave} type="button" name="save" defaultValue="Save" />
+                            </div>
+                        </form>
                     </div>
                     <div className="viewer-tabs">
                         <ul className="list">
