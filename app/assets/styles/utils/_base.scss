@@ -126,10 +126,12 @@ button {
     visibility: hidden;
     white-space: nowrap;
     transform: translateX(-20%);
-    transition: all 0.25s linear;
+    transition: all 0.1s linear;
     border-radius: 3px;
     z-index: 999999;
     line-height: 30px;
+    user-select:none;
+    pointer-events: none;
 }
 [data-title]:hover:after {
     opacity: 1;
