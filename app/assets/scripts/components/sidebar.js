@@ -162,8 +162,8 @@ class Sidebar extends Component {
                     </div>
                     <div className="options">
                         <ul className="list left">
-                            <li className="item">
-                                <span className="icon ion-search" onClick={this.toggleSearchClickHandler}></span>
+                            <li className="item" onClick={this.toggleSearchClickHandler}>
+                                <span className="icon ion-search"></span>
                             </li>
                         </ul>
                         <ul className="list middle">
