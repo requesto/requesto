@@ -11,60 +11,61 @@
     @include grid-breakpoint("xsmall","small") {
         display: none;
     };
+
     .top {
         height: auto;
     }
+
     .main {
         flex: 1;
     }
+
     .bottom {
         display: flex;
         align-items: center;
         justify-content: flex-end;
         flex-direction: column;
         height: auto;
-        // border-top: 1px solid color("border");
-        // line-height: 35px;
-        // padding-left: 10px;
-
-        .options{
+        .options {
             border-top: 1px solid color("border");
         }
     }
-    .search{
-        display: flex;
+
+    .search {
+        display: none;
         width: 100%;
         padding: 10px;
         border-top: 1px solid color("border");
 
-        .input{
+        .input {
             width: 100%;
         }
-
     }
 
-    .options{
+    .options {
         display: flex;
         width: 100%;
         align-items: center;
         border-bottom: 1px solid color("border");
         height: 40px;
 
-        .list{
+        .list {
             display: flex;
             list-style: none;
             align-items: center;
             height: 100%;
 
-            &.left{
+            &.left {
                 width: 50%;
                 justify-content: flex-start;
             }
-            &.right{
+
+            &.right {
                 width: 50%;
                 justify-content: flex-end;
             }
-            .item{
+
+            .item {
                 text-align: center;
                 width: 35px;
                 height: 40px;
@@ -73,13 +74,13 @@
                 transition: color $animation-duration;
                 font-size: 15px;
 
-                &:hover{
-                    color:color("green-light");
-
+                &:hover {
+                    color: color("green-light");
                 }
             }
         }
     }
+
     .brand {
         position: relative;
         display: block;
@@ -91,12 +92,13 @@
         color: color("text-light");
         font-size: 16px;
 
-        .name{
-            small{
-                color:color("green-light");
-                font-size:12px;
+        .name {
+            small {
+                color: color("green-light");
+                font-size: 12px;
             }
         }
+
         .icon {
             position: absolute;
             top: 50%;
@@ -106,6 +108,7 @@
             transform: translateY(-50%);
         }
     }
+
     .folder-list {
         display: block;
         color: #b1b4c4;
@@ -113,9 +116,17 @@
         overflow-y: scroll;
         overflow-x: hidden;
         padding-bottom: 10px;
+
+        &.-show-descriptions {
+            .folder .items .item .description {
+                display: block;
+            }
+        }
+
         .folder {
             display: flex;
             flex-direction: column;
+
             .cover {
                 position: relative;
                 border-bottom: 1px solid color("border");
@@ -125,21 +136,24 @@
                 background: color("background-light");
                 user-select: none;
                 transition: all $animation-duration;
+
                 &:hover {
                     background: #2d323d;
 
-                    .actions{
+                    .actions {
                         transform: translateX(0);
                     }
                 }
+
                 &.-active {
                     border-left: 2px solid color("green-light");
+
                     .name {
                         //color: white;
                     }
                 }
 
-                >.name {
+                > .name {
                     font-size: 13px;
                     font-weight: 600;
                     color: color("text-light");
@@ -147,7 +161,8 @@
                     max-width: 80%;
                     @include text-overflow();
                 }
-                >.description {
+
+                > .description {
                     font-size: 11px;
                     color: color("text-dark");
                     max-width: 80%;
@@ -168,6 +183,7 @@
                 transition: transform $animation-duration/2 animation-time-function("in-out-cubic");
                 border-left: 1px solid color("border");
                 z-index: 99;
+
                 .edit {
                     display: flex;
                     display: none;
@@ -176,25 +192,29 @@
                     text-align: center;
                     border-bottom: 1px solid color("border");
                 }
+
                 .delete {
                     display: flex;
                     flex: 1;
                     width: 35px;
                     text-align: center;
                 }
+
                 .delete,
                 .edit {
                     align-items: center;
                     justify-content: center;
+
                     svg {
                         display: block;
                         width: 13px;
                         fill: color("text-dark");
                         transition: fill $animation-duration/2;
                     }
-                    &:hover{
-                        svg{
-                            fill:color("green-light");
+
+                    &:hover {
+                        svg {
+                            fill: color("green-light");
                         }
                     }
                 }
@@ -202,14 +222,15 @@
         }
         .items {
             display: none;
+
             &.-open {
                 display: block;
             }
+
             .item {
                 display: flex;
                 justify-content: center;
                 flex-direction: column;
-
                 position: relative;
                 padding: 10px $grid-gutter/2;
                 border-bottom: 1px solid color("border");
@@ -221,16 +242,17 @@
                 &:hover {
                     background: color("background-light",52%);
 
-                    .type{
+                    .type {
                         opacity: 0;
                     }
-                    .actions{
+
+                    .actions {
                         transform: translateX(0);
                     }
                 }
+
                 .name {
                     color: color("text-light");
-                    // color: #69707a;
                     font-size: 12px;
                     font-weight: 600;
                     opacity: 0.8;
@@ -239,14 +261,15 @@
                     backface-visibility: hidden;
                     @include text-overflow();
                 }
+
                 .description {
                     color: color("text-dark");
                     font-size: 11px;
                     display: none;
                     max-width: 70%;
                     margin-top: 5px;
-                    // @include text-overflow();
                 }
+
                 .type {
                     position: absolute;
                     top: 0;
@@ -262,19 +285,24 @@
                     font-size: 10px;
                     font-weight: 600;
                     transition: opacity $animation-duration;
+
                     &.-get {
                         color: color("green-light");
                     }
+
                     &.-post {
                         color: color("blue");
                     }
+
                     &.-put {
                         color: color("yellow");
                     }
+
                     &.-delete {
                         color: color("red");
                     }
                 }
+
                 .actions {
                     position: absolute;
                     right: 0;
@@ -287,6 +315,7 @@
                     transition: transform $animation-duration/2 animation-time-function("in-out-cubic");
                     border-left: 1px solid color("border");
                     z-index: 99;
+
                     .edit {
                         display: flex;
                         display: none;
@@ -295,25 +324,29 @@
                         text-align: center;
                         border-bottom: 1px solid color("border");
                     }
+
                     .delete {
                         display: flex;
                         flex: 1;
                         width: 35px;
                         text-align: center;
                     }
+
                     .delete,
                     .edit {
                         align-items: center;
                         justify-content: center;
+
                         svg {
                             display: block;
                             width: 13px;
                             fill: color("text-dark");
                             transition: fill $animation-duration/2;
                         }
-                        &:hover{
-                            svg{
-                                fill:color("green-light");
+
+                        &:hover {
+                            svg {
+                                fill: color("green-light");
                             }
                         }
                     }
@@ -321,10 +354,12 @@
             }
         }
     }
+
     .folder-add {
         display: flex;
         align-items: center;
         justify-content: flex-end;
+
         svg {
             display: block;
             width: 15px;
@@ -332,8 +367,15 @@
             margin: 0 10px;
             transition: all $animation-duration;
         }
+
         &:hover svg {
             fill: color("green-light");
+        }
+    }
+
+    .bottom {
+        .ion-social-buffer {
+            font-size: 18px;
         }
     }
 }

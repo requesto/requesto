@@ -39,9 +39,7 @@ class Sidebar extends Component {
     }
 
     toggleDescriptionsClickHandler(e){
-        $(".folder-list .item .description").slideToggle({
-            duration:0
-        });
+        $(".folder-list").toggleClass("-show-descriptions");
     }
 
     toggleFoldersClickHandler(e){
@@ -49,12 +47,19 @@ class Sidebar extends Component {
         $(".folder-list .folder .items").toggleClass("-open");
     }
 
+    toggleSearchClickHandler(e){
+        $(".component-sidebar .search").slideToggle("fast");
+    }
+
+    onBlurSearch(e){
+        $(".component-sidebar .search").slideToggle("fast");
+    }
+
     itemClickHandler(index,data,e){
         this.props.tabAdd(data);
     }
 
     itemClickDeleteHandler(e){
-        // alert("Item will be deleted");
         const item = $(e.currentTarget).closest(".item");
         const itemIndex = item.attr("data-id");
         const folder = item.closest(".folder");
@@ -71,10 +76,13 @@ class Sidebar extends Component {
     }
 
     renderItems(data,index){
+
+        var description = (data.description.trim() != "") ? data.description : "Request description"
+
         return(
             <li className="item" data-id={index} key={"item-" + data.name + "-" + index } onClick={this.itemClickHandler.bind(this,index,data)}>
                 <div className="name">{data.name}</div>
-                <div className="description">{data.description}</div>
+                <div className="description">{description}</div>
                 <div className={"type " + " -" + data.type.toLowerCase()}>{data.type}</div>
                 <div className="actions">
                     <div className="edit" onClick={this.itemClickEditHandler}>
@@ -149,30 +157,30 @@ class Sidebar extends Component {
                 <div className="bottom">
                     <div className="search">
                         <div className="input">
-                            <input type="text" name="name" placeholder="Search" />
+                            <input id="search" type="text" name="name" placeholder="Search" onBlur={this.onBlurSearch}/>
                         </div>
                     </div>
                     <div className="options">
                         <ul className="list left">
-                            <li className="item" data-title="Search">
-                                <span className="icon ion-search"></span>
+                            <li className="item">
+                                <span className="icon ion-search" onClick={this.toggleSearchClickHandler}></span>
                             </li>
                         </ul>
                         <ul className="list middle">
-                            <li className="item" data-title="Settings">
-                                <span className="icon ion-wrench"></span>
+                            <li className="item" data-title="Toggle folders" onClick={this.toggleFoldersClickHandler}>
+                                <span className="icon ion-social-buffer"></span>
                             </li>
                             <li className="item" data-title="Toggle descriptions" onClick={this.toggleDescriptionsClickHandler}>
                                 <span className="icon ion-information-circled"></span>
-                            </li>
-                            <li className="item" data-title="Toggle folders" onClick={this.toggleFoldersClickHandler}>
-                                <span className="icon ion-ios-albums"></span>
                             </li>
                             <li className="item" data-title="Share">
                                 <span className="icon ion-android-share-alt"></span>
                             </li>
                             <li className="item" data-title="History">
                                 <span className="icon ion-android-time"></span>
+                            </li>
+                            <li className="item" data-title="Settings">
+                                <span className="icon ion-wrench"></span>
                             </li>
                         </ul>
                         <ul className="list right">
