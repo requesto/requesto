@@ -44,11 +44,13 @@
         .json-string {
             pointer-events: none;
             color: #98c379;
+            color:color("green-light");
             font-weight: 600;
         }
 
         .json-literal {
             color: #d19a66;
+            color: #e1c282;
         }
 
         li {
