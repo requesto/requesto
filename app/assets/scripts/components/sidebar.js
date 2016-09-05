@@ -48,11 +48,11 @@ class Sidebar extends Component {
     }
 
     toggleSearchClickHandler(e){
-        $(".component-sidebar .search").slideToggle("fast");
+        $(".component-sidebar .search").slideToggle(0);
     }
 
     onBlurSearch(e){
-        $(".component-sidebar .search").slideToggle("fast");
+        $(".component-sidebar .search").slideToggle(0);
     }
 
     itemClickHandler(index,data,e){
