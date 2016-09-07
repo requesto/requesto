@@ -127,7 +127,7 @@ class Editors extends Component {
 
                     <div className="editor-tabs">
                         <ul className="list">
-                            <li className="item -headers" >Headers (1)</li>
+                            <li className="item -headers" >Headers <span className="count">(1)</span></li>
                             <li className="item -params" >Params</li>
                             <li className="item -body" >Body</li>
                         </ul>

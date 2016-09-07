@@ -69,6 +69,10 @@
                     font-size: 13px;
                     transition: all $animation-duration;
                     user-select:none;
+
+                    .count{
+                        // color:color("green-light");
+                    }
                     &:hover {
                         color: color("text-light");
                     }
