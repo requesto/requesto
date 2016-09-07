@@ -26,6 +26,7 @@ class Editors extends Component {
         const prettyViewer = viewer.find(".viewer.pretty");
         const rawViewer = viewer.find(".viewer.raw");
         const previewViewer = viewer.find(".viewer.preview");
+        const headersViewer = viewer.find(".viewer.headers");
         const headersLabel = editor.find(".field.headers .value");
         const statusLabel = editor.find(".field.status .value");
         const timeLabel = editor.find(".field.time .value");
@@ -44,7 +45,8 @@ class Editors extends Component {
             url: url
         }).then(function(response) {
             const duration = new Date().getTime() - startTime;
-            prettyViewer.jsonViewer(response);
+            prettyViewer.jsonViewer(response.data);
+            headersViewer.jsonViewer(response.headers);
             rawViewer.text(JSON.stringify(response.data));
             headersLabel.html(Object.keys(response.headers).length);
             statusLabel.html(response.status).removeClass("-error");
@@ -53,7 +55,8 @@ class Editors extends Component {
             previewViewer.find(".iframe").attr("src",url);
         }).catch(function(error) {
             const duration = new Date().getTime() - startTime;
-            prettyViewer.jsonViewer(error);
+            prettyViewer.jsonViewer(error.data);
+            headersViewer.jsonViewer(error.headers);
             rawViewer.text(JSON.stringify(error.data));
             headersLabel.html(Object.keys(error.headers).length);
             statusLabel.html(error.status).addClass("-error");
@@ -75,6 +78,8 @@ class Editors extends Component {
             viewer.find(".raw").addClass("-active").siblings().removeClass("-active");
         } else if (currentTarget.hasClass("-preview")){
             viewer.find(".preview").addClass("-active").siblings().removeClass("-active");
+        } else if (currentTarget.hasClass("-headers")){
+            viewer.find(".headers").addClass("-active").siblings().removeClass("-active");
         }
     }
 
@@ -119,11 +124,20 @@ class Editors extends Component {
                             </div>
                         </form>
                     </div>
+
+                    <div className="editor-tabs">
+                        <ul className="list">
+                            <li className="item -headers" >Headers (1)</li>
+                            <li className="item -params" >Params</li>
+                            <li className="item -body" >Body</li>
+                        </ul>
+                    </div>
                     <div className="viewer-tabs">
                         <ul className="list">
                             <li className="item -pretty -active" onClick={this.onClickViewerTab}>Pretty</li>
                             <li className="item -raw" onClick={this.onClickViewerTab}>Raw</li>
                             <li className="item -preview" onClick={this.onClickViewerTab}>Preview</li>
+                            <li className="item -headers" onClick={this.onClickViewerTab}>Headers</li>
                         </ul>
                     </div>
                 </div>

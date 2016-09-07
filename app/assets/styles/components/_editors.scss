@@ -2,7 +2,6 @@
     position: relative;
     overflow: scroll;
     flex: 1;
-    background-color: color("background-dark");
     border-left: 1px solid color("border");
     .list {
         position: relative;
@@ -17,7 +16,6 @@
             flex-direction: column;
             width: 100%;
             height: 100%;
-            background: color("background-light");
             backface-visibility: hidden;
             &.-show {
                 display: flex;
@@ -25,9 +23,7 @@
             .top {
                 display: flex;
                 width: 100%;
-                border-bottom: 1px solid color("border");
                 flex-direction: column;
-                // @include box-shadow(1);
             }
             .form{
                 display: flex;
@@ -39,7 +35,7 @@
                 align-items: center;
                 width: 100%;
                 padding: 10px;
-                //background: color("background-dark");
+                background-color: color("background-light");
                 .columm {
                     padding: 0 10px;
                     &.action {
@@ -58,9 +54,10 @@
                     }
                 }
             }
-            .viewer-tabs {
+            .viewer-tabs,.editor-tabs {
                 display: none;
                 padding: 0 10px;
+                background-color: color("background-light");
                 .list {
                     display: flex;
                 }
@@ -89,6 +86,15 @@
                     }
                 }
             }
+            .editor-tabs{
+                display: block;
+                border-bottom: 1px solid color("border");
+                margin-bottom: 5px;
+            }
+            .viewer-tabs{
+                border-top: 1px solid color("border");
+                border-bottom: 1px solid color("border");
+            }
             .metadata {
                 display: flex;
                 align-items: center;
@@ -96,6 +102,7 @@
                 border-top: 1px solid color("border");
                 justify-content: flex-end;
                 height: 40px;
+                background-color: color("background-light");
                 .field {
                     padding-left: $grid-gutter/2;
                     font-size: 12px;

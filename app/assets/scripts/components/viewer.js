@@ -17,6 +17,7 @@ class Viewer extends Component {
                 <div className="viewer preview">
                     <iframe className="iframe" src=""/>
                 </div>
+                <pre className="viewer headers"></pre>
                 <img className="preload" src="assets/images/preload.svg"/>
             </div>
         );
