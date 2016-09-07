@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {folderAdd,folderDelete,folderItemDelete,tabAdd,modal} from "../actions/index";
+import File from "../libs/file";
 
 class Sidebar extends Component {
 
@@ -10,6 +11,7 @@ class Sidebar extends Component {
         this.state = {};
         this.openFolders = false;
         this.openDescriptions = false;
+        this.file = new File();
         this.folderAddClick = this.folderAddClick.bind(this);
         this.folderClick = this.folderClick.bind(this);
         this.folderClickDelete = this.folderClickDelete.bind(this);
@@ -48,14 +50,8 @@ class Sidebar extends Component {
     }
 
     toggleFolders(e){
-        if (this.openFolders){
-            $(".folder-list .folder .cover").removeClass("-active");
-            $(".folder-list .folder .items").removeClass("-open");
-        }else{
-            $(".folder-list .folder .cover").addClass("-active");
-            $(".folder-list .folder .items").addClass("-open");
-        }
         this.openFolders = !this.openFolders;
+        this.forceUpdate();
     }
 
     toggleSearchClick(e){
@@ -119,10 +115,12 @@ class Sidebar extends Component {
     renderFolders(data,index){
 
         var items = ('items' in data)? data.items : [];
+        var coverClass = "cover " + ((this.openFolders)? "-active" : "");
+        var itemsClass = "items " + ((this.openFolders)? "-open" : "");
 
         return(
             <li className="folder" data-id={index} key={"folder-" + data.name + "-" + index }>
-                <div className="cover -active" onClick={this.folderClick} >
+                <div className={coverClass} onClick={this.folderClick} >
                     <div className="icon type"></div>
                     <div className="name">{data.name}</div>
                     <div className="description">{items.length + " requests"}</div>
@@ -144,7 +142,7 @@ class Sidebar extends Component {
                         </div>
                     </div>
                 </div>
-                <ul className="items -open">
+                <ul className={itemsClass}>
                     {items.map(this.renderItems)}
                 </ul>
             </li>
@@ -154,6 +152,8 @@ class Sidebar extends Component {
     render() {
 
         var folderListClass = "folder-list " + ((this.openDescriptions) ? "-show-descriptions" : "");
+        var toggleDescriptionsTitle = (this.openDescriptions)? "Hide descriptions" : "Show descriptions";
+        var toggleFoldersTitle = (this.openFolders)? "Close folders" : "Open folders";
 
         return (
             <div className="component-sidebar">
@@ -181,14 +181,14 @@ class Sidebar extends Component {
                             </li>
                         </ul>
                         <ul className="list middle">
-                            <li className="item" data-title="Toggle folders" onClick={this.toggleFolders}>
-                                <span className="icon ion-social-buffer"></span>
+                            <li className="item" data-title={toggleFoldersTitle} onClick={this.toggleFolders}>
+                                <span className="icon ion-ios-folder"></span>
                             </li>
-                            <li className="item" data-title="Toggle descriptions" onClick={this.toggleRequetsDescriptions}>
+                            <li className="item" data-title={toggleDescriptionsTitle} onClick={this.toggleRequetsDescriptions}>
                                 <span className="icon ion-information-circled"></span>
                             </li>
-                            <li className="item" data-title="Share">
-                                <span className="icon ion-android-share-alt"></span>
+                            <li className="item" data-title="Export json" onClick={this.file.exportSetup}>
+                                <span className="icon ion-android-document"></span>
                             </li>
                             <li className="item" data-title="History">
                                 <span className="icon ion-android-time"></span>

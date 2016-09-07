@@ -2,6 +2,7 @@ import {initialSetup} from "./setup";
 
 const fs = window.require("fs");
 const mkdirp = window.require("mkdirp");
+const dialog = window.require('electron').remote.dialog;
 
 export default class File {
 
@@ -13,6 +14,7 @@ export default class File {
         this.createSetupFolder = this.createSetupFolder.bind(this);
         this.createSetupFile = this.createSetupFile.bind(this);
         this.loadSetupFile = this.loadSetupFile.bind(this);
+        this.exportSetup = this.exportSetup.bind(this);
     }
 
     createSetupFolder(callback) {
@@ -60,5 +62,24 @@ export default class File {
                 console.log("updateSetupFile: ", "The file has been succesfully updated");
             });
         })
+    }
+
+    exportSetup(){
+        console.log("EXPORTANDO.....");
+        console.log(dialog);
+        dialog.showSaveDialog({
+                title: "Requesto",
+                defaultPath: this.setupFileURL
+            }, (result) => {
+                fs.readFile(this.setupFileURL, 'utf-8', (err, data) => {
+                    fs.writeFile(result, data, (err) => {
+                        if (err) {
+                            console.log("exportSetup: ", "An error ocurred creating the file " + err);
+                            return;
+                        }
+                        console.log("exportSetup: ", "The file has been succesfully saved");
+                })
+            });
+        });
     }
 }
