@@ -176,9 +176,9 @@ class Sidebar extends Component {
                     </div>
                     <div className="options">
                         <ul className="list left">
-                            <li className="item" onClick={this.toggleSearchClick}>
+                            {/* <li className="item" onClick={this.toggleSearchClick}>
                                 <span className="icon ion-search"></span>
-                            </li>
+                            </li> */}
                         </ul>
                         <ul className="list middle">
                             <li className="item" data-title={toggleFoldersTitle} onClick={this.toggleFolders}>
@@ -190,12 +190,12 @@ class Sidebar extends Component {
                             <li className="item" data-title="Export json" onClick={this.file.exportSetup}>
                                 <span className="icon ion-android-document"></span>
                             </li>
-                            <li className="item" data-title="History">
+                            {/* <li className="item" data-title="History">
                                 <span className="icon ion-android-time"></span>
-                            </li>
-                            <li className="item" data-title="Settings">
+                            </li> */}
+                            {/* <li className="item" data-title="Settings">
                                 <span className="icon ion-wrench"></span>
-                            </li>
+                            </li> */}
                         </ul>
                         <ul className="list right">
                             <li className="item" data-title="New folder" onClick={this.folderAddClick}>

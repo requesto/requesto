@@ -20,9 +20,8 @@
         padding-top: 10px;
         .tab {
             position: relative;
-            padding: 10px 15px;
+            padding: 0 15px;
             font-size: 12px;
-            line-height: 12px;
             margin: -1px;
             user-select: none;
             border-width: 1px;
@@ -34,11 +33,14 @@
             transition: color $animation-duration;
             min-width: 60px;
             max-width: 150px;
+            height: 34px;
+            line-height: 34px;
+
             @include text-overflow();
 
             .close{
                 position: absolute;
-                top: 5%;
+                top: 8%;
                 right: 0;
                 height: 90%;
                 width: 30px;
@@ -107,6 +109,7 @@
                 transition: color $animation-duration;
                 padding-left: 30px;
                 padding-right: 30px;
+                line-height: 29px;
                 &:hover {
                     color: color("green-light");
                 }
