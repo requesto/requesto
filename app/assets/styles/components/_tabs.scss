@@ -32,10 +32,41 @@
             border-bottom: 1px solid transparent;
             border-top: 1px solid transparent;
             transition: color $animation-duration;
+            min-width: 60px;
             max-width: 150px;
             @include text-overflow();
+
+            .close{
+                position: absolute;
+                top: 5%;
+                right: 0;
+                height: 90%;
+                width: 30px;
+                line-height: 28px;
+                text-align: center;
+                font-size:11px;
+                transition: color $animation-duration;
+                pointer-events: none;
+                opacity: 0;
+                background: color("background-dark");
+                color:color("text-dark");
+
+                &:hover{
+                    color:color("green-light");
+                }
+            }
+
             &:hover {
                 color: color("text-light");
+
+                .title{
+                    -webkit-mask: linear-gradient(to left, transparent, #000000 30px) no-repeat;
+                    -webkit-mask-position: -14px 0;
+                }
+                .close{
+                    pointer-events: all;
+                    opacity: 1;
+                }
             }
             &:before {
                 transition: opacity $animation-duration;
@@ -59,6 +90,13 @@
                 border-bottom: 1px solid color("background-light");
                 border-top: 1px solid color("border");
                 border-right: 1px solid color("border");
+
+                &:hover{
+                    .close{
+                        background: color("background-light");
+                    }
+                }
+
                 &:before {
                     opacity: 1;
                 }

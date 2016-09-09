@@ -11,6 +11,7 @@ class Tabs extends Component {
         this.onClickAdd = this.onClickAdd.bind(this);
         this.onClickTab = this.onClickTab.bind(this);
         this.onContextMenu = this.onContextMenu.bind(this);
+        this.onClickCloseTab = this.onClickCloseTab.bind(this);
         this.renderTabs = this.renderTabs.bind(this);
         this.selectTab = this.selectTab.bind(this);
     }
@@ -32,6 +33,14 @@ class Tabs extends Component {
         this.selectTab(index);
     }
 
+    onClickCloseTab(index,e){
+        var tab = $(e.currentTarget).closest(".tab");
+        this.props.tabDelete(tab.index());
+        console.log($(e.currentTarget));
+        console.log(tab);
+        console.log(tab.index());
+    }
+
     onContextMenu(index,e){
         this.props.tabDelete(index);
     }
@@ -43,7 +52,11 @@ class Tabs extends Component {
 
     renderTabs(data,index){
         return(
-            <li className="tab" onClick={this.onClickTab.bind(this,index)} onContextMenu={this.onContextMenu.bind(this,index)} key={"tab-" + data.name + "-" + index }>{data.name}</li>
+            <li className="tab" onClick={this.onClickTab.bind(this,index)} onContextMenu={this.onContextMenu.bind(this,index)} key={"tab-" + data.name + "-" + index }>
+                <span className="title">{data.name}</span>
+                <div className="close ion-close" onClick={this.onClickCloseTab.bind(this,index)}>
+                </div>
+            </li>
         );
     }
 
