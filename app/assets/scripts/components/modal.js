@@ -11,7 +11,11 @@ class Modal extends Component {
 
     constructor(props){
         super(props);
-        this.state = {};
+
+        this.state = {
+            show:false
+        };
+
         this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
         this.addKeyboardEvents = this.addKeyboardEvents.bind(this);
         this.onComplete = this.onComplete.bind(this);
@@ -20,8 +24,7 @@ class Modal extends Component {
 
     componentWillReceiveProps(nextProps) {
         this.forceUpdate();
-        const modal = document.querySelector(".component-modal");
-        modal.classList.add("-open");
+        this.setState({show:true})
     }
 
     addKeyboardEvents(){
@@ -35,15 +38,16 @@ class Modal extends Component {
     onComplete(){
         const modal = document.querySelector(".component-modal");
         const form = modal.querySelector("form");
-        modal.classList.remove("-open");
+        this.setState({show:false});
         if (form.length > 0) form.reset();
     }
 
     render() {
         var type = ("type" in this.props.modal) ? this.props.modal.type : "";
+        var showClass = (this.state.show)? "-open": "";
 
         return (
-            <div className="component-modal">
+            <div className={`component-modal ${showClass}`}>
                 <div className="panel">
                     {(type == "newFolder") ? <FormNewFolder onComplete={this.onComplete} /> : null}
                     {(type == "newFolderItem") ? <FormNewFolderItem onComplete={this.onComplete} /> : null}
