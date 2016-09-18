@@ -81,6 +81,9 @@ export function tabAdd(item = {}) {
             url: ("url" in item)? item.url: "",
             type: ("type" in item)? item.type: "",
             description: ("description" in item)? item.description: "",
+            params: ("body" in item)? item.body: [],
+            headers: ("headers" in item)? item.headers: [],
+            body: ("body" in item)? item.body: []
         }
     }
 }
