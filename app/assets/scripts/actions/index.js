@@ -97,11 +97,12 @@ export function tabDelete(index) {
     }
 }
 
-export function modal(type) {
+export function modal(type,data) {
     return {
         type: MODAL,
         payload: {
-            type: type
+            type: type,
+            data: data
         }
     }
 }
