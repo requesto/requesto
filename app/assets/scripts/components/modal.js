@@ -19,6 +19,7 @@ class Modal extends Component {
         this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
         this.addKeyboardEvents = this.addKeyboardEvents.bind(this);
         this.onComplete = this.onComplete.bind(this);
+        this.onClickClose = this.onClickClose.bind(this);
         this.addKeyboardEvents();
     }
 
@@ -42,16 +43,24 @@ class Modal extends Component {
         if (form.length > 0) form.reset();
     }
 
+    onClickClose(e){
+        var hasClass = e.target.classList.contains("component-modal")
+        if (hasClass) this.setState({show:false})
+    }
+
     render() {
-        var type = ("type" in this.props.modal) ? this.props.modal.type : "";
         var showClass = (this.state.show)? "-open": "";
+        var type = ("type" in this.props.modal) ? this.props.modal.type : "";
+        var data = ("data" in this.props.modal)? this.props.modal.data : {};
+
+        console.log("modal",type);
 
         return (
-            <div className={`component-modal ${showClass}`}>
+            <div className={`component-modal ${showClass}`} onClick={this.onClickClose}>
                 <div className="panel">
-                    {(type == "newFolder") ? <FormNewFolder onComplete={this.onComplete} /> : null}
-                    {(type == "newFolderItem") ? <FormNewFolderItem onComplete={this.onComplete} /> : null}
-                    {(type == "form-request-editor") ? <FormRequestEditor onComplete={this.onComplete} /> : null}
+                    {(type == "newFolder") ? <FormNewFolder data={data} onComplete={this.onComplete} /> : null}
+                    {(type == "newFolderItem") ? <FormNewFolderItem data={data} onComplete={this.onComplete} /> : null}
+                    {(type == "formRequestEditor") ? <FormRequestEditor data={data} onComplete={this.onComplete} /> : null}
                 </div>
             </div>
         );
