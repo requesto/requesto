@@ -29,6 +29,7 @@ class Editor extends Component {
         this.onClickSend = this.onClickSend.bind(this);
         this.onClickViewerTab = this.onClickViewerTab.bind(this);
         this.onClickSave = this.onClickSave.bind(this);
+        this.onClickHeaders = this.onClickHeaders.bind(this);
     }
 
 
@@ -88,6 +89,20 @@ class Editor extends Component {
                 }
             })
         });
+    }
+
+
+    onClickHeaders(e){
+        console.log("Headers clicked");
+        this.props.modal("formRequestEditor",this.state.headers);
+    }
+
+    onClickParams(e){
+        console.log("Params clicked");
+    }
+
+    onClickBody(e){
+        console.log("Body clicked");
     }
 
     onClickViewerTab(e){
@@ -156,15 +171,15 @@ class Editor extends Component {
                     </div>
                     <div className="editor-tabs">
                         <ul className="list">
-                            <li className="item -headers" >
+                            <li className="item -headers" onClick={this.onClickHeaders}>
                                 <span className="text">Headers</span>
                                 <span className="count">{headersCount}</span>
                             </li>
-                            <li className="item -params" >
+                            <li className="item -params" onClick={this.onClickParams}>
                                 <span className="text">Params</span>
                                 <span className="count">{paramsCount}</span>
                             </li>
-                            <li className="item -body" >
+                            <li className="item -body" onClick={this.onClickBody}>
                                 <span className="text">Body</span>
                                 <span className="count">{bodyCount}</span>
                             </li>
