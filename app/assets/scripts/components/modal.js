@@ -5,6 +5,7 @@ import {folderAdd} from "../actions/index";
 
 import FormNewFolder from "./form-new-folder";
 import FormNewFolderItem from "./form-new-folder-item";
+import FormRequestEditor from "./form-request-editor";
 
 class Modal extends Component {
 
@@ -21,7 +22,6 @@ class Modal extends Component {
         this.forceUpdate();
         const modal = document.querySelector(".component-modal");
         modal.classList.add("-open");
-        // modal.querySelector("input").focus();
     }
 
     addKeyboardEvents(){
@@ -47,6 +47,7 @@ class Modal extends Component {
                 <div className="panel">
                     {(type == "newFolder") ? <FormNewFolder onComplete={this.onComplete} /> : null}
                     {(type == "newFolderItem") ? <FormNewFolderItem onComplete={this.onComplete} /> : null}
+                    {(type == "form-request-editor") ? <FormRequestEditor onComplete={this.onComplete} /> : null}
                 </div>
             </div>
         );
