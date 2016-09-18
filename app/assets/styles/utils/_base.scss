@@ -25,10 +25,6 @@ body {
     justify-content: space-around;
     padding: 0;
 }
-fieldset {
-    margin-bottom: 10px;
-    border: none;
-}
 label{
     padding: 10px 0;
     color:color("text-light");
@@ -69,6 +65,30 @@ button {
     letter-spacing: 0.05em;
     padding: 7px;
     border-radius: 3px;
+}
+fieldset {
+    margin-bottom: 10px;
+    border: none;
+
+    &.two-columns{
+        input{
+            float: left;
+            width: 45%;
+            margin-right: 5px;
+        }
+
+        .icon-remove{
+            float: left;
+            line-height: 35px;
+            text-align: center;
+            width: 20px;
+            transition: all $animation-duration;
+
+            &:hover{
+                color:color("green-light");
+            }
+        }
+    }
 }
 .select {
     position: relative;
