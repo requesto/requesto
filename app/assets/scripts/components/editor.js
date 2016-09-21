@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {tabAdd,modal} from "./../actions/index";
+import {tabAdd,modal,folderItemEdit} from "./../actions/index";
 
 import Axios from 'axios';
 import Viewer from "./viewer";
@@ -12,6 +12,7 @@ class Editor extends Component {
         super(props);
 
         this.state = {
+            id: props.data.id,
             name: props.data.name,
             type: (props.data.type  == "")? "GET" : props.data.type,
             url: props.data.url,
@@ -32,6 +33,7 @@ class Editor extends Component {
         this.onClickHeaders = this.onClickHeaders.bind(this);
         this.onClickParams = this.onClickParams.bind(this);
         this.onClickBody = this.onClickBody.bind(this);
+        this.isSaved = this.isSaved.bind(this);
     }
 
 
@@ -109,28 +111,74 @@ class Editor extends Component {
         }
     }
 
-
     onClickHeaders(e){
-        this.props.modal("formRequestEditor",this.state.headers);
+        this.props.modal({
+            type: "formRequestEditor",
+            data: {
+                child: "headers",
+                request: this.props.data
+            },
+            title: "Headers"
+        });
     }
 
     onClickParams(e){
         console.log(this.state.params);
-        this.props.modal("formRequestEditor",this.state.params);
+        this.props.modal({
+            type: "formRequestEditor",
+            data: {
+                child: "params",
+                request: this.props.data
+            },
+            title: "Params"
+        });
     }
 
     onClickBody(e){
-        this.props.modal("formRequestEditor",this.state.body);
+        this.props.modal({
+            type: "formRequestEditor",
+            data: {
+                child: "body",
+                request: this.props.data
+            },
+            title: "Body"
+        });
     }
 
     onClickSave(e){
-        this.props.modal("newFolderItem");
+        if (this.isSaved()){
+            console.log("Esta salvo, fazendo update...");
+            this.props.folderItemEdit({
+                id: this.state.id,
+                name: this.state.name,
+                type: this.state.type,
+                url: this.state.url,
+                descriptions: this.state.description,
+                headers: this.state.headers,
+                params: this.state.params,
+                body: this.state.body,
+            })
+        }else{
+            this.props.modal({
+                type: "newFolderItem"
+            });
+        }
     }
 
     formSubmit(index,e){
         const editor = $(".component-editors .editor").eq(index);
         editor.find(".input-button.send" ).trigger("click");
         e.preventDefault();
+    }
+
+    isSaved(){
+        console.log(this.props.folders);
+        return true;
+        // return this.props.folders.some(folder => {
+        //     return folder.items.some(request => {
+        //         return request.id === this.state.id;
+        //     })
+        // })
     }
 
     render(){
@@ -164,7 +212,7 @@ class Editor extends Component {
                                 <input className="input-button send" onClick={this.onClickSend} type="button" name="send" defaultValue="Send" />
                             </div>
                             <div className="columm button">
-                                <input className="input-button save" onClick={this.onClickSave} type="button" name="save" defaultValue="Save" />
+                                <input className="input-button save" onClick={this.onClickSave} type="button" name="save" defaultValue={(this.isSaved())? "Save" : "Save As" } />
                             </div>
                         </form>
                     </div>
@@ -215,12 +263,12 @@ class Editor extends Component {
     }
 }
 
-function mapStateToProps({tabs}){
-    return {tabs};
+function mapStateToProps({tabs,folders}){
+    return {tabs,folders};
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({tabAdd,modal},dispatch);
+    return bindActionCreators({tabAdd,modal,folderItemEdit},dispatch);
 }
 
 export default connect (mapStateToProps,mapDispatchToProps)(Editor);
