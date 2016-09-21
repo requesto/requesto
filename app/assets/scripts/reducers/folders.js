@@ -47,9 +47,6 @@ export default function(state = [],action) {
                 data.folders = folders
                 file.updateStorageFile(data);
             });
-
-            alert("Request successfully saved!");
-
             return folders;
 
         case FOLDER_ITEM_DELETE:
@@ -85,9 +82,6 @@ export default function(state = [],action) {
                 data.folders = state
                 file.updateStorageFile(data);
             });
-
-            alert("Request successfully updated!");
-
             return folders;
     }
     return state;
