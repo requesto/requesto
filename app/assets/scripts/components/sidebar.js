@@ -30,7 +30,9 @@ class Sidebar extends Component {
     }
 
     folderAddClick(e){
-        this.props.modal("newFolder");
+        this.props.modal({
+            type:"newFolder"
+        });
     }
 
     folderClick(e){

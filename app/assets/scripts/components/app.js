@@ -21,7 +21,9 @@ class App extends Component {
 
         document.addEventListener('keyup', (e) => {
             if (e.shiftKey && e.keyCode == 65) {
-                props.modal("newFolder");
+                props.modal({
+                    type:"newFolder"
+                });
             }
         }, false);
     }

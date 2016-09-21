@@ -16,6 +16,7 @@ class Modal extends Component {
             show:false,
             type: ("type" in props.modal) ? this.props.modal.type : "",
             data: ("data" in props.modal) ? this.props.modal.data : {},
+            title: ("title" in props.modal) ? this.props.modal.title : "",
         };
 
         this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
@@ -30,6 +31,7 @@ class Modal extends Component {
             show: true,
             type: nextProps.modal.type,
             data: ("data" in nextProps.modal) ? nextProps.modal.data : {},
+            title: ("title" in nextProps.modal) ? nextProps.modal.title : ""
         })
     }
 
@@ -59,9 +61,9 @@ class Modal extends Component {
         return (
             <div className={`component-modal ${showClass}`} onClick={this.onClickClose}>
                 <div className="panel">
-                    {(this.state.type == "newFolder") ? <FormNewFolder data={this.state.data} onComplete={this.onComplete} /> : null}
-                    {(this.state.type == "newFolderItem") ? <FormNewFolderItem data={this.state.data} onComplete={this.onComplete} /> : null}
-                    {(this.state.type == "formRequestEditor") ? <FormRequestEditor data={this.state.data} onComplete={this.onComplete} /> : null}
+                    {(this.state.type == "newFolder") ? <FormNewFolder title={this.state.title} data={this.state.data} onComplete={this.onComplete} /> : null}
+                    {(this.state.type == "newFolderItem") ? <FormNewFolderItem title={this.state.title} data={this.state.data} onComplete={this.onComplete} /> : null}
+                    {(this.state.type == "formRequestEditor") ? <FormRequestEditor title={this.state.title} data={this.state.data} onComplete={this.onComplete} /> : null}
                 </div>
             </div>
         );

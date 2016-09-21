@@ -1,3 +1,5 @@
+import guid from "./../libs/guid";
+
 export const FOLDER_FETCH = "FOLDER_FETCH";
 export const FOLDER_ADD = "FOLDER_ADD";
 export const FOLDER_EDIT = "FOLDER_EDIT";
@@ -51,12 +53,11 @@ export function folderItemAdd(folder, item) {
     }
 }
 
-export function folderItemEdit(folder, item) {
-    console.log("folderItemEdit", folder, item);
+export function folderItemEdit(item) {
+    console.log("folderItemEdit", item);
     return {
         type: FOLDER_ITEM_EDIT,
         payload: {
-            folder: folder,
             item: item
         }
     }
@@ -77,13 +78,14 @@ export function tabAdd(item = {}) {
     return {
         type: TAB_ADD,
         payload: {
-            name: ("name" in item)? item.name: "",
-            url: ("url" in item)? item.url: "",
-            type: ("type" in item)? item.type: "",
-            description: ("description" in item)? item.description: "",
-            headers: ("headers" in item)? item.headers: [],
-            params: ("body" in item)? item.params: [],
-            body: ("body" in item)? item.body: []
+            id: ("id" in item)? item.id : guid(),
+            name: ("name" in item)? item.name : "",
+            url: ("url" in item)? item.url : "",
+            type: ("type" in item)? item.type : "",
+            description: ("description" in item)? item.description : "",
+            headers: ("headers" in item)? item.headers : {},
+            params: ("body" in item)? item.params : {},
+            body: ("body" in item)? item.body : {}
         }
     }
 }
@@ -97,12 +99,9 @@ export function tabDelete(index) {
     }
 }
 
-export function modal(type,data) {
+export function modal(options) {
     return {
         type: MODAL,
-        payload: {
-            type: type,
-            data: data
-        }
+        payload: options
     }
 }
