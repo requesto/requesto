@@ -1,47 +1,74 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {folderItemEdit} from "./../actions/index";
+import File from "../libs/file";
 
 class FormRequestEditor extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            data: ("data" in props)? props.data: {}
+            title: ("title" in props) ? props.title : "",
+            request: ("request" in props.data)? props.data.request : {},
+            child: ("child" in props.data)? props.data.child : ""
         };
 
+        this.file = new File();
         this.renderFields = this.renderFields.bind(this);
         this.onClickAddField = this.onClickAddField.bind(this);
         this.onChangeKey = this.onChangeKey.bind(this);
+        this.onBlurInput = this.onBlurInput.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            data: ("data" in nextProps) ? nextProps.data : {}
+            title: ("title" in nextProps) ? nextProps.title : "",
+            request: ("request" in nextProps.data)? nextProps.data.request : {},
+            child: ("child" in nextProps.data)? nextProps.data.child : ""
         })
     }
 
     onClickAddField(e){
-        var data = this.state.data;
-        data["untitled"] = ""
-        this.setState({data});
+        var request = this.state.request;
+        var child = this.state.child;
+        request[child]["untitled"] = ""
+        this.setState({
+            request: request
+        });
     }
 
     onChangeKey(key,e){
-        var data = this.state.data;
-        data[e.target.value] = this.state.data[key]
-        delete data[key]
-        this.setState({data});
+        var request = this.state.request;
+        var child = this.state.child;
+        request[child][e.target.value] = request[child][key]
+        delete request[child][key]
+        this.setState({
+            request: request
+        });
     }
 
     onChangeKeyValue(key,e){
-        //TODO: onChangeKeyValue
+        var request = this.state.request;
+        var child = this.state.child;
+        request[child][key] = e.target.value
+        this.setState({
+            request: request
+        });
     }
 
     onClickRemoveField(key,e){
-        var data = this.state.data;
-        delete data[key]
-        this.setState({data});
+        var request = this.state.request;
+        var child = this.state.child;
+        delete request[child][key]
+        this.setState({
+            request: request
+        });
+        this.props.folderItemEdit(this.state.request);
+    }
+
+    onBlurInput(e){
+        this.props.folderItemEdit(this.state.request);
     }
 
     onFormSubmit(e){
@@ -52,8 +79,8 @@ class FormRequestEditor extends Component {
     renderFields(key,index){
         return (
             <fieldset className="two-columns" key={index}>
-                <input className="key" type="text" value={key} onChange={this.onChangeKey.bind(this,key)}/>
-                <input className="value" type="text" value={this.state.data[key]} onChange={this.onChangeKeyValue.bind(this,key)}/>
+                <input className="key" type="text" value={key} onChange={this.onChangeKey.bind(this,key)} onBlur={this.onBlurInput}/>
+                <input className="value" type="text" value={this.state.request[this.state.child][key]} onChange={this.onChangeKeyValue.bind(this,key)} onBlur={this.onBlurInput}/>
                 <div className="ion-close-circled icon-remove" style={{float:"left"}} onClick={this.onClickRemoveField.bind(this,key)}></div>
             </fieldset>
         )
@@ -61,12 +88,13 @@ class FormRequestEditor extends Component {
 
     render() {
 
-        console.log("FormRequestEditor","props:",this.props.data,"state:",this.state.data);
+        var child = this.state.child;
+        var data = this.state.request[child];
 
         return (
             <form name="formRequestEditor" onSubmit={this.onFormSubmit}>
-                <label>Headers</label>
-                {Object.keys(this.state.data).map(this.renderFields)}
+                <label>{this.state.title}</label>
+                {Object.keys(data).map(this.renderFields)}
                 <br/>
                 <div onClick={this.onClickAddField}>Add field</div>
             </form>
@@ -80,7 +108,7 @@ function mapStateToProps({}){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({},dispatch);
+    return bindActionCreators({folderItemEdit},dispatch);
 }
 
 export default connect (mapStateToProps,mapDispatchToProps)(FormRequestEditor);
