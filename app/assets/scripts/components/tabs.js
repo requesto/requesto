@@ -36,9 +36,6 @@ class Tabs extends Component {
     onClickCloseTab(index,e){
         var tab = $(e.currentTarget).closest(".tab");
         this.props.tabDelete(tab.index());
-        console.log($(e.currentTarget));
-        console.log(tab);
-        console.log(tab.index());
     }
 
     onContextMenu(index,e){
