@@ -41,8 +41,8 @@
             color: #abb2bf;
         }
 
+        a.json-string { pointer-events: none; }
         .json-string {
-            pointer-events: none;
             color: #98c379;
             color:color("green-light");
             font-weight: 600;
