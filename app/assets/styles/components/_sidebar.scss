@@ -161,6 +161,8 @@
                     transition: color $animation-duration;
                     max-width: 80%;
                     @include text-overflow();
+
+                    animation: fade-in 0.3s 0.1s both;
                 }
 
                 > .description {
@@ -169,6 +171,7 @@
                     max-width: 80%;
                     margin-top: 5px;
                     @include text-overflow();
+                    animation: fade-in 0.3s 0.1s both;
                 }
             }
 
