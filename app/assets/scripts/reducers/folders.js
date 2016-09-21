@@ -3,21 +3,10 @@ import {FOLDER_ADD,
         FOLDER_DELETE,
         FOLDER_ITEM_ADD,
         FOLDER_ITEM_DELETE,
+        FOLDER_ITEM_EDIT,
         FOLDER_FETCH} from '../actions/index';
 
-let initialState = {
-    name:"Folder",
-    id: 1,
-    items:[
-    {
-        name:"/user",
-        description:"Create new user",
-        type:"POST",
-        url:"http://beta.json-generator.com/api/json/get/4JVFHRAHZ"
-    }]
-}
-
-export default function(state = [initialState],action) {
+export default function(state = [],action) {
     const file = new File();
     var folders = [];
     switch (action.type){
@@ -74,8 +63,28 @@ export default function(state = [initialState],action) {
                 file.updateStorageFile(data);
             });
 
-            return folders;
+            console.log(folders);
 
+            return folders;
+        case FOLDER_ITEM_EDIT:
+            folders = state.map(function(folder){
+                folder.items.forEach(function(item,index){
+                    if (item.id === action.payload.item.id){
+                        console.log("achou o id:",item.id," com url: ",action.payload.item.url);
+                        folder.items[index] = action.payload.item;
+                    }
+                })
+                return folder;
+            });
+
+            console.log(folders);
+
+            file.loadStorageFile(function (data){
+                data.folders = state
+                file.updateStorageFile(data);
+            });
+
+            return folders;
     }
     return state;
 }
