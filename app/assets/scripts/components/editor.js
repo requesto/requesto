@@ -16,8 +16,8 @@ class Editor extends Component {
             type: (props.data.type  == "")? "GET" : props.data.type,
             url: props.data.url,
             descriptions: props.data.description,
-            params: props.data.params,
             headers: props.data.headers,
+            params: props.data.params,
             body: props.data.body,
             response: {
                 headers: "-",
@@ -30,12 +30,13 @@ class Editor extends Component {
         this.onClickViewerTab = this.onClickViewerTab.bind(this);
         this.onClickSave = this.onClickSave.bind(this);
         this.onClickHeaders = this.onClickHeaders.bind(this);
+        this.onClickParams = this.onClickParams.bind(this);
+        this.onClickBody = this.onClickBody.bind(this);
     }
 
 
     onClickSend(e) {
 
-        console.log(this.state);
         (this.state.url == "")? alert("Enter a request URL!") : e.preventDefault();
 
         const editor = $(e.currentTarget).closest(".editor");
@@ -91,20 +92,6 @@ class Editor extends Component {
         });
     }
 
-
-    onClickHeaders(e){
-        console.log("Headers clicked");
-        this.props.modal("formRequestEditor",this.state.headers);
-    }
-
-    onClickParams(e){
-        console.log("Params clicked");
-    }
-
-    onClickBody(e){
-        console.log("Body clicked");
-    }
-
     onClickViewerTab(e){
         const currentTarget = $(e.currentTarget);
         const viewer = $(".component-viewer");
@@ -120,6 +107,20 @@ class Editor extends Component {
         } else if (currentTarget.hasClass("-headers")){
             viewer.find(".headers").addClass("-active").siblings().removeClass("-active");
         }
+    }
+
+
+    onClickHeaders(e){
+        this.props.modal("formRequestEditor",this.state.headers);
+    }
+
+    onClickParams(e){
+        console.log(this.state.params);
+        this.props.modal("formRequestEditor",this.state.params);
+    }
+
+    onClickBody(e){
+        this.props.modal("formRequestEditor",this.state.body);
     }
 
     onClickSave(e){
@@ -138,8 +139,6 @@ class Editor extends Component {
         const headersCount = (Object.keys(this.props.data.headers).length > 0)? ` [${Object.keys(this.props.data.headers).length}]` : "";
         const bodyCount = (Object.keys(this.props.data.body).length > 0)? ` [${Object.keys(this.props.data.body).length}]` : "";
         const headers = (this.state.headers == "-")? [] : Object.keys(this.state.headers);
-
-        console.log(this.state);
 
         return (
             <li className="editor">

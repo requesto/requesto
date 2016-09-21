@@ -31,8 +31,6 @@ class FormNewFolderItem extends Component {
     }
 
     renderFolderOption(data,index){
-        console.log(data.name,data.id);
-        console.log(index == 0);
         return (
             <option value={data.id} key={data.name + "-" + data.id}>{data.name}</option>
         );

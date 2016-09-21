@@ -13,7 +13,9 @@ class Modal extends Component {
         super(props);
 
         this.state = {
-            show:false
+            show:false,
+            type: ("type" in props.modal) ? this.props.modal.type : "",
+            data: ("data" in props.modal) ? this.props.modal.data : {},
         };
 
         this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
@@ -24,8 +26,11 @@ class Modal extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.forceUpdate();
-        this.setState({show:true})
+        this.setState({
+            show: true,
+            type: nextProps.modal.type,
+            data: ("data" in nextProps.modal) ? nextProps.modal.data : {},
+        })
     }
 
     addKeyboardEvents(){
@@ -50,17 +55,13 @@ class Modal extends Component {
 
     render() {
         var showClass = (this.state.show)? "-open": "";
-        var type = ("type" in this.props.modal) ? this.props.modal.type : "";
-        var data = ("data" in this.props.modal)? this.props.modal.data : {};
-
-        console.log("modal",type);
 
         return (
             <div className={`component-modal ${showClass}`} onClick={this.onClickClose}>
                 <div className="panel">
-                    {(type == "newFolder") ? <FormNewFolder data={data} onComplete={this.onComplete} /> : null}
-                    {(type == "newFolderItem") ? <FormNewFolderItem data={data} onComplete={this.onComplete} /> : null}
-                    {(type == "formRequestEditor") ? <FormRequestEditor data={data} onComplete={this.onComplete} /> : null}
+                    {(this.state.type == "newFolder") ? <FormNewFolder data={this.state.data} onComplete={this.onComplete} /> : null}
+                    {(this.state.type == "newFolderItem") ? <FormNewFolderItem data={this.state.data} onComplete={this.onComplete} /> : null}
+                    {(this.state.type == "formRequestEditor") ? <FormRequestEditor data={this.state.data} onComplete={this.onComplete} /> : null}
                 </div>
             </div>
         );

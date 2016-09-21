@@ -12,7 +12,6 @@ class FormNewFolder extends Component {
     }
 
     formSubmit(e){
-        console.log("FORM SUBMIT","FormNewFolder");
         const modal = document.querySelector(".component-modal");
         const form = modal.querySelector("form");
         const name = form["name"].value;

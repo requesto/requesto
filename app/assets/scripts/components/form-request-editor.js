@@ -7,7 +7,7 @@ class FormRequestEditor extends Component {
     constructor(props){
         super(props);
         this.state = {
-            data: ("data" in props)? props.data: []
+            data: ("data" in props)? props.data: {}
         };
 
         this.renderFields = this.renderFields.bind(this);
@@ -15,6 +15,11 @@ class FormRequestEditor extends Component {
         this.onChangeKey = this.onChangeKey.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            data: ("data" in nextProps) ? nextProps.data : {}
+        })
+    }
 
     onClickAddField(e){
         var data = this.state.data;
@@ -30,7 +35,7 @@ class FormRequestEditor extends Component {
     }
 
     onChangeKeyValue(key,e){
-        console.log(data,e.target.value);
+        //TODO: onChangeKeyValue
     }
 
     onClickRemoveField(key,e){
@@ -40,11 +45,11 @@ class FormRequestEditor extends Component {
     }
 
     onFormSubmit(e){
+        //TODO: onFormSubmit
         console.log("FORM SUBMIT","FormNewFolder");
     }
 
     renderFields(key,index){
-        console.log("modal",index,key,this.state.data[key]);
         return (
             <fieldset className="two-columns" key={index}>
                 <input className="key" type="text" value={key} onChange={this.onChangeKey.bind(this,key)}/>
@@ -55,12 +60,15 @@ class FormRequestEditor extends Component {
     }
 
     render() {
+
+        console.log("FormRequestEditor","props:",this.props.data,"state:",this.state.data);
+
         return (
             <form name="formRequestEditor" onSubmit={this.onFormSubmit}>
                 <label>Headers</label>
                 {Object.keys(this.state.data).map(this.renderFields)}
                 <br/>
-                <div onClick={this.onClickAddField}>Add header</div>
+                <div onClick={this.onClickAddField}>Add field</div>
             </form>
 
         );
