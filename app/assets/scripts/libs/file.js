@@ -26,6 +26,9 @@ export default class File {
             folder.id = guid();
             folder.items.map(request => {
                 request.id = guid();
+                if (!("headers" in request)) request.headers = {}
+                if (!("params" in request)) request.params = {}
+                if (!("body" in request)) request.body = {}
                 return request;
             })
             return folder;
@@ -36,7 +39,11 @@ export default class File {
 
     createStorageFolder(callback) {
         mkdirp(this.storageFilePath, (err) => {
-            console.log("createStorageFolder: ", "An error ocurred creating the file " + err);
+            if (err) {
+                console.log("createStorageFolder: ", "An error ocurred creating the folder " + err);
+                return;
+            }
+            console.log("createStorageFolder: ", "The folder has been succesfully created");
             return callback();
         });
     }
@@ -63,12 +70,12 @@ export default class File {
                 return;
             }
             // Change how to handle the file content
-            //data
             console.log("loadStorageFile: ", "The file has been succesfully loaded");
-            //window.requesto = this.checkStorageHealth(data);
-            // this.updateStorageFile(this.checkStorageHealth(data));
-            window.requesto = JSON.parse(data);
-            callback(JSON.parse(data));
+
+            var checkedData = this.checkStorageHealth(data);
+            window.requesto = checkedData;
+            this.updateStorageFile(checkedData);
+            callback(checkedData);
         })
     }
 
