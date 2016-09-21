@@ -48,6 +48,8 @@ export default function(state = [],action) {
                 file.updateStorageFile(data);
             });
 
+            alert("Request successfully saved!");
+
             return folders;
 
         case FOLDER_ITEM_DELETE:
@@ -70,7 +72,7 @@ export default function(state = [],action) {
             folders = state.map(function(folder){
                 folder.items.forEach(function(item,index){
                     if (item.id === action.payload.item.id){
-                        console.log("achou o id:",item.id," com url: ",action.payload.item.url);
+                        console.log("find id:",item.id," with url: ",action.payload.item.url);
                         folder.items[index] = action.payload.item;
                     }
                 })
@@ -83,6 +85,8 @@ export default function(state = [],action) {
                 data.folders = state
                 file.updateStorageFile(data);
             });
+
+            alert("Request successfully updated!");
 
             return folders;
     }
