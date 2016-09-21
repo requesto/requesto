@@ -25,16 +25,6 @@ export default class File {
         storage.folders.map(folder => {
             folder.id = guid();
 
-            // folder.items = [];
-            // for (var i = 0; i < 10000; i++) {
-            //     var request = {}
-            //     request.name = "teste " + i;
-            //     request.type = "GET";
-            //     request.url = "https://api.vod.globosat.tv/globosatplay/tracks";
-            //     folder.items.push(request);
-            //     console.log("i");
-            // }
-
             folder.items.map(request => {
                 console.log("map");
                 request.id = guid();
