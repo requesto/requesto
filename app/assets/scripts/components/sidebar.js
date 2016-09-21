@@ -8,7 +8,9 @@ class Sidebar extends Component {
 
     constructor(props){
         super(props);
-        this.state = {};
+        this.state = {
+            isLoaded: false
+        };
         this.openFolders = false;
         this.openDescriptions = false;
         this.file = new File();
@@ -21,6 +23,10 @@ class Sidebar extends Component {
         this.itemClickDelete = this.itemClickDelete.bind(this);
         this.renderItems = this.renderItems.bind(this);
         this.renderFolders = this.renderFolders.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({isLoaded: true})
     }
 
     folderAddClick(e){
@@ -38,7 +44,6 @@ class Sidebar extends Component {
 
     folderClickDelete(e){
         const folder = $(e.currentTarget).closest(".folder").attr("data-id");
-        console.log("DELETE INDEX: " + folder);
         if (confirm("Are you sure?")) this.props.folderDelete(folder);
         e.stopPropagation();
         e.preventDefault();
@@ -84,7 +89,8 @@ class Sidebar extends Component {
 
     renderItems(data,index){
 
-        var description = (data.description.trim() != "") ? data.description : "Request description"
+        var description = ("description" in data)? data.description : "" ;
+        description = (description.trim() != "") ? data.description : "Request description";
 
         return(
             <li className="item" data-id={index} key={"item-" + data.name + "-" + index } onClick={this.itemClick.bind(this,index,data)}>
@@ -164,7 +170,7 @@ class Sidebar extends Component {
                     </div>
                 </div>
                 <div className="main">
-                    <ul className={folderListClass}>
+                    <ul className={folderListClass} hidden={this.state.isLoaded}>
                         {this.props.folders.map(this.renderFolders)}
                     </ul>
                 </div>
@@ -187,7 +193,7 @@ class Sidebar extends Component {
                             <li className="item" data-title={toggleDescriptionsTitle} onClick={this.toggleRequetsDescriptions}>
                                 <span className="icon ion-information-circled"></span>
                             </li>
-                            <li className="item" data-title="Export json" onClick={this.file.exportSetup}>
+                            <li className="item" data-title="Export json" onClick={this.file.exportStorage}>
                                 <span className="icon ion-android-document"></span>
                             </li>
                             {/* <li className="item" data-title="History">
