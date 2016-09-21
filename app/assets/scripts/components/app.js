@@ -15,7 +15,7 @@ class App extends Component {
         super(props);
         this.state = {};
         this.file = new File();
-        this.file.loadSetupFile(function (data){
+        this.file.loadStorageFile(function (data){
             props.folderFetch(data.folders);
         });
 

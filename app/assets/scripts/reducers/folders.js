@@ -26,18 +26,18 @@ export default function(state = [initialState],action) {
 
         case FOLDER_ADD:
             folders = [...state,action.payload]
-            file.loadSetupFile(function (data){
+            file.loadStorageFile(function (data){
                 data.folders = folders
-                file.updateSetupFile(data);
+                file.updateStorageFile(data);
             });
             return folders;
 
         case FOLDER_DELETE:
             folders = state.slice();
             folders.splice(action.payload.folder,1);
-            file.loadSetupFile(function (data){
+            file.loadStorageFile(function (data){
                 data.folders = folders
-                file.updateSetupFile(data);
+                file.updateStorageFile(data);
             });
             return folders;
 
@@ -54,9 +54,9 @@ export default function(state = [initialState],action) {
                 return folder;
             });
 
-            file.loadSetupFile(function (data){
+            file.loadStorageFile(function (data){
                 data.folders = folders
-                file.updateSetupFile(data);
+                file.updateStorageFile(data);
             });
 
             return folders;
@@ -69,9 +69,9 @@ export default function(state = [initialState],action) {
                 return folder;
             });
 
-            file.loadSetupFile(function (data){
+            file.loadStorageFile(function (data){
                 data.folders = state
-                file.updateSetupFile(data);
+                file.updateStorageFile(data);
             });
 
             return folders;

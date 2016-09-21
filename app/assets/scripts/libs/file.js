@@ -1,4 +1,5 @@
-import {initialSetup} from "./setup";
+import {initialStorage} from "./../data/initialStorage";
+import guid from "./guid";
 
 const fs = window.require("fs");
 const mkdirp = window.require("mkdirp");
@@ -7,77 +8,108 @@ const dialog = window.require('electron').remote.dialog;
 export default class File {
 
     constructor() {
-        this.setupFileName = "requesto.json";
-        this.setupFilePath = `/Users/${window.process.env.USER}/.requesto/`;
-        this.setupFileURL = `${this.setupFilePath}${this.setupFileName}`
-        this.initialSetup = initialSetup;
-        this.createSetupFolder = this.createSetupFolder.bind(this);
-        this.createSetupFile = this.createSetupFile.bind(this);
-        this.loadSetupFile = this.loadSetupFile.bind(this);
-        this.exportSetup = this.exportSetup.bind(this);
+        this.storageFileName = "requesto.json";
+        this.storageFilePath = `/Users/${window.process.env.USER}/.requesto/`;
+        this.storageFileURL = `${this.storageFilePath}${this.storageFileName}`
+        this.initialStorage = initialStorage;
+        this.checkStorageHealth = this.checkStorageHealth.bind(this);
+        this.createStorageFolder = this.createStorageFolder.bind(this);
+        this.createStorageFile = this.createStorageFile.bind(this);
+        this.loadStorageFile = this.loadStorageFile.bind(this);
+        this.exportStorage = this.exportStorage.bind(this);
+
     }
 
-    createSetupFolder(callback) {
-        mkdirp(this.setupFilePath, (err) => {
-            console.log("createSetupFolder: ", "An error ocurred creating the file " + err);
+    checkStorageHealth(data){
+        var storage = JSON.parse(data);
+        storage.folders.map(folder => {
+            folder.id = guid();
+
+            // folder.items = [];
+            // for (var i = 0; i < 10000; i++) {
+            //     var request = {}
+            //     request.name = "teste " + i;
+            //     request.type = "GET";
+            //     request.url = "https://api.vod.globosat.tv/globosatplay/tracks";
+            //     folder.items.push(request);
+            //     console.log("i");
+            // }
+
+            folder.items.map(request => {
+                console.log("map");
+                request.id = guid();
+                return request;
+            })
+            return folder;
+        })
+
+        return storage;
+    }
+
+    createStorageFolder(callback) {
+        mkdirp(this.storageFilePath, (err) => {
+            console.log("createStorageFolder: ", "An error ocurred creating the file " + err);
             return callback();
         });
     }
 
-    createSetupFile(callback) {
-        this.createSetupFolder(() => {
-            fs.writeFile(this.setupFileURL, JSON.stringify(this.initialSetup), (err) => {
+    createStorageFile(callback) {
+        this.createStorageFolder(() => {
+            fs.writeFile(this.storageFileURL, JSON.stringify(this.initialStorage), (err) => {
                 if (err) {
-                    console.log("createSetupFile: ", "An error ocurred creating the file " + err);
+                    console.log("createStorageFile: ", "An error ocurred creating the file " + err);
                     return;
                 }
-                this.callback(this.initialSetup);
-                console.log("createSetupFile: ", "The file has been succesfully saved");
+                this.callback(this.initialStorage);
+                console.log("createStorageFile: ", "The file has been succesfully saved");
             });
         })
     }
 
-    loadSetupFile(callback) {
-        fs.readFile(this.setupFileURL, 'utf-8', (err, data) => {
+    loadStorageFile(callback) {
+        fs.readFile(this.storageFileURL, 'utf-8', (err, data) => {
             if (err) {
-                console.log("loadSetupFile: ", err.message);
-                // alert("An error ocurred reading the file :" + err.message);
-                this.createSetupFile(callback);
+                console.log("loadStorageFile: ", err.message);
+                alert("An error ocurred reading the storage file :" + err.message);
+                this.createStorageFile(callback);
                 return;
             }
             // Change how to handle the file content
             //data
-            console.log("loadSetupFile: ", "The file has been succesfully loaded");
+            console.log("loadStorageFile: ", "The file has been succesfully loaded");
+            //window.requesto = this.checkStorageHealth(data);
+            // this.updateStorageFile(this.checkStorageHealth(data));
+            window.requesto = JSON.parse(data);
             callback(JSON.parse(data));
         })
     }
 
-    updateSetupFile(content) {
-        this.createSetupFolder(() => {
-            fs.writeFile(this.setupFileURL, JSON.stringify(content), (err) => {
+    updateStorageFile(content) {
+        this.createStorageFolder(() => {
+            fs.writeFile(this.storageFileURL, JSON.stringify(content), (err) => {
                 if (err) {
-                    console.log("updateSetupFile: ", "An error ocurred creating the file " + err);
+                    console.log("updateStorageFile: ", "An error ocurred creating the file " + err);
                     return;
                 }
-                console.log("updateSetupFile: ", "The file has been succesfully updated");
+                console.log("updateStorageFile: ", "The file has been succesfully updated");
             });
         })
     }
 
-    exportSetup(){
+    exportStorage(){
         console.log("EXPORTANDO.....");
         console.log(dialog);
         dialog.showSaveDialog({
                 title: "Requesto",
-                defaultPath: this.setupFileURL
+                defaultPath: this.storageFileURL
             }, (result) => {
-                fs.readFile(this.setupFileURL, 'utf-8', (err, data) => {
+                fs.readFile(this.storageFileURL, 'utf-8', (err, data) => {
                     fs.writeFile(result, data, (err) => {
                         if (err) {
-                            console.log("exportSetup: ", "An error ocurred creating the file " + err);
+                            console.log("exportStorage: ", "An error ocurred creating the file " + err);
                             return;
                         }
-                        console.log("exportSetup: ", "The file has been succesfully saved");
+                        console.log("exportStorage: ", "The file has been succesfully saved");
                 })
             });
         });
