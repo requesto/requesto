@@ -57,7 +57,7 @@ class Editor extends Component {
             url: this.state.url,
             headers: this.state.headers,
             params: this.state.params,
-            body: this.state.body
+            data: this.state.body
 
         }).then(response => {
 
@@ -158,6 +158,7 @@ class Editor extends Component {
                 params: this.state.params,
                 body: this.state.body,
             })
+            alert("Request successfully updated!");
         }else{
             this.props.modal({
                 type: "newFolderItem"
