@@ -49,14 +49,19 @@ export default class File {
     }
 
     createStorageFile(callback) {
+        let initialStorage = JSON.stringify(this.initialStorage);
         this.createStorageFolder(() => {
-            fs.writeFile(this.storageFileURL, JSON.stringify(this.initialStorage), (err) => {
+            fs.writeFile(this.storageFileURL, initialStorage, (err) => {
                 if (err) {
                     console.log("createStorageFile: ", "An error ocurred creating the file " + err);
                     return;
                 }
-                this.callback(this.initialStorage);
+
                 console.log("createStorageFile: ", "The file has been succesfully saved");
+
+                var checkedData = this.checkStorageHealth(initialStorage);
+                window.requesto = checkedData;
+                callback(checkedData);
             });
         })
     }
@@ -65,11 +70,11 @@ export default class File {
         fs.readFile(this.storageFileURL, 'utf-8', (err, data) => {
             if (err) {
                 console.log("loadStorageFile: ", err.message);
-                alert("An error ocurred reading the storage file :" + err.message);
+                // alert("An error ocurred reading the storage file :" + err.message);
                 this.createStorageFile(callback);
                 return;
             }
-            // Change how to handle the file content
+
             console.log("loadStorageFile: ", "The file has been succesfully loaded");
 
             var checkedData = this.checkStorageHealth(data);
