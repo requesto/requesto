@@ -185,7 +185,6 @@ class Editor extends Component {
         const paramsCount = (Object.keys(this.props.data.params).length > 0)? ` [${Object.keys(this.props.data.params).length}]` : "";
         const headersCount = (Object.keys(this.props.data.headers).length > 0)? ` [${Object.keys(this.props.data.headers).length}]` : "";
         const bodyCount = (Object.keys(this.props.data.body).length > 0)? ` [${Object.keys(this.props.data.body).length}]` : "";
-        const headers = (this.state.headers == "-")? [] : Object.keys(this.state.headers);
 
         return (
             <li className="editor">
@@ -245,7 +244,7 @@ class Editor extends Component {
                     <div className="metadata">
                         <div className="field headers">
                             <span className="label">headers:</span>
-                            <span className="value">{Object.keys(this.state.response.headers).length}</span>
+                            <span className="value">{this.state.response.headers}</span>
                         </div>
                         <div className="field status">
                             <span className="label">status:</span>
