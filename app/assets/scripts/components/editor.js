@@ -147,7 +147,7 @@ class Editor extends Component {
 
     onClickSave(e){
         if (this.isSaved()){
-            console.log("Esta salvo, fazendo update...");
+            console.log("Saved, doing update...");
             this.props.folderItemEdit({
                 id: this.state.id,
                 name: this.state.name,
@@ -172,13 +172,11 @@ class Editor extends Component {
     }
 
     isSaved(){
-        console.log(this.props.folders);
-        return true;
-        // return this.props.folders.some(folder => {
-        //     return folder.items.some(request => {
-        //         return request.id === this.state.id;
-        //     })
-        // })
+        return this.props.folders.some(folder => {
+            return folder.items.some(request => {
+                return request.id === this.state.id;
+            })
+        })
     }
 
     render(){
