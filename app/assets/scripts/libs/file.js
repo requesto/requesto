@@ -24,9 +24,7 @@ export default class File {
         var storage = JSON.parse(data);
         storage.folders.map(folder => {
             folder.id = guid();
-
             folder.items.map(request => {
-                console.log("map");
                 request.id = guid();
                 return request;
             })
