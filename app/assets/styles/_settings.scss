@@ -13,3 +13,21 @@ $colors:(
     "yellow":              #e1c282,
     "blue":                #478cff,
 );
+
+$animation-keyframes:(
+	"fade-in",
+	"fade-out",
+	"slide-in-up",
+	"slide-in-down",
+	"alert"
+);
+
+$animation-time-functions: (
+	"in-out-quad": cubic-bezier(0.455, 0.030, 0.515, 0.955),
+	"in-out-cubic": cubic-bezier(0.645, 0.045, 0.355, 1.000),
+	"in-out-quart": cubic-bezier(0.770, 0.000, 0.175, 1.000),
+	"in-out-quint": cubic-bezier(0.860, 0.000, 0.070, 1.000),
+	"in-out-sine": cubic-bezier(0.445, 0.050, 0.550, 0.950),
+	"in-out-expo": cubic-bezier(1.000, 0.000, 0.000, 1.000),
+	"in-out-circ": cubic-bezier(0.785, 0.135, 0.150, 0.860),
+);
