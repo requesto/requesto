@@ -36,6 +36,18 @@ class Editor extends Component {
         this.isSaved = this.isSaved.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            id: this.props.data.id,
+            name: this.props.data.name,
+            type: (this.props.data.type  == "")? "GET" : this.props.data.type,
+            url: this.props.data.url,
+            descriptions: this.props.data.description,
+            headers: this.props.data.headers,
+            params: this.props.data.params,
+            body: this.props.data.body,
+        })
+    }
 
     onClickSend(e) {
 
@@ -146,22 +158,26 @@ class Editor extends Component {
     }
 
     onClickSave(e){
+
+        const data = {
+            id: this.state.id,
+            name: this.state.name,
+            type: this.state.type,
+            url: this.state.url,
+            descriptions: this.state.description,
+            headers: this.state.headers,
+            params: this.state.params,
+            body: this.state.body,
+        }
+
         if (this.isSaved()){
             console.log("Saved, doing update...");
-            this.props.folderItemEdit({
-                id: this.state.id,
-                name: this.state.name,
-                type: this.state.type,
-                url: this.state.url,
-                descriptions: this.state.description,
-                headers: this.state.headers,
-                params: this.state.params,
-                body: this.state.body,
-            })
+            this.props.folderItemEdit(data)
             alert("Request successfully updated!");
         }else{
             this.props.modal({
-                type: "newFolderItem"
+                type: "newFolderItem",
+                data: data
             });
         }
     }
@@ -181,11 +197,9 @@ class Editor extends Component {
     }
 
     render(){
-
         const paramsCount = (Object.keys(this.props.data.params).length > 0)? ` [${Object.keys(this.props.data.params).length}]` : "";
         const headersCount = (Object.keys(this.props.data.headers).length > 0)? ` [${Object.keys(this.props.data.headers).length}]` : "";
         const bodyCount = (Object.keys(this.props.data.body).length > 0)? ` [${Object.keys(this.props.data.body).length}]` : "";
-        const headers = (this.state.headers == "-")? [] : Object.keys(this.state.headers);
 
         return (
             <li className="editor">
@@ -194,7 +208,7 @@ class Editor extends Component {
                         <form className="form" onSubmit={this.formSubmit.bind(this,this.props.index)}>
                             <div className="columm action">
                                 <div className="select">
-                                    <select className="action" defaultValue={this.props.data.type} onChange={e => this.setState({type: e.target.value})} value={this.state.type}>
+                                    <select className="action" onChange={e => this.setState({type: e.target.value})} value={this.state.type}>
                                         <option value="GET">GET</option>
                                         <option value="POST">POST</option>
                                         <option value="PUT">PUT</option>
@@ -245,7 +259,7 @@ class Editor extends Component {
                     <div className="metadata">
                         <div className="field headers">
                             <span className="label">headers:</span>
-                            <span className="value">{Object.keys(this.state.response.headers).length}</span>
+                            <span className="value">{this.state.response.headers}</span>
                         </div>
                         <div className="field status">
                             <span className="label">status:</span>
