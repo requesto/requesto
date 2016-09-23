@@ -33,12 +33,7 @@ export default function(state = [],action) {
         case FOLDER_ITEM_ADD:
             folders = state.map(function(folder){
                 if (folder.id == action.payload.folder){
-                    folder.items.push({
-                        name: action.payload.item.name,
-                        description: action.payload.item.description,
-                        type: action.payload.item.type,
-                        url: action.payload.item.url
-                    })
+                    folder.items.push(action.payload.item)
                 }
                 return folder;
             });
