@@ -5,6 +5,7 @@ import {tabAdd,modal,folderItemEdit} from "./../actions/index";
 
 import Axios from 'axios';
 import Viewer from "./viewer";
+import Properties from "./properties";
 
 class Editor extends Component {
 
@@ -24,7 +25,8 @@ class Editor extends Component {
                 headers: "-",
                 time: "-",
                 status: "-"
-            }
+            },
+            selectedProperty: "headers"
         };
 
         this.onClickSend = this.onClickSend.bind(this);
@@ -36,7 +38,7 @@ class Editor extends Component {
         this.isSaved = this.isSaved.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps){
         this.setState({
             id: this.props.data.id,
             name: this.props.data.name,
@@ -49,7 +51,7 @@ class Editor extends Component {
         })
     }
 
-    onClickSend(e) {
+    onClickSend(e){
 
         (this.state.url == "")? alert("Enter a request URL!") : e.preventDefault();
 
@@ -72,7 +74,6 @@ class Editor extends Component {
             data: this.state.body
 
         }).then(response => {
-
             const duration = new Date().getTime() - startTime;
             prettyViewer.jsonViewer(response.data);
             headersViewer.jsonViewer(response.headers);
@@ -124,37 +125,21 @@ class Editor extends Component {
     }
 
     onClickHeaders(e){
-        this.props.modal({
-            type: "formRequestEditor",
-            data: {
-                child: "headers",
-                request: this.props.data
-            },
-            title: "Headers"
-        });
+        this.setState({
+            selectedProperty: "headers"
+        })
     }
 
     onClickParams(e){
-        console.log(this.state.params);
-        this.props.modal({
-            type: "formRequestEditor",
-            data: {
-                child: "params",
-                request: this.props.data
-            },
-            title: "Params"
-        });
+        this.setState({
+            selectedProperty: "params"
+        })
     }
 
     onClickBody(e){
-        this.props.modal({
-            type: "formRequestEditor",
-            data: {
-                child: "body",
-                request: this.props.data
-            },
-            title: "Body"
-        });
+        this.setState({
+            selectedProperty: "body"
+        })
     }
 
     onClickSave(e){
@@ -231,28 +216,24 @@ class Editor extends Component {
                     </div>
                     <div className="editor-tabs">
                         <ul className="list">
-                            <li className="item -headers" onClick={this.onClickHeaders}>
+                            <li className={"item -headers" + ((this.state.selectedProperty == "headers") ? " -active" : "") } onClick={this.onClickHeaders}>
                                 <span className="text">Headers</span>
                                 <span className="count">{headersCount}</span>
                             </li>
-                            <li className="item -params" onClick={this.onClickParams}>
+                            <li className={"item -params" + ((this.state.selectedProperty == "params") ? " -active" : "") } onClick={this.onClickParams}>
                                 <span className="text">Params</span>
                                 <span className="count">{paramsCount}</span>
                             </li>
-                            <li className="item -body" onClick={this.onClickBody}>
+                            <li className={"item -body" + ((this.state.selectedProperty == "body") ? " -active" : "") } onClick={this.onClickBody}>
                                 <span className="text">Body</span>
                                 <span className="count">{bodyCount}</span>
                             </li>
                         </ul>
                     </div>
-                    <div className="viewer-tabs">
-                        <ul className="list">
-                            <li className="item -pretty -active" onClick={this.onClickViewerTab}>Pretty</li>
-                            <li className="item -raw" onClick={this.onClickViewerTab}>Raw</li>
-                            <li className="item -preview" onClick={this.onClickViewerTab}>Preview</li>
-                            <li className="item -headers" onClick={this.onClickViewerTab}>Headers</li>
-                        </ul>
-                    </div>
+                    <Properties hidden={(this.state.selectedProperty)? true : false} title="lalla" data={{
+                        request: this.state,
+                        child: this.state.selectedProperty
+                    }}/>
                 </div>
                 <Viewer />
                 <div className="bottom">

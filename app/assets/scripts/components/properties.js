@@ -5,15 +5,14 @@ import {folderItemEdit} from "./../actions/index";
 import File from "../libs/file";
 
 
-//TODO: change to FormRequestProperties
-class FormRequestEditor extends Component {
+//TODO: change to
+class Properties extends Component {
 
     constructor(props){
         super(props);
 
         //TODO: change child name to properties
         this.state = {
-            title: ("title" in props) ? props.title : "",
             request: ("request" in props.data)? props.data.request : {},
             child: ("child" in props.data)? props.data.child : ""
         };
@@ -27,7 +26,6 @@ class FormRequestEditor extends Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            title: ("title" in nextProps) ? nextProps.title : "",
             request: ("request" in nextProps.data)? nextProps.data.request : {},
             child: ("child" in nextProps.data)? nextProps.data.child : ""
         })
@@ -90,19 +88,17 @@ class FormRequestEditor extends Component {
         )
     }
 
-    render() {
-
+    render(){
         var child = this.state.child;
         var data = this.state.request[child];
 
         return (
-            <form name="formRequestEditor" onSubmit={this.onFormSubmit}>
-                <label>{this.state.title}</label>
-                {Object.keys(data).map(this.renderFields)}
-                <br/>
-                <div onClick={this.onClickAddField}>Add field</div>
-            </form>
-
+            <requesto-properties>
+                <form name="formRequestEditor" onSubmit={this.onFormSubmit}>
+                    {Object.keys(data).map(this.renderFields)}
+                    <div onClick={this.onClickAddField}>Add field</div>
+                </form>
+            </requesto-properties>
         );
     }
 }
@@ -115,4 +111,4 @@ function mapDispatchToProps(dispatch){
     return bindActionCreators({folderItemEdit},dispatch);
 }
 
-export default connect (mapStateToProps,mapDispatchToProps)(FormRequestEditor);
+export default connect (mapStateToProps,mapDispatchToProps)(Properties);
