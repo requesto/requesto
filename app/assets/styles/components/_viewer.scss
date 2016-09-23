@@ -1,8 +1,15 @@
 .component-viewer {
     display: flex;
     flex: 1;
-    position: relative;
+    flex-direction: column;
     background: color("background-dark");
+
+    .viewers{
+        display: flex;
+        flex: 1;
+        position: relative;
+
+    }
 
     .viewer {
         display: none;
