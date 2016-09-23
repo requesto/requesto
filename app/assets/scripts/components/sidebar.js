@@ -95,7 +95,7 @@ class Sidebar extends Component {
         description = (description.trim() != "") ? data.description : "Request description";
 
         return(
-            <li className="item" data-id={index} key={"item-" + data.name + "-" + index } onClick={this.itemClick.bind(this,index,data)}>
+            <li className="item" data-title={data.name} data-id={index} key={"item-" + data.name + "-" + index } onClick={this.itemClick.bind(this,index,data)}>
                 <div className="name">{data.name}</div>
             <div className="description">{description}</div>
                 <div className={"type " + " -" + data.type.toLowerCase()}>{data.type}</div>
@@ -128,7 +128,7 @@ class Sidebar extends Component {
 
         return(
             <li className="folder" data-id={index} key={"folder-" + data.name + "-" + index }>
-                <div className={coverClass} onClick={this.folderClick} >
+                <div className={coverClass} onClick={this.folderClick}>
                     <div className="icon type"></div>
                     <div className="name">{data.name}</div>
                     <div className="description">{items.length + " requests"}</div>
