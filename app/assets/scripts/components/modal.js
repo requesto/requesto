@@ -47,7 +47,6 @@ class Modal extends Component {
         const modal = document.querySelector(".component-modal");
         const form = modal.querySelector("form");
         this.setState({show:false});
-        if (form.length > 0) form.reset();
     }
 
     onClickClose(e){
@@ -61,9 +60,9 @@ class Modal extends Component {
         return (
             <div className={`component-modal ${showClass}`} onClick={this.onClickClose}>
                 <div className="panel">
-                    {(this.state.type == "newFolder") ? <FormNewFolder title={this.state.title} data={this.state.data} onComplete={this.onComplete} /> : null}
-                    {(this.state.type == "newFolderItem") ? <FormNewFolderItem title={this.state.title} data={this.state.data} onComplete={this.onComplete} /> : null}
-                    {(this.state.type == "formRequestEditor") ? <FormRequestEditor title={this.state.title} data={this.state.data} onComplete={this.onComplete} /> : null}
+                    {(this.state.type == "newFolder" && this.state.show) ? <FormNewFolder title={this.state.title} data={this.state.data} onComplete={this.onComplete} /> : null}
+                    {(this.state.type == "newFolderItem" && this.state.show) ? <FormNewFolderItem title={this.state.title} data={this.state.data} onComplete={this.onComplete} /> : null}
+                    {(this.state.type == "formRequestEditor" && this.state.show) ? <FormRequestEditor title={this.state.title} data={this.state.data} onComplete={this.onComplete} /> : null}
                 </div>
             </div>
         );
