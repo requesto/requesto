@@ -93,7 +93,7 @@ class Properties extends Component {
         var data = this.state.request[child];
 
         return (
-            <requesto-properties>
+            <requesto-properties class={(this.props.hidden)? "" :"-show"}>
                 <form name="formRequestEditor" onSubmit={this.onFormSubmit}>
                     {Object.keys(data).map(this.renderFields)}
                     <div onClick={this.onClickAddField}>Add field</div>

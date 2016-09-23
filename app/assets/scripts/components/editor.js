@@ -26,7 +26,7 @@ class Editor extends Component {
                 time: "-",
                 status: "-"
             },
-            selectedProperty: "headers"
+            selectedProperty: null
         };
 
         this.onClickSend = this.onClickSend.bind(this);
@@ -64,7 +64,7 @@ class Editor extends Component {
         const startTime = new Date().getTime();
 
         viewer.addClass("-loading");
-        editor.find(".viewer-tabs").show();
+        editor.find("requesto-editor-tabs").show();
 
         Axios({
             method: this.state.type,
@@ -125,20 +125,23 @@ class Editor extends Component {
     }
 
     onClickHeaders(e){
+        var value = (this.state.selectedProperty == "headers")? null: "headers";
         this.setState({
-            selectedProperty: "headers"
+            selectedProperty: value
         })
     }
 
     onClickParams(e){
+        var value = (this.state.selectedProperty == "params")? null: "params";
         this.setState({
-            selectedProperty: "params"
+            selectedProperty: value
         })
     }
 
     onClickBody(e){
+        var value = (this.state.selectedProperty == "body")? null: "body";
         this.setState({
-            selectedProperty: "body"
+            selectedProperty: value
         })
     }
 
@@ -230,9 +233,9 @@ class Editor extends Component {
                             </li>
                         </ul>
                     </div>
-                    <Properties hidden={(this.state.selectedProperty)? true : false} title="lalla" data={{
+                    <Properties hidden={(this.state.selectedProperty == null)? true : false} title="lalla" data={{
                         request: this.state,
-                        child: this.state.selectedProperty
+                        child: (this.state.selectedProperty == null)? "headers" : this.state.selectedProperty
                     }}/>
                 </div>
                 <Viewer />

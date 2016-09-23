@@ -16,12 +16,21 @@ class Tabs extends Component {
         this.selectTab = this.selectTab.bind(this);
     }
 
+    componentDidMount(){
+        const hasTabs = this.props.tabs.length > 0;
+        if (!hasTabs){
+            this.props.tabAdd({name:"untitled"});
+        }
+    }
+
     componentDidUpdate(prevProps){
         const hasNewTabs = prevProps.tabs.length != this.props.tabs.length;
         const hasTabs = this.props.tabs.length > 0;
         if (hasNewTabs && hasTabs){
             const index = this.props.tabs.length - 1;
             this.selectTab(index);
+        } else {
+            this.props.tabAdd({name:"untitled"});
         }
     }
 
@@ -51,8 +60,7 @@ class Tabs extends Component {
         return(
             <li className="tab" onClick={this.onClickTab.bind(this,index)} onContextMenu={this.onContextMenu.bind(this,index)} key={"tab-" + data.name + "-" + index }>
                 <span className="title">{data.name}</span>
-                <div className="close ion-close" onClick={this.onClickCloseTab.bind(this,index)}>
-                </div>
+                <div className="close ion-close" onClick={this.onClickCloseTab.bind(this,index)}></div>
             </li>
         );
     }
