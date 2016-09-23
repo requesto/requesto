@@ -3,29 +3,62 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {folderItemAdd} from "../actions/index";
 
+
+//TODO: Change name to FormNewRequest
 class FormNewFolderItem extends Component {
 
     constructor(props){
         super(props);
-        this.state = {};
+        this.state = {
+            request: props.data,
+            folder: ""
+        };
+
+        this.onChangeName = this.onChangeName.bind(this);
+        this.onChangeDescription = this.onChangeDescription.bind(this);
+        this.onChangeFolder = this.onChangeFolder.bind(this);
         this.formSubmit = this.formSubmit.bind(this);
     }
 
+    componentWillMount(){
+        var request = this.state.request;
+        request.name = "";
+        this.setState({
+            request: request,
+            folder: this.props.folders[0].id
+        })
+    }
+
+    componentDidMount(){
+        this.refs.nameInput.focus();
+    }
+
+    onChangeName(e){
+        var request = this.state.request;
+        request.name = e.target.value;
+        this.setState({
+            request:request
+        })
+    }
+
+    onChangeDescription(e){
+        var request = this.state.request;
+        request.description = e.target.value;
+        this.setState({
+            request:request
+        })
+    }
+
+    onChangeFolder(e){
+        this.setState({
+            folder:e.target.value
+        })
+    }
+
     formSubmit(e){
-        const editor = $(".component-editors .editor:visible");
-        const modal = document.querySelector(".component-modal");
-        const form = modal.querySelector("form");
-        const folder = form["folder"].value;
-        const name = form["name"].value;
-        const description = form["description"].value;
-        const type = editor.find("select.action").val();
-        const url = editor.find(".input-url").val();
-        this.props.folderItemAdd(folder,{
-            name:name,
-            description: description,
-            type:type,
-            url:url
-        });
+        console.log("folder",this.state.folder);
+        console.log("state",this.state.request);
+        this.props.folderItemAdd(this.state.folder,this.state.request);
         this.props.onComplete();
         e.preventDefault();
     }
@@ -42,18 +75,18 @@ class FormNewFolderItem extends Component {
                 <fieldset>
                     <label>Select folder</label>
                     <div className="select">
-                        <select name="folder" className="action">
+                        <select className="action" onChange={this.onChangeFolder} value={this.state.request.type}>
                             {this.props.folders.map(this.renderFolderOption)}
                         </select>
                     </div>
                 </fieldset>
                 <fieldset>
                     <label>Enter the item name</label>
-                    <input type="text" name="name"/>
+                    <input type="text" name="name" onChange={this.onChangeName} value={this.state.request.name} ref="nameInput"/>
                 </fieldset>
                 <fieldset>
                     <label>Enter the item description</label>
-                    <input type="text" name="description" />
+                    <input type="text" name="description" onChange={this.onChangeDescription} value={this.state.request.description}/>
                 </fieldset>
                 <button hidden type="submit">SALVAR</button>
             </form>
