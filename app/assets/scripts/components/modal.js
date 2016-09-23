@@ -5,7 +5,6 @@ import {folderAdd} from "../actions/index";
 
 import FormNewFolder from "./form-new-folder";
 import FormNewFolderItem from "./form-new-folder-item";
-import FormRequestEditor from "./form-request-editor";
 
 class Modal extends Component {
 
@@ -62,7 +61,6 @@ class Modal extends Component {
                 <div className="panel">
                     {(this.state.type == "newFolder" && this.state.show) ? <FormNewFolder title={this.state.title} data={this.state.data} onComplete={this.onComplete} /> : null}
                     {(this.state.type == "newFolderItem" && this.state.show) ? <FormNewFolderItem title={this.state.title} data={this.state.data} onComplete={this.onComplete} /> : null}
-                    {(this.state.type == "formRequestEditor" && this.state.show) ? <FormRequestEditor title={this.state.title} data={this.state.data} onComplete={this.onComplete} /> : null}
                 </div>
             </div>
         );

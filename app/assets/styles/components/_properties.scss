@@ -1,0 +1,16 @@
+requesto-properties {
+    display: none;
+    padding: 10px 20px;
+    overflow: auto;
+    max-height: 30vh;
+
+    &.-show{
+        display: block;
+    }
+
+
+    form{
+        display: block;
+        width: 100%;
+    }
+}
