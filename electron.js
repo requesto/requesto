@@ -18,11 +18,13 @@ let mainWindow
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        background: "#1d1e26",
+        show: true,
+        backgroundColor: "#1d1e26",
         title: "Requesto",
-        center: true,
+        center: true
     })
-    // mainWindow.webContents.openDevTools()
+
+    //mainWindow.webContents.openDevTools()
     mainWindow.maximize()
     mainWindow.loadURL(`file://${__dirname}/dist/index.html`)
     mainWindow.on('closed', function() {
@@ -34,6 +36,11 @@ function createWindow() {
 
     // Shortcuts
     //globalShortcut.register('Command+W', () => {});
+
+    // Showing window gracefully
+    // mainWindow.once('ready-to-show', () => {
+    //   mainWindow.show()
+    // })
 }
 
 // This method will be called when Electron has finished
