@@ -1,5 +1,7 @@
 # REQUESTO
 
+![](https://img.shields.io/github/release/requesto/requesto.svg)
+
 The futurist open source request client.
 
 ## Screenshot
