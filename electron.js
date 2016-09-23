@@ -19,7 +19,7 @@ let mainWindow
 function createWindow() {
     mainWindow = new BrowserWindow({
         show: true,
-        backgroundColor: "#1d1e26",
+        backgroundColor: '#21252b',
         title: "Requesto",
         center: true
     })
