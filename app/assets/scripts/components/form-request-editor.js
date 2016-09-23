@@ -4,10 +4,14 @@ import {bindActionCreators} from 'redux';
 import {folderItemEdit} from "./../actions/index";
 import File from "../libs/file";
 
+
+//TODO: change to FormRequestProperties
 class FormRequestEditor extends Component {
 
     constructor(props){
         super(props);
+
+        //TODO: change child name to properties
         this.state = {
             title: ("title" in props) ? props.title : "",
             request: ("request" in props.data)? props.data.request : {},
