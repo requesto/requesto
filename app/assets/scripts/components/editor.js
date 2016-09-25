@@ -64,6 +64,7 @@ class Editor extends Component {
         const startTime = new Date().getTime();
 
         viewer.addClass("-loading");
+        viewer.addClass("-show");
         editor.find("requesto-editor-tabs").show();
 
         Axios({
