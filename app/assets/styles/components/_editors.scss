@@ -22,8 +22,10 @@
             }
             .top {
                 display: flex;
-                width: 100%;
                 flex-direction: column;
+                flex: 1;
+                width: 100%;
+                margin-bottom: 5px;
             }
             .form{
                 display: flex;
@@ -32,10 +34,11 @@
             .bar {
                 display: flex;
                 justify-content: space-around;
-                align-items: center;
+                align-items: flex-end;
                 width: 100%;
-                padding: 13px 10px 5px 10px;
+                padding: 0 10px;
                 background-color: color("background-light");
+                height: 50px;
 
                 .columm {
                     padding: 0 10px;
@@ -61,6 +64,7 @@
                 background-color: color("background-light");
                 .list {
                     display: flex;
+                    align-items: center;
                 }
                 .item {
                     padding: 10px 0;
@@ -92,9 +96,9 @@
                 }
             }
             .editor-tabs{
+                height: 40px;
                 display: block;
                 border-bottom: 1px solid color("border");
-                margin-bottom: 5px;
             }
             .viewer-tabs{
                 border-top: 1px solid color("border");
