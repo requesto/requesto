@@ -1,16 +1,15 @@
 requesto-properties {
     display: none;
-    padding: 10px 20px;
-    overflow: auto;
-    max-height: 30vh;
+    flex: 1;
 
     &.-show{
-        display: block;
+        display: flex;
     }
-
 
     form{
         display: block;
         width: 100%;
+        overflow: auto;
+        padding: 10px 20px;
     }
 }
