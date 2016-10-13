@@ -26,7 +26,8 @@ class Editor extends Component {
                 time: "-",
                 status: "-"
             },
-            selectedProperty: null
+            selectedProperty: null,
+            data:""
         };
 
         this.onClickSend = this.onClickSend.bind(this);
@@ -47,7 +48,7 @@ class Editor extends Component {
             descriptions: this.props.data.description,
             headers: this.props.data.headers,
             params: this.props.data.params,
-            body: this.props.data.body,
+            body: this.props.data.body
         })
     }
 
@@ -78,11 +79,12 @@ class Editor extends Component {
             const duration = new Date().getTime() - startTime;
             prettyViewer.jsonViewer(response.data);
             headersViewer.jsonViewer(response.headers);
-            rawViewer.text(JSON.stringify(response.data));
+            //rawViewer.text(JSON.stringify(response.data));
             viewer.removeClass("-loading");
             previewViewer.find(".iframe").attr("src",this.state.url);
 
             this.setState({
+                data: JSON.stringify(response.data),
                 response: {
                     headers: Object.keys(response.headers).length,
                     status: response.status,
@@ -94,11 +96,12 @@ class Editor extends Component {
             const duration = new Date().getTime() - startTime;
             prettyViewer.jsonViewer(error.data);
             headersViewer.jsonViewer(error.headers);
-            rawViewer.text(JSON.stringify(error.data));
+            //rawViewer.text(JSON.stringify(error.data));
             viewer.removeClass("-loading");
             previewViewer.find(".iframe").attr("src",this.state.url);
 
             this.setState({
+                data: JSON.stringify(error.data),
                 response: {
                     headers: "-",
                     status: error.status,
@@ -237,7 +240,7 @@ class Editor extends Component {
                         child: (this.state.selectedProperty == null)? "headers" : this.state.selectedProperty
                     }}/>
                 </div>
-                <Viewer />
+                <Viewer data={this.state.data}/>
                 <div className="request-metadata">
                     <div className="field headers">
                         <span className="label">headers:</span>

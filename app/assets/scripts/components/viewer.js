@@ -6,13 +6,25 @@ class Viewer extends Component {
 
     constructor(props){
         super(props);
+
+        console.log("Viewer");
+        console.log(props);
+        console.log(this.props.data);
+
         this.state = {
             activeViewer: "pretty",
-            activeClass: "-active"
+            activeClass: "-active",
+            data: props.data
         };
 
         this.onClickTab = this.onClickTab.bind(this);
         this.isSelected = this.isSelected.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            data: nextProps.data
+        })
     }
 
     onClickTab(e){
@@ -39,7 +51,7 @@ class Viewer extends Component {
                 </requesto-editor-tabs>
                 <div className="viewers">
                     <pre className={"viewer pretty" + this.isSelected("pretty")}></pre>
-                    <textarea className={"viewer raw" + this.isSelected("raw")} readOnly></textarea>
+                    <textarea className={"viewer raw" + this.isSelected("raw")} readOnly value={this.state.data}></textarea>
                     <div className={"viewer preview" + this.isSelected("preview")}>
                         <iframe className="iframe" src=""/>
                     </div>
