@@ -79,7 +79,6 @@ class Editor extends Component {
             const duration = new Date().getTime() - startTime;
             prettyViewer.jsonViewer(response.data);
             headersViewer.jsonViewer(response.headers);
-            //rawViewer.text(JSON.stringify(response.data));
             viewer.removeClass("-loading");
             previewViewer.find(".iframe").attr("src",this.state.url);
 
@@ -96,7 +95,6 @@ class Editor extends Component {
             const duration = new Date().getTime() - startTime;
             prettyViewer.jsonViewer(error.data);
             headersViewer.jsonViewer(error.headers);
-            //rawViewer.text(JSON.stringify(error.data));
             viewer.removeClass("-loading");
             previewViewer.find(".iframe").attr("src",this.state.url);
 
@@ -255,71 +253,6 @@ class Editor extends Component {
                         <span className="value">{this.state.response.time}</span>
                     </div>
                 </div>
-
-                {/* <div className="top">
-                    <div className="bar">
-                        <form className="form" onSubmit={this.formSubmit.bind(this,this.props.index)}>
-                            <div className="columm action">
-                                <div className="select">
-                                    <select className="action" onChange={e => this.setState({type: e.target.value})} value={this.state.type}>
-                                        <option value="GET">GET</option>
-                                        <option value="POST">POST</option>
-                                        <option value="PUT">PUT</option>
-                                        <option value="PATCH">PATCH</option>
-                                        <option value="DELETE">DELETE</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div className="columm url">
-                                <input className="input-url" name="url" placeholder={"Enter request URL"} onChange={e => this.setState({url: e.target.value})} value={this.state.url}/>
-                            </div>
-                            <div className="columm button">
-                                <input className="input-button send" onClick={this.onClickSend} type="button" name="send" defaultValue="Send" />
-                            </div>
-                            <div className="columm button">
-                                <input className="input-button save" onClick={this.onClickSave} type="button" name="save" defaultValue={(this.isSaved())? "Save" : "Save As" } />
-                            </div>
-                        </form>
-                    </div>
-                    <div className="editor-tabs">
-                        <ul className="list">
-                            <li className={"item -headers" + ((this.state.selectedProperty == "headers") ? " -active" : "") } onClick={this.onClickHeaders}>
-                                <span className="text">Headers</span>
-                                <span className="count">{headersCount}</span>
-                            </li>
-                            <li className={"item -params" + ((this.state.selectedProperty == "params") ? " -active" : "") } onClick={this.onClickParams}>
-                                <span className="text">Params</span>
-                                <span className="count">{paramsCount}</span>
-                            </li>
-                            <li className={"item -body" + ((this.state.selectedProperty == "body") ? " -active" : "") } onClick={this.onClickBody}>
-                                <span className="text">Body</span>
-                                <span className="count">{bodyCount}</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <Properties hidden={(this.state.selectedProperty == null)? true : false} title="lalla" data={{
-                        request: this.state,
-                        child: (this.state.selectedProperty == null)? "headers" : this.state.selectedProperty
-                    }}/>
-                </div>
-                <Viewer />
-                <div className="bottom">
-                    <div className="metadata">
-                        <div className="field headers">
-                            <span className="label">headers:</span>
-                            <span className="value">{this.state.response.headers}</span>
-                        </div>
-                        <div className="field status">
-                            <span className="label">status:</span>
-                            <span className="value">{this.state.response.status}</span>
-                        </div>
-                        <div className="field time">
-                            <span className="label">Time:</span>
-                            <span className="value">{this.state.response.time}</span>
-                        </div>
-                    </div>
-                </div> */}
             </li>
         );
     }
