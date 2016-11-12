@@ -1,11 +1,11 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {tabAdd,modal,folderItemEdit} from "./../actions/index";
+import {tabAdd,modal,folderItemEdit} from './../actions/index';
 
 import Axios from 'axios';
-import Viewer from "./viewer";
-import Properties from "./properties";
+import Viewer from './viewer';
+import Properties from './properties';
 
 class Editor extends Component {
 
