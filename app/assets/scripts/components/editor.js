@@ -187,9 +187,9 @@ class Editor extends Component {
     }
 
     render(){
-        const paramsCount = (Object.keys(this.props.data.params).length > 0)? ` [${Object.keys(this.props.data.params).length}]` : "";
-        const headersCount = (Object.keys(this.props.data.headers).length > 0)? ` [${Object.keys(this.props.data.headers).length}]` : "";
-        const bodyCount = (Object.keys(this.props.data.body).length > 0)? ` [${Object.keys(this.props.data.body).length}]` : "";
+        const paramsCount = (Object.keys(this.props.data.params).length > 0)? ` (${Object.keys(this.props.data.params).length})` : "";
+        const headersCount = (Object.keys(this.props.data.headers).length > 0)? ` (${Object.keys(this.props.data.headers).length})` : "";
+        const bodyCount = (Object.keys(this.props.data.body).length > 0)? ` (${Object.keys(this.props.data.body).length})` : "";
 
         return (
             <li className="editor">
