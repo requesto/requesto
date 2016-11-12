@@ -8,9 +8,6 @@
     border-right: 1px solid color("border");
     margin-right: 4px;
     flex-direction: column;
-    @include grid-breakpoint("xsmall","small") {
-        display: none;
-    };
 
     .top {
         height: auto;
