@@ -21,7 +21,8 @@ function createWindow() {
         backgroundColor: '#21252b',
         title: "Requesto",
         center: true,
-        minWidth: 900
+        minWidth: 900,
+        minHeight: 550
     })
 
     //mainWindow.webContents.openDevTools()
