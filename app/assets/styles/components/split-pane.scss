@@ -1,13 +1,13 @@
 .Resizer {
-    // background: #000;
     opacity: 0.2;
     z-index: 1;
     box-sizing: border-box;
     background-clip: padding-box;
+    transition: all 0.3s ease;
 }
 
 .Resizer:hover {
-    transition: all $animation-duration ease;
+
 }
 
 .Resizer.horizontal {
