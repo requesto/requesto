@@ -23,7 +23,6 @@ class Index extends Component {
                 <div className="main">
                     <SplitPane
                         split="vertical"
-                        primary="second"
                         minSize={200}
                         maxSize={500}
                         defaultSize={ parseInt(localStorage.getItem('splitPos')) }
