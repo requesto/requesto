@@ -59,8 +59,6 @@ export default function(state = [], action) {
                 file.updateStorageFile(data);
             });
 
-            console.log(folders);
-
             return folders;
         case FOLDER_ITEM_EDIT:
             folders = state.map(function(folder) {
