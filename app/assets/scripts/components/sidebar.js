@@ -8,12 +8,15 @@ class Sidebar extends Component {
 
     constructor(props){
         super(props);
+
         this.state = {
-            isLoaded: false
+            isLoaded: false,
+            openFolders: JSON.parse(localStorage.getItem('sidebarFoldersOpen')) || false,
+            openDescriptions: JSON.parse(localStorage.getItem('sidebarfoldersDescriptions')) || false
         };
-        this.openFolders = false;
-        this.openDescriptions = false;
+
         this.file = new File();
+
         this.folderAddClick = this.folderAddClick.bind(this);
         this.folderClick = this.folderClick.bind(this);
         this.folderClickDelete = this.folderClickDelete.bind(this);
@@ -52,12 +55,16 @@ class Sidebar extends Component {
     }
 
     toggleRequetsDescriptions(e){
-        this.openDescriptions = !this.openDescriptions
+        let value = !this.state.openDescriptions;
+        localStorage.setItem('sidebarfoldersDescriptions', value)
+        this.setState({ openDescriptions: value });
         this.forceUpdate();
     }
 
     toggleFolders(e){
-        this.openFolders = !this.openFolders;
+        let value = !this.state.openFolders;
+        localStorage.setItem('sidebarFoldersOpen', value)
+        this.setState({ openFolders: value });
         this.forceUpdate();
     }
 
@@ -123,9 +130,9 @@ class Sidebar extends Component {
     renderFolders(data,index){
 
         var items = ('items' in data)? data.items : [];
-        var coverClass = "cover " + ((this.openFolders)? "-active" : "");
-        var itemsClass = "items " + ((this.openFolders)? "-open" : "");
-
+        var coverClass = "cover " + ((this.state.openFolders)? "-active" : "");
+        var itemsClass = "items " + ((this.state.openFolders)? "-open" : "");
+        
         return(
             <li className="folder" data-id={index} key={"folder-" + data.name + "-" + index }>
                 <div className={coverClass} onClick={this.folderClick}>
@@ -159,9 +166,9 @@ class Sidebar extends Component {
 
     render() {
 
-        var folderListClass = "folder-list " + ((this.openDescriptions) ? "-show-descriptions" : "");
-        var toggleDescriptionsTitle = (this.openDescriptions)? "Hide descriptions" : "Show descriptions";
-        var toggleFoldersTitle = (this.openFolders)? "Close folders" : "Open folders";
+        var folderListClass = "folder-list " + ((this.state.openDescriptions) ? "-show-descriptions" : "");
+        var toggleDescriptionsTitle = (this.state.openDescriptions)? "Hide descriptions" : "Show descriptions";
+        var toggleFoldersTitle = (this.state.openFolders)? "Close folders" : "Open folders";
 
         return (
             <div className="component-sidebar">
