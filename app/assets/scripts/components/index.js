@@ -17,6 +17,10 @@ class Index extends Component {
         this.state = {};
     }
 
+    onChangeSplitPane(size){
+        localStorage.setItem('splitPos', size)
+    }
+
     render() {
         return (
             <div className="component-index">
@@ -26,7 +30,7 @@ class Index extends Component {
                         minSize={200}
                         maxSize={500}
                         defaultSize={ parseInt(localStorage.getItem('splitPos')) }
-                        onChange={ size => localStorage.setItem('splitPos', size) }>
+                        onChange={this.onChangeSplitPane}>
 
                         <Sidebar />
                         <Workspace />
