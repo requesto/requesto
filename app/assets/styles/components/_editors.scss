@@ -111,8 +111,12 @@
 
     .request-properties{
         display: flex;
-        flex:1;
         flex-direction: column;
+
+        &.-show{
+            flex:1;
+        }
+    
 
         .list {
             display: flex;
