@@ -4,7 +4,10 @@ import {bindActionCreators} from 'redux';
 import {tabAdd,modal,folderItemEdit} from './../actions/index';
 
 import Axios from 'axios';
-import Viewer from './viewer';
+import RequestViewer from './request-viewer';
+import RequestBar from "./request-bar";
+import RequestProperties from "./request-properties";
+import RequestMetadata from "./request-metadata";
 import Properties from './properties';
 
 class Editor extends Component {
@@ -12,6 +15,10 @@ class Editor extends Component {
     constructor(props){
         super(props);
 
+        this.checkURL = this.checkURL.bind(this);
+        this.onSend = this.onSend.bind(this);
+        this.onSave = this.onSave.bind(this);
+        this.isSaved = this.isSaved.bind(this);
         this.state = {
             id: props.data.id,
             name: props.data.name,
@@ -21,52 +28,32 @@ class Editor extends Component {
             headers: props.data.headers,
             params: props.data.params,
             body: props.data.body,
-            response: {
-                headers: "-",
-                time: "-",
-                status: "-"
-            },
-            selectedProperty: null,
-            data:""
+            data:{},
+            responseHeaders: {},
+            responseHeadersCount: "-",
+            responseTime: "-",
+            responseStatus: "-",
+            loading: false,
+            showViewer: false,
+            showProperties: false
+
         };
-
-        this.onClickSend = this.onClickSend.bind(this);
-        this.onClickViewerTab = this.onClickViewerTab.bind(this);
-        this.onClickSave = this.onClickSave.bind(this);
-        this.onClickHeaders = this.onClickHeaders.bind(this);
-        this.onClickParams = this.onClickParams.bind(this);
-        this.onClickBody = this.onClickBody.bind(this);
-        this.isSaved = this.isSaved.bind(this);
     }
 
-    componentWillReceiveProps(nextProps){
-        this.setState({
-            id: this.props.data.id,
-            name: this.props.data.name,
-            type: (this.props.data.type  == "")? "GET" : this.props.data.type,
-            url: this.props.data.url,
-            descriptions: this.props.data.description,
-            headers: this.props.data.headers,
-            params: this.props.data.params,
-            body: this.props.data.body
-        })
-    }
-
-    onClickSend(e){
-
+    checkURL(e){
         (this.state.url == "")? alert("Enter a request URL!") : e.preventDefault();
+    }
 
-        const editor = $(e.currentTarget).closest(".editor");
-        const viewer = editor.find(".component-viewer");
-        const prettyViewer = viewer.find(".viewer.pretty");
-        const rawViewer = viewer.find(".viewer.raw");
-        const previewViewer = viewer.find(".viewer.preview");
-        const headersViewer = viewer.find(".viewer.headers");
+    onSend(){
+
         const startTime = new Date().getTime();
 
-        viewer.addClass("-loading");
-        viewer.addClass("-show");
-        editor.find("requesto-editor-tabs").show();
+        this.checkURL(event);
+        this.setState({
+            showViewer: true,
+            showProperties: true,
+            loading: true
+        })
 
         Axios({
             method: this.state.type,
@@ -76,85 +63,38 @@ class Editor extends Component {
             data: this.state.body
 
         }).then(response => {
-            const duration = new Date().getTime() - startTime;
-            prettyViewer.jsonViewer(response.data);
-            headersViewer.jsonViewer(response.headers);
-            viewer.removeClass("-loading");
-            previewViewer.find(".iframe").attr("src",this.state.url);
 
             this.setState({
-                data: JSON.stringify(response.data),
-                response: {
-                    headers: Object.keys(response.headers).length,
-                    status: response.status,
-                    time: duration + "ms"
-                }
+                data: response.data.result,
+                responseHeaders: response.headers,
+                responseHeadersCount: Object.keys(response.headers).length,
+                responseTime: (new Date().getTime() - startTime) + "ms",
+                responseStatus: response.status,
+                loading: false
             })
 
         }).catch(error => {
-            const duration = new Date().getTime() - startTime;
-            prettyViewer.jsonViewer(error.data);
-            headersViewer.jsonViewer(error.headers);
-            viewer.removeClass("-loading");
-            previewViewer.find(".iframe").attr("src",this.state.url);
 
             this.setState({
-                data: JSON.stringify(error.data),
-                response: {
-                    headers: "-",
-                    status: error.status,
-                    time: duration + "ms"
-                }
+                data: error.data,
+                responseHeaders: response.headers,
+                responseHeadersCount: "-",
+                responseTime: (new Date().getTime() - startTime) + "ms",
+                responseStatus: error.status,
+                loading: false
             })
+
         });
+
     }
 
-    onClickViewerTab(e){
-        const currentTarget = $(e.currentTarget);
-        const viewer = $(".component-viewer");
-
-        currentTarget.addClass("-active").siblings().removeClass("-active");
-
-        if (currentTarget.hasClass("-pretty")){
-            viewer.find(".pretty").addClass("-active").siblings().removeClass("-active");
-        } else if (currentTarget.hasClass("-raw")){
-            viewer.find(".raw").addClass("-active").siblings().removeClass("-active");
-        } else if (currentTarget.hasClass("-preview")){
-            viewer.find(".preview").addClass("-active").siblings().removeClass("-active");
-        } else if (currentTarget.hasClass("-headers")){
-            viewer.find(".headers").addClass("-active").siblings().removeClass("-active");
-        }
-    }
-
-    onClickHeaders(e){
-        var value = (this.state.selectedProperty == "headers")? null: "headers";
-        this.setState({
-            selectedProperty: value
-        })
-    }
-
-    onClickParams(e){
-        var value = (this.state.selectedProperty == "params")? null: "params";
-        this.setState({
-            selectedProperty: value
-        })
-    }
-
-    onClickBody(e){
-        var value = (this.state.selectedProperty == "body")? null: "body";
-        this.setState({
-            selectedProperty: value
-        })
-    }
-
-    onClickSave(e){
+    onSave(){
 
         const data = {
             id: this.state.id,
             name: this.state.name,
             type: this.state.type,
             url: this.state.url,
-            descriptions: this.state.description,
             headers: this.state.headers,
             params: this.state.params,
             body: this.state.body,
@@ -172,12 +112,6 @@ class Editor extends Component {
         }
     }
 
-    formSubmit(index,e){
-        const editor = $(".component-editors .editor").eq(index);
-        editor.find(".input-button.send" ).trigger("click");
-        e.preventDefault();
-    }
-
     isSaved(){
         return this.props.folders.some(folder => {
             return folder.items.some(request => {
@@ -187,72 +121,33 @@ class Editor extends Component {
     }
 
     render(){
-        const paramsCount = (Object.keys(this.props.data.params).length > 0)? ` (${Object.keys(this.props.data.params).length})` : "";
-        const headersCount = (Object.keys(this.props.data.headers).length > 0)? ` (${Object.keys(this.props.data.headers).length})` : "";
-        const bodyCount = (Object.keys(this.props.data.body).length > 0)? ` (${Object.keys(this.props.data.body).length})` : "";
-
         return (
-            <li className="editor">
-                <div className="request-bar">
-                    <form className="form" onSubmit={this.formSubmit.bind(this,this.props.index)}>
-                        <div className="columm action">
-                            <div className="select">
-                                <select className="action" onChange={e => this.setState({type: e.target.value})} value={this.state.type}>
-                                    <option value="GET">GET</option>
-                                    <option value="POST">POST</option>
-                                    <option value="PUT">PUT</option>
-                                    <option value="PATCH">PATCH</option>
-                                    <option value="DELETE">DELETE</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div className="columm url">
-                            <input className="input-url" name="url" placeholder={"Enter request URL"} onChange={e => this.setState({url: e.target.value})} value={this.state.url}/>
-                        </div>
-                        <div className="columm button">
-                            <input className="input-button send" onClick={this.onClickSend} type="button" name="send" defaultValue="Send" />
-                        </div>
-                        <div className="columm button">
-                            <input className="input-button save" onClick={this.onClickSave} type="button" name="save" defaultValue={(this.isSaved())? "Save" : "Save As" } />
-                        </div>
-                    </form>
-                </div>
-                <div className="request-properties">
-                    <ul className="list">
-                        <li className={"item -headers" + ((this.state.selectedProperty == "headers") ? " -active" : "") } onClick={this.onClickHeaders}>
-                            <span className="text">Headers</span>
-                            <span className="count">{headersCount}</span>
-                        </li>
-                        <li className={"item -params" + ((this.state.selectedProperty == "params") ? " -active" : "") } onClick={this.onClickParams}>
-                            <span className="text">Params</span>
-                            <span className="count">{paramsCount}</span>
-                        </li>
-                        <li className={"item -body" + ((this.state.selectedProperty == "body") ? " -active" : "") } onClick={this.onClickBody}>
-                            <span className="text">Body</span>
-                            <span className="count">{bodyCount}</span>
-                        </li>
-                    </ul>
-                    <Properties hidden={(this.state.selectedProperty == null)? true : false} title="lalla" data={{
-                        request: this.state,
-                        child: (this.state.selectedProperty == null)? "headers" : this.state.selectedProperty
-                    }}/>
-                </div>
-                <Viewer data={this.state.data}/>
-                <div className="request-metadata">
-                    <div className="field headers">
-                        <span className="label">headers:</span>
-                        <span className="value">{this.state.response.headers}</span>
-                    </div>
-                    <div className="field status">
-                        <span className="label">status:</span>
-                        <span className="value">{this.state.response.status}</span>
-                    </div>
-                    <div className="field time">
-                        <span className="label">Time:</span>
-                        <span className="value">{this.state.response.time}</span>
-                    </div>
-                </div>
+            <li className="editor" ref={(el) => this.editor = el}>
+                <RequestBar
+                    url={this.state.url}
+                    type={this.state.type}
+                    onSend={this.onSend}
+                    onSave={this.onSave}
+                    isSaved={this.isSaved()}
+                />
+                <RequestProperties
+                    headers={this.state.headers}
+                    params={this.state.params}
+                    body={this.state.body}
+                    show={this.state.showProperties}
+                />
+                <RequestViewer
+                    url={this.state.url}
+                    data={this.state.data}
+                    headers={this.state.responseHeaders}
+                    loading={this.state.loading}
+                    show={this.state.showViewer}
+                />
+                <RequestMetadata
+                    headers={this.state.responseHeadersCount}
+                    status={this.state.responseStatus}
+                    time={this.state.responseTime}
+                />
             </li>
         );
     }
