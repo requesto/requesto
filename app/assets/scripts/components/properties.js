@@ -13,8 +13,10 @@ class Properties extends Component {
 
         //TODO: change child name to properties
         this.state = {
-            request: ("request" in props.data)? props.data.request : {},
-            child: ("child" in props.data)? props.data.child : ""
+            headers: props.headers,
+            params: props.params,
+            body: props.body,
+            child: props.child || ""
         };
 
         this.file = new File();
@@ -26,51 +28,52 @@ class Properties extends Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            request: ("request" in nextProps.data)? nextProps.data.request : {},
-            child: ("child" in nextProps.data)? nextProps.data.child : ""
+            headers: nextProps.headers,
+            params: nextProps.params,
+            body: nextProps.body,
+            child: nextProps.child || ""
         })
     }
 
     onClickAddField(e){
-        var request = this.state.request;
-        var child = this.state.child;
-        request[child]["untitled"] = ""
-        this.setState({
-            request: request
-        });
+        var property = this.props[this.props.child];
+        property["untitled"] = ""
+        // this.setState({
+        //     this.props.child: property
+        // });
     }
 
     onChangeKey(key,e){
-        var request = this.state.request;
-        var child = this.state.child;
-        request[child][e.target.value] = request[child][key]
-        delete request[child][key]
-        this.setState({
-            request: request
-        });
+        // var child = this.props.child;
+        // var property = this.props[child];
+        // property[e.target.value] = request[child][key]
+        // delete request[child][key]
+        // this.setState({
+        //     child: request
+        // });
     }
 
     onChangeKeyValue(key,e){
-        var request = this.state.request;
-        var child = this.state.child;
-        request[child][key] = e.target.value
-        this.setState({
-            request: request
-        });
+        // var request = this.state.request;
+        // var child = this.state.child;
+        // request[child][key] = e.target.value
+        // this.setState({
+        //     request: request
+        // });
     }
 
     onClickRemoveField(key,e){
-        var request = this.state.request;
-        var child = this.state.child;
-        delete request[child][key]
-        this.setState({
-            request: request
-        });
-        this.props.folderItemEdit(this.state.request);
+        // var request = this.state.request;
+        // var child = this.state.child;
+        // delete request[child][key]
+        // this.setState({
+        //     request: request
+        // });
+        // this.props.folderItemEdit(this.state.request);
     }
 
     onBlurInput(e){
-        this.props.folderItemEdit(this.state.request);
+        // this.props.folderItemEdit(this.state.request);
     }
 
     onFormSubmit(e){
@@ -82,7 +85,7 @@ class Properties extends Component {
         return (
             <fieldset className="two-columns" key={index}>
                 <input className="key" type="text" value={key} onChange={this.onChangeKey.bind(this,key)} onBlur={this.onBlurInput}/>
-                <input className="value" type="text" value={this.state.request[this.state.child][key]} onChange={this.onChangeKeyValue.bind(this,key)} onBlur={this.onBlurInput}/>
+                <input className="value" type="text" value={this.state[this.state.child][key]} onChange={this.onChangeKeyValue.bind(this,key)} onBlur={this.onBlurInput}/>
                 <div className="ion-close-circled icon-remove" style={{float:"left"}} onClick={this.onClickRemoveField.bind(this,key)}></div>
             </fieldset>
         )
@@ -90,7 +93,7 @@ class Properties extends Component {
 
     render(){
         var child = this.state.child;
-        var data = this.state.request[child];
+        var data = this.state[child];
 
         return (
             <requesto-properties class={(this.props.hidden)? "" :"-show"}>
