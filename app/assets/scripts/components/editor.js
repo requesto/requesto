@@ -8,7 +8,6 @@ import RequestViewer from './request-viewer';
 import RequestBar from "./request-bar";
 import RequestProperties from "./request-properties";
 import RequestMetadata from "./request-metadata";
-import Properties from './properties';
 
 class Editor extends Component {
 
@@ -45,9 +44,7 @@ class Editor extends Component {
     }
 
     onSend(){
-
         const startTime = new Date().getTime();
-
         this.checkURL(event);
         this.setState({
             showViewer: true,
@@ -122,7 +119,7 @@ class Editor extends Component {
 
     render(){
         return (
-            <li className="editor" ref={(el) => this.editor = el}>
+            <li className="editor">
                 <RequestBar
                     url={this.state.url}
                     type={this.state.type}

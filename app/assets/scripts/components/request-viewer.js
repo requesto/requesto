@@ -16,13 +16,6 @@ class RequestViewer extends Component {
             tabs : ["Pretty","Raw","Preview","Headers"],
             selectedTab: 0
         };
-
-        //success
-        // headersViewer.jsonViewer(response.headers);
-
-        //error
-        // prettyViewer.jsonViewer(error.data);
-        // headersViewer.jsonViewer(error.headers);
     }
 
     componentWillReceiveProps(nextProps){
@@ -58,10 +51,11 @@ class RequestViewer extends Component {
         const loadingClass = (this.props.loading) ? "-loading" : "";
 
         $(document).ready(() => {
+            console.log(this.props.data);
             $(this.viewer).find(".pretty").jsonViewer(this.props.data);
             $(this.viewer).find(".headers").jsonViewer(this.props.headers);
         })
-    
+
         return (
             <div className={`component-viewer ${loadingClass} ${showClass}`} ref={(el) => this.viewer = el}>
                 <requesto-editor-tabs>

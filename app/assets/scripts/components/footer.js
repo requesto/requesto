@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 
 class Footer extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {};
     }
