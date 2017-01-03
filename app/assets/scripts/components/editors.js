@@ -10,14 +10,12 @@ class Editors extends Component {
     constructor(props){
         super(props);
         this.state = {};
-
         this.renderEditor = this.renderEditor.bind(this);
     }
-
-
+    
     renderEditor(data,index){
         return (
-            <Editor data={data} index={index} key={"editor-" + data.name + "-" + index}/>
+            <Editor data={data} index={index} key={`editor- ${data.name} ${index}`}/>
         )
     }
 
